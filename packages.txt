@@ -1,0 +1,14 @@
+build-essential
+gcc
+cmake
+ca-certificates
+gnupg
+wget
+curl
+lsb-release
+ripgrep
+fd-find
+tmux
+tmuxp
+btop
+htop
