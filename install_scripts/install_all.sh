@@ -7,3 +7,4 @@ sudo chamod 777 *.sh
 ./install_conda.sh
 
 ./install_nvm.sh
+./install_nerd_font.sh
