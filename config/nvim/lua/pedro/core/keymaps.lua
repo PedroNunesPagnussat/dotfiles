@@ -19,10 +19,18 @@ map('v', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 map('v', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 
+-- x Dont Add to copy
+map("n", "x", '"_x')
+
 -- Exit insert mode
 map("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 map("i", "kj", "<ESC>", { desc = "Exit insert mode with jk" })
 map("i", "jj", "<ESC>", { desc = "Exit insert mode with jk" })
+
+
+-- Better Indenting
+map("v", "<", "<gv")
+map("v", ">", ">gv")
 
 
 -- Move Lines
@@ -39,6 +47,11 @@ map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
 map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
 map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
 map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
+
+map("n", "<leader>s-", "<C-w>v", { desc = "Split window vertically" })
+map("n", "<leader>s|", "<C-w>s", { desc = "Split window horizontally" })
+map("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
+map("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
 
 
 -- Buffers
@@ -60,18 +73,21 @@ map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 -- TODO MAKE A WIRTE ALL
 
 
--- Better Indenting
-map("v", "<", "<gv")
-map("v", ">", ">gv")
+-- New File
+map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
 
 -- Find Replace Word
 map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 
+-- Incremet / Decrement Number
+map("n", "<leader>+", "<C-a>", { desc = "Increment number" })
+map("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
+
+
 -- Search
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
-map('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = "Clear search highlight" })
 
 
 -- Cursor QoL
@@ -80,6 +96,3 @@ map("n", "<C-d>", "<C-d>zz", { desc = "Keep Cursor Fixed on PgUp" })
 map("n", "<C-u>", "<C-u>zz", { desc = "Keep Cursor Fixed on PgDown" })
 map("n", "n", "nzzzv", { desc = "Keep Cursor Fixed on Search" })
 map("n", "N", "Nzzzv", { desc = "Keep Cursor Fixed on Search" })
-
--- New File
-map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
