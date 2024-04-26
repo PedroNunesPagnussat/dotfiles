@@ -8,8 +8,8 @@ opt.number = true                     -- Absolute line number
 
 
 -- Identation
-opt.tabstop = 4                       -- 2 spaces for tabs
-opt.shiftwidth = 4                    -- 2 spaces for indent width
+opt.tabstop = 2                       -- 2 spaces for tabs
+opt.shiftwidth = 2                    -- 2 spaces for indent width
 opt.expandtab = true                  -- Expand tab to spaces
 opt.autoindent = true                 -- Copy indent from current line on new one
 opt.shiftround = true                 -- Round indent
