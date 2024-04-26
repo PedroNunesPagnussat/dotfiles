@@ -34,7 +34,7 @@ opt.wrap = false                      -- Disable line wrapping
 
 
 -- Clipboard
-opt.clipboard:append("unnamedplus")   -- Use system clipboard as default register
+--opt.clipboard:append("unnamedplus")   -- Use system clipboard as default register
 
 
 -- Split Windows
@@ -43,8 +43,10 @@ opt.splitbelow = true                 -- Split horizontal window to the bottom
 
 
 -- Undo
-opt.undofile = true               -- Save undo history
---opt.undodir = os.getenv("HOMO") .. "/.vim/undodir"
+opt.undofile = true                  -- Save undo history
+
+local undopath = os.getenv("HOME") .. "/.vim/undodir"
+opt.undodir = undopath
 
 
 -- Swap
@@ -88,7 +90,7 @@ opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' } -- Change the icons
 
 -- Color Line
 opt.colorcolumn = "120"               -- Set Color line char
-vim.cmd('highlight ColorColumn ctermbg=235 guibg=#d20f39') -- Set color line color
+--vim.cmd('highlight ColorColumn ctermbg=235 guibg=#d20f39') -- Set color line color
 
 
 --opt.list = true

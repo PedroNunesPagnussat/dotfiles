@@ -19,8 +19,11 @@ map('v', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 map('v', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 
--- x Dont Add to copy
-map("n", "x", '"_x')
+-- Copy Buffer
+map("n", "x", '"_x', { desc = "Don't add x delition to buffer" })
+map("x", "<leader>p", [["_dP]], { desc = "Don't copy to buffer when pasting" })
+map({"n", "v"}, "<leader>y", [["+y]], { desc = "Copy to Sistem Clipboard" })
+map("n", "<leader>Y", [["+Y]], { desc = "Copy to Sistem Clipboard" })
 
 -- Exit insert mode
 map("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
