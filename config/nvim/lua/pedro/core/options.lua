@@ -34,7 +34,7 @@ opt.wrap = false                      -- Disable line wrapping
 
 
 -- Clipboard
---opt.clipboard:append("unnamedplus")   -- Use system clipboard as default register
+opt.clipboard:append("unnamedplus")   -- Use system clipboard as default register
 
 
 -- Split Windows

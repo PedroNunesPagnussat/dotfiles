@@ -26,9 +26,9 @@ map({"n", "v"}, "<leader>y", [["+y]], { desc = "Copy to Sistem Clipboard" })
 map("n", "<leader>Y", [["+Y]], { desc = "Copy to Sistem Clipboard" })
 
 -- Exit insert mode
-map("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
-map("i", "kj", "<ESC>", { desc = "Exit insert mode with jk" })
-map("i", "jj", "<ESC>", { desc = "Exit insert mode with jk" })
+map("i", "jk", "<ESC>", { desc = "Exit insert mode" })
+map("i", "kj", "<ESC>", { desc = "Exit insert mode" })
+map("i", "jj", "<ESC>", { desc = "Exit insert mode" })
 
 
 -- Better Indenting
@@ -51,10 +51,10 @@ map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
 map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
 map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
 
-map("n", "<leader>s-", "<C-w>v", { desc = "Split window vertically" })
-map("n", "<leader>s|", "<C-w>s", { desc = "Split window horizontally" })
-map("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
-map("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
+map("n", "<leader>w|", "<C-w>v", { desc = "Split window vertically" })
+map("n", "<leader>w-", "<C-w>s", { desc = "Split window horizontally" })
+map("n", "<leader>we", "<C-w>=", { desc = "Make windows equal size" })
+map("n", "<leader>wx", "<cmd>close<CR>", { desc = "Close current window" })
 
 
 -- Buffers
@@ -81,7 +81,7 @@ map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
 
 -- Find Replace Word
-map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Find Replace" })
 
 
 -- Incremet / Decrement Number
@@ -91,6 +91,11 @@ map("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 
 -- Search
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
+
+
+-- Quit
+map({ "v", "n" }, "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all windows" })
+map({ "v", "n" }, "<leader>qQ", "<cmd>qa!<cr>", { desc = "Quit all windows" })
 
 
 -- Cursor QoL
