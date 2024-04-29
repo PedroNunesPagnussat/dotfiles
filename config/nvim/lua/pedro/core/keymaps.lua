@@ -4,6 +4,7 @@ vim.g.maplocalleader = " "
 
 local map = vim.keymap.set
 
+--map('n', '<leader>v', require('swenv.api').pick_venv())
 -- GIT GUD
 
 -- Disable arrow keys in normal mode
@@ -65,10 +66,10 @@ map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 
 
 -- Tabs
-map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
-map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
-map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
-map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+map("n", "<leader><tab>c", "<cmd>tabnew<cr>", { desc = "New Tab" })
+map("n", "<tab>", "<cmd>tabnext<cr>", { desc = "Next Tab" })
+map("n", "<leader><tab>x", "<cmd>tabclose<cr>", { desc = "Close Tab" })
+map("n", "<s-tab>", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 
 -- Save File
@@ -81,7 +82,7 @@ map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
 
 -- Find Replace Word
-map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Find Replace" })
+map("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Find Replace" })
 
 
 -- Incremet / Decrement Number
