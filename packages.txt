@@ -12,3 +12,4 @@ tmux
 tmuxp
 btop
 htop
+xclip
