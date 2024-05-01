@@ -16,6 +16,9 @@ return {
       ["<leader>e"] = { name = "+File Explorer" },
       ["<leader>s"] = { name = "+Sessions" },
       ["<leader>v"] = { name = "+Venv" },
+      ["<leader>r"] = { name = "+Replace" },
+      ["<leader>c"] = { name = "+Code" },
+      ["<leader>l"] = { name = "+LSP" },
     },
   },
   config = function(_, opts)

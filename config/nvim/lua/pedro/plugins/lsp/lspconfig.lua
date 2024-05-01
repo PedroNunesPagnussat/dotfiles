@@ -21,31 +21,31 @@ return {
         local opts = { buffer = ev.buf, silent = true }
 
         -- set keybinds
-        opts.desc = "Show LSP references"
+        opts.desc = "Go to references"
         map("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
 
         opts.desc = "Go to declaration"
         map("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
 
-        opts.desc = "Show LSP definitions"
+        opts.desc = "Go to definitions"
         map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
 
         opts.desc = "Show LSP implementations"
         map("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
 
-        opts.desc = "Show LSP type definitions"
+        opts.desc = "Go to type definitions"
         map("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
 
-        opts.desc = "See available code actions"
+        opts.desc = "Code actions"
         map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
 
-        opts.desc = "Smart rename"
+        opts.desc = "Smart replace"
         map("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
 
-        opts.desc = "Show buffer diagnostics"
+        opts.desc = "Find diagnostics"
         map("n", "<leader>fd", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
 
-        opts.desc = "Show line diagnostics"
+        opts.desc = "Line diagnostics"
         map("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
 
         opts.desc = "Go to previous diagnostic"
@@ -58,7 +58,7 @@ return {
         map("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
 
         opts.desc = "Restart LSP"
-        map("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+        map("n", "<leader>lr", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
       end,
     })
 

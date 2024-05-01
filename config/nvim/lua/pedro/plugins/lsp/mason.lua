@@ -24,12 +24,12 @@ return {
     mason_lspconfig.setup({
       -- list of servers for mason to install
       ensure_installed = {
-        "stylua",
-        "shfm",
+        -- "stylua",
+        -- "shfm",
         "lua_ls",
-        "black",
+        -- "black",
         "pyright",
-        "isort",
+        -- "isort",
       },
     })
   end,
