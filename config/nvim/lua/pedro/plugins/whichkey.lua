@@ -17,8 +17,9 @@ return {
       ["<leader>s"] = { name = "+Sessions" },
       ["<leader>v"] = { name = "+Venv" },
       ["<leader>r"] = { name = "+Replace" },
-      ["<leader>c"] = { name = "+Code" },
-      ["<leader>l"] = { name = "+LSP" },
+      ["<leader>c"] = { name = "Code" },
+      ["<leader>l"] = { name = "LSP" },
+      ["<leader>t"] = { name = "Trouble" },
     },
   },
   config = function(_, opts)
