@@ -90,11 +90,3 @@ opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' } -- Change the icons
 
 -- Color Line
 opt.colorcolumn = "120"               -- Set Color line char
---vim.cmd('highlight ColorColumn ctermbg=235 guibg=#d20f39') -- Set color line color
-
-
---opt.list = true
---
---misc i have to see
---opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
---vim.opt.timeoutlen = 300 -- Displays which-key popup sooner

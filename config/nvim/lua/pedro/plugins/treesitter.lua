@@ -9,44 +9,45 @@ return {
     -- import nvim-treesitter plugin
     local treesitter = require("nvim-treesitter.configs")
 
-    -- configure treesitter
-    treesitter.setup({ -- enable syntax highlighting
+    treesitter.setup({ 
+
       highlight = {
         enable = true,
+        use_languagetree = true
       },
-      -- enable indentation
+
       indent = { enable = true },
-      -- enable autotagging (w/ nvim-ts-autotag plugin)
+
       autotag = {
         enable = true,
       },
       -- ensure these language parsers are installed
       ensure_installed = {
-        "python",
-        "ninja",
-        "rst",
-        "toml",
-        "regex",
-        "json",
-        "jsdoc",
-        "jsonc",
-        "javascript",
-        "typescript",
-        "yaml",
-        "html",
-        "xml",
-        "markdown",
-        "markdown_inline",
         "bash",
+        "c",
+        "dockerfile",
+        "gitignore",
+        "html",
+        "javascript",
+        "jsdoc",
+        "json",
+        "jsonc",
         "lua",
         "luadoc",
         "luap",
-        "vim",
-        "dockerfile",
-        "gitignore",
+        "markdown",
+        "markdown_inline",
+        "ninja",
+        "python",
         "query",
+        "regex",
+        "rst",
+        "toml",
+        "typescript",
+        "vim",
         "vimdoc",
-        "c",
+        "yaml",
+        "xml",
       },
       incremental_selection = {
         enable = true,

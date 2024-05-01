@@ -41,7 +41,7 @@ return {
           { action = "NvimTreeToggle",                            desc = " File Explorer",   icon = " ", key = "e" },
           { action = "ene | startinsert",                         desc = " New File",        icon = " ", key = "n" },
           { action = "Telescope oldfiles",                        desc = " Recent Files",    icon = " ", key = "s" },
-          { action = "Telescope live_grep",                       desc = " Find Text",       icon = " ", key = "g" },
+          { action = "Telescope live_grep",                       desc = " Find Text",       icon = " ", key = "w" },
           { action = "Telescope find_files cwd=~/.config/nvim",   desc = " Config",          icon = " ", key = "c" },
           { action = "Lazy update",                               desc = " Update Plugins",  icon = "󰚰 ", key = "u" },
           { action = "Lazy",                                      desc = " Lazy",            icon = "󰒲 ", key = "l" },

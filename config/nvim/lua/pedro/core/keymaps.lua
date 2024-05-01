@@ -4,8 +4,7 @@ vim.g.maplocalleader = " "
 
 local map = vim.keymap.set
 
---map('n', '<leader>v', require('swenv.api').pick_venv())
--- GIT GUD
+
 
 -- Disable arrow keys in normal mode
 map('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -28,7 +27,6 @@ map("n", "<leader>Y", [["+Y]], { desc = "Copy to Sistem Clipboard" })
 
 -- Exit insert mode
 map("i", "jk", "<ESC>", { desc = "Exit insert mode" })
-map("i", "kj", "<ESC>", { desc = "Exit insert mode" })
 map("i", "jj", "<ESC>", { desc = "Exit insert mode" })
 
 
@@ -58,15 +56,9 @@ map("n", "<leader>we", "<C-w>=", { desc = "Make windows equal size" })
 map("n", "<leader>wx", "<cmd>close<CR>", { desc = "Close current window" })
 
 
--- Buffers
---map("n", "<Tab>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
---map("n", "<S-Tab>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-
-
 -- Tabs
 map("n", "<leader><tab>c", "<cmd>tabnew<cr>", { desc = "New Tab" })
+map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
 map("n", "<tab>", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>x", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<s-tab>", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
@@ -82,7 +74,7 @@ map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
 
 -- Find Replace Word
-map("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Find Replace" })
+map("n", "<leader>rw", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace Word" })
 
 
 -- Incremet / Decrement Number
@@ -91,7 +83,7 @@ map("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 
 
 -- Search
-map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
+map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Clear hlsearch" })
 
 
 -- Quit

@@ -27,10 +27,13 @@ return {
       },
     },
     presets = {
-      bottom_search = true,
-      command_palette = true,
+      bottom_search = false,
+      command_palette = false, -- This changes from the middle to the top
       long_message_to_split = true,
-      inc_rename = true,
+      inc_rename = false,
+      lsp_doc_border = false,
     },
+
   },
 }
+ 
