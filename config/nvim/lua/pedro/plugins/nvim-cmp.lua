@@ -1,3 +1,16 @@
+local function border(hl_name)
+	return {
+		{ "╭", hl_name },
+		{ "─", hl_name },
+		{ "╮", hl_name },
+		{ "│", hl_name },
+		{ "╯", hl_name },
+		{ "─", hl_name },
+		{ "╰", hl_name },
+		{ "│", hl_name },
+	}
+end
+
 return {
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
@@ -18,6 +31,7 @@ return {
 		"hrsh7th/cmp-cmdline",
 		"onsails/lspkind.nvim", -- vs-code like pictograms
 	},
+
 	config = function()
 		local cmp = require("cmp")
 
@@ -25,18 +39,26 @@ return {
 
 		local lspkind = require("lspkind")
 
-		-- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
-		-- require("luasnip.loaders.from_vscode").lazy_load()
+		require("luasnip.loaders.from_vscode").lazy_load()
 
 		cmp.setup({
 			completion = {
 				completeopt = "menu,menuone,preview,noselect",
 			},
-			snippet = { -- configure how nvim-cmp interacts with snippet engine
+
+			window = {
+				documentation = {
+					border = border("CmpDocBorder"),
+					winhighlight = "Normal:CmpDoc",
+				},
+			},
+
+			snippet = {
 				expand = function(args)
 					luasnip.lsp_expand(args.body)
 				end,
 			},
+
 			mapping = cmp.mapping.preset.insert({
 				["<Tab>"] = cmp.mapping.select_next_item(), -- previous suggestion
 				["<S-Tab>"] = cmp.mapping.select_prev_item(), -- next suggestion
@@ -46,14 +68,13 @@ return {
 				["<C-e>"] = cmp.mapping.abort(), -- close completion window
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
 			}),
-			-- sources for autocompletion
+
 			sources = cmp.config.sources({
-				{ name = "cmdline" },
+				{ name = "nvim_lsp", max_item_count = 3, keyword_lenght = 3 },
+				{ name = "buffer", max_item_count = 5 },
+				{ name = "path" },
 				{ name = "nvim_lua" },
-				{ name = "nvim_lsp" },
-				{ name = "path" }, -- file system paths
-				{ name = "luasnip" }, -- snippets
-				{ name = "buffer", keyword_length = 5 }, -- text within current buffer
+				{ name = "luasnip", max_item_count = 3 },
 			}),
 
 			-- configure lspkind for vs-code like pictograms in completion menu
