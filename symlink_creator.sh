@@ -41,6 +41,7 @@ main() {
 	print_header "Symlinking files..."
 
 	symlink_file "tmux.conf"
+	symlink_file "pylintrc"
 	symlink_file "config/nvim"
 
 	print_success "Done installing dotfiles!"
