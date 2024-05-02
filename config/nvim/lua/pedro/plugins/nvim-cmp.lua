@@ -53,17 +53,17 @@ return {
 				{ name = "nvim_lsp" },
 				{ name = "path" }, -- file system paths
 				{ name = "luasnip" }, -- snippets
-				{ name = "buffer", keyword_length = 3 }, -- text within current buffer
+				{ name = "buffer", keyword_length = 5 }, -- text within current buffer
 			}),
 
-      -- configure lspkind for vs-code like pictograms in completion menu
-      -- stylua: ignore
-      formatting = {
-        format = lspkind.cmp_format({
-          maxwidth = 50,
-          ellipsis_char = "...",
-        }),
-      },
+			-- configure lspkind for vs-code like pictograms in completion menu
+			---@diagnostic disable-next-line: missing-fields
+			formatting = {
+				format = lspkind.cmp_format({
+					maxwidth = 50,
+					ellipsis_char = "...",
+				}),
+			},
 		})
 
 		-- completion for command mode
