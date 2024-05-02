@@ -38,7 +38,7 @@ return {
 				"isort", -- python formatter
 				"black", -- python formatter
 				"shfmt", -- bash formatter
-				"pylint", --python linter
+				-- "pylint", --python linter
 				"eslint_d", -- js linter
 			},
 		})
