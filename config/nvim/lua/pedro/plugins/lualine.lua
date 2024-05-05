@@ -61,11 +61,11 @@ return {
         if conda_env == nil then
           return ""
         else
-          return string.format("  %s (conda)", conda_env)
+          return string.format("  %s (conda)", conda_env)
         end
       else
         local venv_name = vim.fn.fnamemodify(venv_path, ":t")
-        return string.format("  %s (venv)", venv_name)
+        return string.format("  %s (venv)", venv_name)
       end
     end
 
