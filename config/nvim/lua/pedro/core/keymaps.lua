@@ -19,8 +19,10 @@ map("v", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 -- Copy Buffer
 map("n", "x", '"_x', { desc = "Don't add x delition to buffer" })
 map("x", "<leader>p", [["_dP]], { desc = "Don't copy to buffer when pasting" })
-map({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy to Sistem Clipboard" })
-map("n", "<leader>Y", [["+Y]], { desc = "Copy to Sistem Clipboard" })
+map("n", "<leader>yp", [[:let @+ = expand("%:p")<cr>]], { desc = "Copy file path to clipboard" })
+map("n", "<leader>yf", "<cmd>%y+<cr>", { desc = "Copy whole file to clipboard" })
+-- map({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy to Sistem Clipboard" })
+-- map("n", "<leader>Y", [["+Y]], { desc = "Copy to Sistem Clipboard" })
 
 -- Exit insert mode
 map("i", "jk", "<ESC>", { desc = "Exit insert mode" })
@@ -77,6 +79,7 @@ map("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Clear hlsearch" })
 
 -- Quit
+map({ "v", "n" }, "<leader>wq", "<cmd>wq<cr>", { desc = "Wirte and quit" })
 map({ "v", "n" }, "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all windows" })
 map({ "v", "n" }, "<leader>qQ", "<cmd>qa!<cr>", { desc = "Quit all windows" })
 
