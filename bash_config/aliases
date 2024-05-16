@@ -22,7 +22,7 @@ alias egrep="egrep --color=auto"
 alias fgrep="fgrep --color=auto"
 
 # Search history
-alias shist="history | grep" 
+alias shis="history | grep" 
 
 # Misc Tools
 

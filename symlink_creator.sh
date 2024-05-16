@@ -46,6 +46,7 @@ main() {
 	symlink_file "config/nvim"
 	symlink_file "config/kitty"
 	symlink_file "config/terminator"
+  	symlink_file "bash_config"
 
 	print_success "Done installing dotfiles!"
 }
