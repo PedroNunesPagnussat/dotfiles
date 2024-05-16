@@ -7,3 +7,10 @@ export NVM_DIR="$HOME/.nvm"
 nvm install node
 nvm use node
 nvm alias default node
+
+
+if command -v zsh >/dev/null 2>&1; then
+    echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.zshrc
+    echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm' >> ~/.zshrc
+    echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> ~/.zshrc
+fi

@@ -1,0 +1,8 @@
+alias cpwd="pwd | xclip -selection clipboard"
+alias ls="eza --color=always --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias ca="conda activate"
+alias nv="nvim"
+alias vim="nvim"
+alias history="history 1"
+alias ghistory="history | grep" 
+

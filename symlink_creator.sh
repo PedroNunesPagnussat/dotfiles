@@ -42,7 +42,10 @@ main() {
 
 	symlink_file "tmux.conf"
 	symlink_file "pylintrc"
+	symlink_file "alias_file"
 	symlink_file "config/nvim"
+	symlink_file "config/kitty"
+	symlink_file "config/terminator"
 
 	print_success "Done installing dotfiles!"
 }

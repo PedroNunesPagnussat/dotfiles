@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# Most use dirs navigation
+alias dev='cd ~/dev'
+
+# Copy current directory to clipboard
+alias cpwd="pwd | xclip -selection clipboard"   
+
+# Open nvim
+alias nv="nvim"
+alias vim="nvim"
+
+# ls customization
+alias ls="eza --color=always --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+
+# Show whole history
+alias history="history 1"
+
+# grep settings
+alias grep="grep --color=auto"
+alias egrep="egrep --color=auto"
+alias fgrep="fgrep --color=auto"
+
+# Search history
+alias shist="history | grep" 
+
+# Misc Tools
+
+# Conda activate
+alias ca="conda activate"
