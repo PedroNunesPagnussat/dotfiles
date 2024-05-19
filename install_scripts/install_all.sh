@@ -23,6 +23,7 @@ chmod +x ./install_nerd_font.sh
 chmod +x ./install_from_sanp_store.sh
 chmod +x ./install_docker.sh
 chmod +x ./install_conda.sh
+chmod +x ./install_zsh_dependencies.sh
 
 # Execute each script with confirmation
 if confirm "Do you want to install tmux dependencies?"; then
@@ -30,6 +31,13 @@ if confirm "Do you want to install tmux dependencies?"; then
     ./install_tmux_dependencies.sh
 else
     echo "Skipping tmux dependencies installation."
+fi
+
+if confirm "Do you want to install zsh dependencies"; then
+    echo "Installing zsh dependencies..."
+    ./install_zsh_dependencies.sh
+else
+    echo "Skipping zsh dependencies installation."
 fi
 
 if confirm "Do you want to install NVM?"; then

@@ -11,7 +11,17 @@ alias nv="nvim"
 alias vim="nvim"
 
 # ls customization
+
 alias ls="eza --color=always --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias tree="eza --color=always --git --no-filesize --icons=always --no-time --no-user --no-permissions --tree"
+
+# better cat
+alias cat="bat"
+
+# better cd already on .zshrc
+# alias cd="z"
+
+
 
 # Show whole history
 alias history="history 1"
