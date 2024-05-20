@@ -18,6 +18,8 @@ source "${ZINIT_HOME}/zinit.zsh"
 # Load Brew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+# Load installs
+source ~/.bash_config/installs
 
 # Add in Powerlevel10k
 zinit ice depth=1; zinit light romkatv/powerlevel10k
@@ -34,7 +36,7 @@ zinit snippet OMZP::sudo
 zinit snippet OMZP::ubuntu
 zinit snippet OMZP::tmux
 zinit snippet OMZP::zoxide
-# zinit snippet OMZP::brew
+zinit snippet OMZP::brew
 zinit snippet OMZP::command-not-found
 
 # Load completions
@@ -51,7 +53,6 @@ bindkey jj vi-cmd-mode
 bindkey -s '^z' '\e\e' # Add sudo at the front 
 bindkey -s '^h' '^r' # search history
 bindkey '^w' vi-forward-char
-# bindkey '^w' fzf-cd-widget
 
 # History
 HISTSIZE=5000
@@ -67,12 +68,10 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # Completion styling
-# zstyle ':fzf-tab:complete:nvim:*' fzf-preview \
-#   '[[ -d $realpath ]] && ${dir_style} $realpath || bat -n --color=always $realpath'
 
 # Define dir_style
-# dir_style='eza --color=always --git --no-filesize --icons --no-time --no-user --no-permissions --long'
 dir_style='eza --color=always --git --no-filesize --icons --no-time --no-user --no-permissions --long --tree --level=2'
+# dir_style='eza --color=always --git --no-filesize --icons --no-time --no-user --no-permissions --long'
 file_style='bat -n --color=always'
 combined_styles='[[ -d $realpath ]] && '${dir_style}' $realpath || '${file_style}' $realpath'
 
