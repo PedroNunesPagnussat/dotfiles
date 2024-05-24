@@ -53,6 +53,8 @@ bindkey jj vi-cmd-mode
 bindkey -s '^z' '\e\e' # Add sudo at the front 
 bindkey -s '^h' '^r' # search history
 bindkey '^w' vi-forward-char
+bindkey "^?" backward-delete-char # Fix backspace bug when switching modes
+
 
 # History
 HISTSIZE=5000
@@ -95,7 +97,7 @@ eval "$(zoxide init --cmd cd zsh)" # link cd to z
 source ~/.bash_config/aliases
 
 # Exports
-# CatppucinMocha
+export PYTHONDONTWRITEBYTECODE=1
 export BAT_THEME="CatppuccinMocha"
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
@@ -103,8 +105,10 @@ export FZF_DEFAULT_OPTS=" \
 --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 export LS_COLORS="$(vivid generate catppuccin-mocha)"
 export EZA_COLORS="$(vivid generate catppuccin-mocha)"
+export EDITOR=nvim
+export VISUAL=nvim
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
+# eval "$(starship init zsh)"
