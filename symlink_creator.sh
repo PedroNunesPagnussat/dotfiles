@@ -44,6 +44,7 @@ main() {
 	symlink_file "pylintrc"
 	symlink_file "alias_file"
 	symlink_file "config/nvim"
+	symlink_file "config/i3"
 	symlink_file "config/kitty"
 	symlink_file "config/terminator"
 	symlink_file "config/bat"

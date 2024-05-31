@@ -27,12 +27,10 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 # Plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
-
-# Add in snippets
-zinit snippet OMZP::git
+zinit light zsh-users/zsh-autosuggestions 
+zinit light Aloxaf/fzf-tab # Add in snippets zinit snippet OMZP::git
 zinit snippet OMZP::sudo
+zinit snippet OMZP::git
 zinit snippet OMZP::ubuntu
 # zinit snippet OMZP::tmux
 zinit snippet OMZP::zoxide
@@ -112,3 +110,5 @@ export VISUAL=nvim
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # eval "$(starship init zsh)"
+
+

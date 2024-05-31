@@ -17,7 +17,7 @@ map("v", "<up>", '<cmd>echo "Use k to move!!"<CR>')
 map("v", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 
 -- Copy Buffer
-map("n", "x", '"_x', { desc = "Don't add x delition to buffer" })
+map({ "n", "v" }, "x", '"_x', { desc = "Don't add x delition to buffer" })
 map("x", "<leader>p", [["_dP]], { desc = "Don't copy to buffer when pasting" })
 map("n", "<leader>yp", [[:let @+ = expand("%:p")<cr>]], { desc = "Copy file path to clipboard" })
 map("n", "<leader>yf", "<cmd>%y+<cr>", { desc = "Copy whole file to clipboard" })
