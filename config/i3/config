@@ -34,7 +34,8 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 bindsym $mod+Return exec kitty
 
 # Web Browser
-bindsym $mod+b exec firefox
+bindsym $mod+b exec google-chrome
+# bindsym $mod+b exec firefox
 
 # Launcher
 bindsym $mod+d exec --no-startup-id rofi -show drun
@@ -47,10 +48,12 @@ bindsym $mod+Shift+x kill
 # TODO: Add image
 # bindsym $mod+Shift+x exec i3lock --color 1e1e2e --show-failed-attempts
 
-set $mode_system select: Lock(L) Exit(E) Reboot(R) Poweroff(O) Cancel(Esc)
+set $mode_system Select: Lock(L) Exit(E) Reboot(R) Poweroff(O) Cancel(Esc)
+
 bindsym $mod+Shift+q mode "$mode_system"
 mode "$mode_system" {
-    bindsym l exec --no-startup-id i3lock -c '#000000', mode "default"
+    # bindsym l exec --no-startup-id i3lock -c '#1e1e2e' --show-failed-attempts, mode "default"
+    bindsym l exec --no-startup-id i3lock --image ~/Pictures/lock.png --show-failed-attempts, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym o exec --no-startup-id systemctl poweroff, mode "default"
@@ -156,7 +159,7 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+a focus child
 
 # Resize window (you can also use the mouse for that)
-mode "resize" {
+mode "Resize" {
         # These bindings trigger as soon as you enter the resize mode
 
         # Pressing left will shrink the window’s width.
@@ -180,7 +183,7 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-bindsym $mod+r mode "resize"
+bindsym $mod+r mode "Resize"
 
 # Always open some programs on specified workspace
 # assign [class="^Firefox"]          $workspace1
