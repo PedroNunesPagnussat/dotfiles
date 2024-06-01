@@ -40,16 +40,22 @@ main() {
 
 	print_header "Symlinking files..."
 
-	symlink_file "tmux.conf"
-	symlink_file "pylintrc"
-	symlink_file "alias_file"
+  # MISC
+  symlink_file "tmux.conf"
+  symlink_file "pylintrc"
+  symlink_file "wallpapers"
+  # SHELL
+  symlink_file "zshrc" 
+  symlink_file "bash_config"
+  # CONFIG
 	symlink_file "config/nvim"
+  symlink_file "config/picom"
+  symlink_file "config/rofi"
+  symlink_file "config/polybar"
 	symlink_file "config/i3"
 	symlink_file "config/kitty"
 	symlink_file "config/terminator"
 	symlink_file "config/bat"
-	symlink_file "bash_config"
-  symlink_file "zshrc"
 
 	print_success "Done installing dotfiles!"
 }

@@ -55,7 +55,7 @@ vim.g.have_nerd_font = true -- NerdFont flag
 opt.scrolloff = 8 -- Minimal number of screen lines to keep above and below the cursor.
 
 -- Spelling
-opt.spell = true
+opt.spell = false
 opt.spelllang = { "en" }
 
 -- Cursor Line
