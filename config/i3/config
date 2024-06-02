@@ -40,7 +40,7 @@ bindsym $mod+b exec google-chrome
 # Launcher
 bindsym $mod+d exec --no-startup-id rofi -show drun -theme ~/.config/rofi/launcher.rasi
 bindsym $mod+Shift+b exec --no-startup-id rofi -show filebrowser -theme ~/.config/rofi/launcher.rasi
-bindsym $mod+Shift+w exec --no-startup-id rofi -show window
+bindsym $mod+Shift+w exec --no-startup-id rofi -show window -theme ~/.config/rofi/launcher.rasi
 
 # Clipboard Manager
 exec --no-startup-id greenclip daemon
