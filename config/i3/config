@@ -37,6 +37,9 @@ bindsym $mod+Return exec kitty
 bindsym $mod+b exec google-chrome
 # bindsym $mod+b exec firefox
 
+# Auto Tilling
+exec_always --no-startup-id autotiling
+
 # Launcher
 bindsym $mod+d exec --no-startup-id rofi -show drun -theme ~/.config/rofi/launcher.rasi
 bindsym $mod+Shift+b exec --no-startup-id rofi -show filebrowser -theme ~/.config/rofi/launcher.rasi
@@ -285,9 +288,3 @@ bindsym $mod+e layout toggle split
 # bindsym $mod+minus move scratchpad
 # bindsym $mod+plus  scratchpad show
 
-
-# # Split in horizontal orientation
-# bindsym $mod+| split h
-#
-# # Split in vertical orientation
-# bindsym $mod+minus split v
