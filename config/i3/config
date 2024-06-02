@@ -38,7 +38,8 @@ bindsym $mod+b exec google-chrome
 # bindsym $mod+b exec firefox
 
 # Launcher
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+d exec --no-startup-id rofi -show drun -theme ~/.config/rofi/launcher.rasi
+bindsym $mod+Shift+b exec --no-startup-id rofi -show filebrowser -theme ~/.config/rofi/launcher.rasi
 bindsym $mod+Shift+w exec --no-startup-id rofi -show window
 
 # Clipboard Manager
@@ -238,9 +239,6 @@ new_window pixel
 gaps inner 12
 gaps outer 10
 smart_gaps on
-
-# Toggle bar
-bindsym $mod+Shift+b bar mode toggle
 
 # Set random wallpaper
 exec_always --no-startup-id feh --randomize --bg-fill $HOME/.wallpapers/3440_1440/*
