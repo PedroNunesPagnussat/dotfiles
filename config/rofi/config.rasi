@@ -9,8 +9,8 @@ configuration{
     hide-scrollbar: true;
     display-drun: "   Apps ";
     display-run: "   Run ";
-    display-window: "   Window";
-    display-Network: " 󰤨  Network";
+    display-window: "   Windows ";
+    display-Network: " 󰤨  Network ";
     sidebar-mode: true;
     font: "JetBrainsMonoNL Nerd Font Mono Regular 12";
 }

@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Options for powermenu
+lock=" Lock"
+shutdown=" Shutdown"
+reboot=" Reboot"
+suspend=" Suspend"
+logout=" Logout"
+
+# Get answer from user via rofi
+selected_option=$(echo -e "$lock\n$shutdown\n$reboot\n$suspend\n$logout" | rofi -dmenu -i -p "⏻ Power Menu")
+
+# Do something based on selected option
+if [ "$selected_option" == "$lock" ]
+then
+    # i3lock -c 1e1e2e --ignore-empty-password --show-failed-attempts
+    i3lock -i ~/Pictures/lock.png --ignore-empty-password --show-failed-attempts
+elif [ "$selected_option" == "$shutdown" ]
+then
+    systemctl poweroff
+elif [ "$selected_option" == "$reboot" ]
+then
+    systemctl reboot
+elif [ "$selected_option" == "$suspend" ]
+then
+    systemctl suspend
+elif [ "$selected_option" == "$logout" ]
+then
+    i3-msg exit # For i3 window manager, replace with your own window manager's logout command
+else
+    echo "No match"
+fi
+

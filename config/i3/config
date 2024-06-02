@@ -41,25 +41,16 @@ bindsym $mod+b exec google-chrome
 bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+Shift+w exec --no-startup-id rofi -show window
 
+# Clipboard Manager
+exec --no-startup-id greenclip daemon
+bindsym $mod+v exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' -theme ~/.config/rofi/greenclip.rasi
+
+
 # Kill Application
 bindsym $mod+Shift+x kill
 
 # Lock screen
-# TODO: Add image
-# bindsym $mod+Shift+x exec i3lock --color 1e1e2e --show-failed-attempts
-
-set $mode_system Select: Lock(L) Exit(E) Reboot(R) Poweroff(O) Cancel(Esc)
-
-bindsym $mod+Shift+q mode "$mode_system"
-mode "$mode_system" {
-    # bindsym l exec --no-startup-id i3lock -c '#1e1e2e' --show-failed-attempts, mode "default"
-    bindsym l exec --no-startup-id i3lock --image ~/Pictures/lock.png --show-failed-attempts, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym o exec --no-startup-id systemctl poweroff, mode "default"
-    bindsym Escape mode "default"
-}
-
+bindsym $mod+Shift+q exec power-menu
 
 ### Workspaces ###
 
@@ -114,6 +105,16 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
+# # Always open workspaces in certain outputs
+# workspace "1:  " output primary
+# workspace "2:  " output primary
+# workspace "3:  " output primary
+# workspace "4:  " output primary
+# workspace "5:  " output primary
+# workspace "7:  " output DP-4
+# workspace "8: ♫ " output DP-4
+# workspace "9:  " output DP-4
+# workspace "10:  " output DP-4
 
 ### Window sizes and positions ###
 
@@ -243,7 +244,12 @@ bindsym $mod+Shift+b bar mode toggle
 
 # Set random wallpaper
 exec_always --no-startup-id feh --randomize --bg-fill $HOME/.wallpapers/3440_1440/*
+# exec_always --no-startup-id feh --randomize --bg-fill $HOME/Pictures/wallpaper/*
 
+# Borders
+# default_border pixel 0
+# default_floating_border pixel 15
+# smart_borders on
 
 ### Volume and Media Control ###
 
@@ -278,6 +284,12 @@ bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-bindsym $mod+minus move scratchpad
-bindsym $mod+plus  scratchpad show
+# bindsym $mod+minus move scratchpad
+# bindsym $mod+plus  scratchpad show
 
+
+# # Split in horizontal orientation
+# bindsym $mod+| split h
+#
+# # Split in vertical orientation
+# bindsym $mod+minus split v
