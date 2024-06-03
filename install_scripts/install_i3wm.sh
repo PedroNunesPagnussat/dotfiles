@@ -35,5 +35,7 @@ sudo apt install -y meson
 sudo apt install -y ninja-build
 sudo apt install -y uthash-dev
 sudo apt install -y i3lock
+sudo apt install -y maim
+sudo apt install -y dunst
 
 
