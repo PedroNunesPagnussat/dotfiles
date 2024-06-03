@@ -69,8 +69,9 @@ bottom = false
 
 line-size = 776pt
 
-#border-size = 4pt
+# border-size = 4pt
 border-color = #00000000
+# border-color = ${colors.primary}
 
 padding-left = 3
 padding-right = 3
