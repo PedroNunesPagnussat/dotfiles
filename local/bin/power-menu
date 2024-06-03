@@ -24,13 +24,22 @@ uptime="`uptime -p | sed -e 's/up //g'`"
 host=`hostname`
 
 # Options
-shutdown=''
-reboot=''
-lock=''
-suspend=''
-logout=''
-yes=''
-no=''
+# shutdown=''
+# reboot=''
+# lock=''
+# suspend=''
+# logout=''
+# yes=''
+# no=''
+
+shutdown=''
+reboot=''
+lock=''
+suspend=''
+logout='󰈆'
+yes=''
+no='󰰱'
+
 
 # Options
 # shutdown=' Shutdown'
@@ -113,7 +122,8 @@ case ${chosen} in
 		if [[ -x '/usr/bin/betterlockscreen' ]]; then
 			betterlockscreen -l
 		elif [[ -x '/usr/bin/i3lock' ]]; then
-			i3lock -i ~/Pictures/lock.png --ignore-empty-password --show-failed-attempts
+			# i3lock -i ~/Pictures/lock/lock_1.png --ignore-empty-password --show-failed-attempts
+			i3lock --color 1e1e2e --ignore-empty-password --show-failed-attempts
 		fi
         ;;
     $suspend)

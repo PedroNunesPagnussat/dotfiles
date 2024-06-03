@@ -60,6 +60,7 @@ main() {
   symlink_file "local/bin/greenclip"
   symlink_file "local/bin/power-menu"
   symlink_file "local/bin/autotiling"
+  symlink_file "local/bin/display-teia"
 
 	print_success "Done installing dotfiles!"
 }
