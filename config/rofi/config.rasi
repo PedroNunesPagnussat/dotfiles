@@ -1,5 +1,4 @@
-
-configuration{
+configuration {
     modi: "run,drun,window,filebrowser";
     icon-theme: "Oranchelo";
     show-icons: true;
@@ -14,7 +13,16 @@ configuration{
     display-Network: " 󰤨  Network ";
     sidebar-mode: true;
     font: "JetBrainsMonoNL Nerd Font Mono Regular 12";
-    
-        // kb-row-down: "Ctrl+a";
-//    kb-row-up: "Ctrl+[";
+
+    kb-row-up:                      "Up,Control+k,Shift+Tab,Shift+ISO_Left_Tab";
+    kb-row-down:                    "Down,Control+j";
+    kb-accept-entry:                "Control+a,Return,KP_Enter";
+    kb-remove-to-eol:               "Control+Shift+e";
+    kb-mode-next:                   "Shift+Right,Control+Tab,Control+l";
+    kb-mode-previous:               "Shift+Left,Control+Shift+Tab,Control+h";
+    kb-remove-char-back:            "BackSpace";
+
+    // Remove default keys
+    kb-move-front:                  "";
+    kb-mode-complete:               "";
 }
