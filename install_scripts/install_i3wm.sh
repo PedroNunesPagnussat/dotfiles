@@ -37,5 +37,8 @@ sudo apt install -y uthash-dev
 sudo apt install -y i3lock
 sudo apt install -y maim
 sudo apt install -y dunst
+sudo apt install -y pulseaudio
+sudo apt install -y pulseaudio-utils
+sudo apt install -y playerctl
 
 

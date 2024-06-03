@@ -52,6 +52,10 @@ bindkey -s '^z' '\e\e' # Add sudo at the front
 bindkey -s '^h' '^r' # search history
 bindkey '^w' vi-forward-char
 bindkey "^?" backward-delete-char # Fix backspace bug when switching modes
+bindkey '^[[3~' delete-char        # Delete key
+bindkey '^[[1~' beginning-of-line   # Home key
+bindkey '^[[4~' end-of-line         # End key
+
 
 
 # History

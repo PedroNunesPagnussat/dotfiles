@@ -273,7 +273,7 @@ exec_always --no-startup-id feh --randomize --bg-fill $HOME/Pictures/wallpapers/
 
 # Borders
 default_border pixel 2
-default_floating_border pixel 5
+default_floating_border pixel 3
 smart_borders on
 
 ### Volume and Media Control ###
@@ -316,7 +316,7 @@ bindsym $mod+e layout toggle split
 for_window [instance="dropdown_terminal"] floating enable
 for_window [instance="dropdown_terminal"] resize set 2128 1128 # Good for ultra wide
 for_window [instance="dropdown_terminal"] move to scratchpad
-for_window [instance="dropdown_terminal"] border pixel 5
+for_window [instance="dropdown_terminal"] border pixel 3
 exec --no-startup-id kitty --name dropdown_terminal
 
 bindsym $mod+t scratchpad show; [instance="dropdown_terminal"] move position center
