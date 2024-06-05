@@ -20,6 +20,7 @@ return {
       ["<leader>c"] = { name = "Code" },
       ["<leader>l"] = { name = "LSP" },
       ["<leader>t"] = { name = "Trouble" },
+      ["<leader>m"] = { name = "MiniMap" },
     },
   },
   config = function(_, opts)
@@ -28,4 +29,3 @@ return {
     wk.register(opts.defaults)
   end,
 }
-
