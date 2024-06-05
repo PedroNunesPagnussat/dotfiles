@@ -41,6 +41,7 @@ zinit snippet OMZP::command-not-found
 autoload -Uz compinit && compinit 
 zinit cdreplay -q
 
+
 # Keybindings
 bindkey -v
 bindkey '^k' history-search-backward
@@ -57,6 +58,12 @@ bindkey '^[[1~' beginning-of-line   # Home key
 bindkey '^[[4~' end-of-line         # End key
 
 
+repeat-last-command() {
+  zle up-history
+  zle accept-line
+}
+zle -N repeat-last-command
+bindkey '^n' repeat-last-command
 
 # History
 HISTSIZE=5000

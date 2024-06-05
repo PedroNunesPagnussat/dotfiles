@@ -85,7 +85,8 @@ font-0 = JetBrainsMonoNL Nerd Font Mono:size=12;6
 font-1 = JetBrainsMonoNL Nerd Font Mono:size=16;6
 # font-2 = JetBrainsMonoNL Nerd Font Mono:size=28;6
 
-modules-left = xworkspaces xwindow i3
+# modules-left = xworkspaces xwindow i3
+modules-left = xworkspaces i3
 # modules-center = sp player sn
 modules-center = cava sp player sn cava
 # modules-right = pulseaudio battery memory cpu wlan eth date text
