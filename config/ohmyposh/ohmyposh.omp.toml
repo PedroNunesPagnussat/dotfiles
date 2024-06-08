@@ -110,10 +110,25 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
     template = '󰘧 ❯'
 
 
-# [secondary_prompt]
-#   foreground = 'magenta'
-#   background = 'transparent'
-#   template = '❯❯ '
+[[blocks]]
+  type = 'rprompt'
+  overflow = 'hidden'
+
+  [[blocks.segments]]
+    type = 'executiontime'
+    style = 'plain'
+    foreground = 'p:yellow'
+    background = 'transparent'
+    template = ' {{ .FormattedMs }}'
+
+    [blocks.segments.properties]
+      threshold = 5000
+
+[secondary_prompt]
+  foreground = 'p:magenta'
+  background = 'transparent'
+  template = '󰘧 ❯❯ '
+
 
 
 [palette]
