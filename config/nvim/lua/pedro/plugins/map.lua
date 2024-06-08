@@ -18,7 +18,7 @@ return {
       ':lua require("mini.map").refresh()<CR>',
       { noremap = true, silent = true, desc = "Refresh minimap" }
     )
-    minimap.toggle()
+    -- minimap.toggle()
   end,
 
   -- keys = {

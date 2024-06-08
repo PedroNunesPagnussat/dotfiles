@@ -1,0 +1,6 @@
+! Remap Caps Lock to Control
+keycode 66 = Control_R 
+
+! Remap the identified key (replace 105 with the actual keycode if different) to Right Super
+keycode 135 = Super_R
+

@@ -11,6 +11,7 @@ brew install fzf
 brew install zoxide
 brew install bat
 brew install vivid
+brew install jandedobbeleer/oh-my-posh/oh-my-posh
 
 bat cache --build
 
