@@ -44,36 +44,19 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
       style = 'agnoster_short'
       max_depth = 3
 
+
   [[blocks.segments]]
     type = 'git'
     style = 'plain'
     foreground = 'p:closer'
     template = " ❯ "
 
-  # [[blocks.segments]]
-  #   type = 'git'
-  #   style = 'plain'
-  #   foreground = 'p:grey'
-  #   background = 'transparent'
-  #   template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <p:sapphire>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
-  #
-  #   [blocks.segments.properties]
-  #     # branch_icon = ''
-  #     commit_icon = '@'
-  #     fetch_status = true
 
   [[blocks.segments]]
     type = "git"
     style = "plain"
     foreground = "p:grey"
     background = "transparent"
-    # background = "#ffeb3b"
-    # background_templates = [
-    #   "{{ if or (.Working.Changed) (.Staging.Changed) }}#FFEB3B{{ end }}",
-    #   "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#FFCC80{{ end }}",
-    #   "{{ if gt .Ahead 0 }}#B388FF{{ end }}",
-    #   "{{ if gt .Behind 0 }}#B388FB{{ end }}"
-    # ]
     template = "{{ .UpstreamIcon }} {{ .RepoName }} @ {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}"
 
     [blocks.segments.properties]
@@ -128,6 +111,15 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
   foreground = 'p:magenta'
   background = 'transparent'
   template = '󰘧 ❯❯ '
+
+
+[transient_prompt]
+  foreground_templates = [
+    "{{if gt .Code 0}}p:red{{end}}",
+    "{{if eq .Code 0}}p:lavender{{end}}",
+  ]
+  background = 'transparent'
+  template = '❯ '
 
 
 
