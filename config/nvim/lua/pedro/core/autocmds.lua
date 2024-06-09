@@ -3,10 +3,10 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
 end
 
-vim.api.nvim_create_autocmd("VimEnter", {
-  pattern = "*",
-  command = "set nowrap",
-})
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--   pattern = "*",
+--   command = "set nowrap",
+-- })
 
 -- Close Toggle File explorer on exit
 vim.api.nvim_create_autocmd("WinLeave", {
@@ -65,7 +65,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 -- wrap and check for spell in text file_types
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("wrap_spell"),
-  pattern = { "gitcommit", "markdown" },
+  pattern = { "gitcommit", "markdown", "json" },
   callback = function()
     vim.opt_local.wrap = false
     vim.opt_local.spell = true

@@ -19,10 +19,13 @@ map("v", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 -- Copy Buffer
 map({ "n", "v" }, "x", '"_x', { desc = "Don't add x delition to buffer" })
 map("x", "<leader>p", [["_dP]], { desc = "Don't copy to buffer when pasting" })
-map("n", "<leader>yp", [[:let @+ = expand("%:p")<cr>]], { desc = "Copy file path to clipboard" })
-map("n", "<leader>yf", "<cmd>%y+<cr>", { desc = "Copy whole file to clipboard" })
 -- map({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy to Sistem Clipboard" })
 -- map("n", "<leader>Y", [["+Y]], { desc = "Copy to Sistem Clipboard" })
+
+-- File Operations
+map({ "n", "v" }, "<leader>yp", [[:let @+ = expand("%:p")<cr>]], { desc = "Copy file path to clipboard" })
+map({ "n", "v" }, "<leader>yf", "<cmd>%y+<cr>", { desc = "Copy whole file to clipboard" })
+map({ "n", "v" }, "<leader>df", "ggdG", { desc = "Delete buffer" })
 
 -- Exit insert mode
 map("i", "jk", "<ESC>", { desc = "Exit insert mode" })
@@ -34,6 +37,9 @@ map("n", ";", ":", { desc = "Enter command mode" })
 -- Better Indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
+map("v", "<S-tab>", "<gv")
+map("v", "<tab>", ">gv")
+map("i", "<S-tab>", "<C-d>")
 
 -- Move Lines
 map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
