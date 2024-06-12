@@ -16,6 +16,10 @@ map("v", "<right>", '<cmd>echo "Use l to move!!"<CR>')
 map("v", "<up>", '<cmd>echo "Use k to move!!"<CR>')
 map("v", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 
+-- Fix line wrap jk
+map("n", "j", "gj", { desc = "Move down visual line" })
+map("n", "k", "gk", { desc = "Move up visual line" })
+
 -- Copy Buffer
 map({ "n", "v" }, "x", '"_x', { desc = "Don't add x delition to buffer" })
 map("x", "<leader>p", [["_dP]], { desc = "Don't copy to buffer when pasting" })
