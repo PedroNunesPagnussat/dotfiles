@@ -75,13 +75,13 @@ bindsym $mod+Shift+Tab workspace prev
 # Define names for default workspaces for which we configure key bindings later on.
 
 set $ws1 "1: "
-set $ws2 "2: "
-set $ws3 "3: "
+set $ws2 "2: 󰖟"
+set $ws3 "3: "
 set $ws4 "4: "
 set $ws5 "5: "
 set $ws6 "6: "
-set $ws7 "7: 󰖟"
-set $ws8 "8: 󱚟"
+set $ws7 "7: "
+set $ws8 "8: "
 set $ws9 "9: "
 set $ws10 "10: 󰙯"
 
@@ -126,17 +126,12 @@ workspace 0 output $secondary
 
 exec --no-startup-id display-teia
 
-
-# # Always open workspaces in certain outputs
-# workspace "1:  " output primary
-# workspace "2:  " output primary
-# workspace "3:  " output primary
-# workspace "4:  " output primary
-# workspace "5:  " output primary
-# workspace "7:  " output DP-4
-# workspace "8: ♫ " output DP-4
-# workspace "9:  " output DP-4
-# workspace "10:  " output DP-4
+# Always open some programs on specified workspace
+assign [class="^Google-chrome$"] $ws2
+assign [class="^DBeaver$"] $ws7
+assign [class="^Java$"] $ws7
+assign [class="MongoDB Compass"] $ws7
+assign [class="^discord$"] $ws10
 
 ### Window sizes and positions ###
 
@@ -205,8 +200,6 @@ mode "Resize" {
 
 bindsym $mod+r mode "Resize"
 
-# Always open some programs on specified workspace
-# assign [class="^Firefox"]          $workspace1
 
 # Enable float for some windows
 # for_window [class="^Pavucontrol$"]  floating enable
@@ -307,7 +300,8 @@ bindsym $mod+e layout toggle split
 
 # Show scratchpad terminal
 for_window [instance="dropdown_terminal"] floating enable
-for_window [instance="dropdown_terminal"] resize set 2128 1128 # Good for ultra wide
+# for_window [instance="dropdown_terminal"] resize set 2128 1128 # Good for ultra wide
+for_window [instance="dropdown_terminal"] resize set 768 768 # Good for ultra wide
 for_window [instance="dropdown_terminal"] move to scratchpad
 for_window [instance="dropdown_terminal"] border pixel 3
 exec --no-startup-id kitty --name dropdown_terminal

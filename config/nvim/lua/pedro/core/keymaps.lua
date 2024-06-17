@@ -4,18 +4,6 @@ vim.g.maplocalleader = " "
 
 local map = vim.keymap.set
 
--- Disable arrow keys in normal mode
-map("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
-map("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
-map("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
-map("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
-
--- Disable arrow keys in visual mode
-map("v", "<left>", '<cmd>echo "Use h to move!!"<CR>')
-map("v", "<right>", '<cmd>echo "Use l to move!!"<CR>')
-map("v", "<up>", '<cmd>echo "Use k to move!!"<CR>')
-map("v", "<down>", '<cmd>echo "Use j to move!!"<CR>')
-
 -- Fix line wrap jk
 map("n", "j", "gj", { desc = "Move down visual line" })
 map("n", "k", "gk", { desc = "Move up visual line" })
