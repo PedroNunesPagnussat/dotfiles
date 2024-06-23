@@ -57,6 +57,7 @@ main() {
 	symlink_file "config/terminator"
 	symlink_file "config/bat"
 	symlink_file "config/ohmyposh"
+	symlink_file "config/lf"
   symlink_file "Xmodmap"
   # Custom scripts
   symlink_file "local/bin/greenclip"

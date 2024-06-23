@@ -100,6 +100,7 @@ eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)" # link cd to z
 
 source ~/.bash_config/aliases
+source ~/.bash_config/lf_icons
 
 # Exports
 export PYTHONDONTWRITEBYTECODE=1
@@ -117,3 +118,4 @@ export VISUAL=nvim
 export PATH=$PATH:$HOME/.local/bin
 
 eval "$(oh-my-posh --init --shell zsh --config $HOME/.config/ohmyposh/ohmyposh.omp.toml)"
+
