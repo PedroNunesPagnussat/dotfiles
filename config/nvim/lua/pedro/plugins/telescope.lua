@@ -22,12 +22,26 @@ return {
           },
         },
       },
+      pickers = {
+        find_files = {
+          hidden = true,
+        },
+        oldfiles = {
+          hidden = true,
+        },
+        live_grep = {
+          hidden = true,
+        },
+        grep_string = {
+          hidden = true,
+        },
+      },
     })
 
     telescope.load_extension("fzf")
 
     -- set keymaps
-    local map = vim.keymap.set 
+    local map = vim.keymap.set
 
     map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
     map("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Find recent files" })

@@ -4,6 +4,10 @@ vim.g.maplocalleader = " "
 
 local map = vim.keymap.set
 
+-- Dont add C and D to buffer
+map("n", "d", '"_d', { desc = "Don't add d delition to buffer" })
+map("n", "c", '"_c', { desc = "Don't add c delition to buffer" })
+
 -- Fix line wrap jk
 map("n", "j", "gj", { desc = "Move down visual line" })
 map("n", "k", "gk", { desc = "Move up visual line" })
