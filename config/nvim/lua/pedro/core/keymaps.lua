@@ -30,6 +30,13 @@ map("i", "jj", "<ESC>", { desc = "Exit insert mode" })
 -- Add ; as :
 map("n", ";", ":", { desc = "Enter command mode" })
 
+-- Add Y as y$
+map("n", "Y", "y$", { desc = "Yank to end of line" })
+
+-- Map CTRL Z to undo
+map("n", "<C-z>", "<cmd>undo<cr>", { desc = "Undo" })
+map("i", "<C-z>", "<cmd>undo<cr>", { desc = "Undo" })
+
 -- Better Indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
