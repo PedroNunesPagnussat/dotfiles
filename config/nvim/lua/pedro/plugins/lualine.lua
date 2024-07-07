@@ -61,12 +61,20 @@ return {
         if conda_env == nil then
           return ""
         else
-          return string.format("  %s (conda)", conda_env)
+          return string.format("  %s (conda)", conda_env)
         end
       else
         local venv_name = vim.fn.fnamemodify(venv_path, ":t")
-        return string.format("  %s (venv)", venv_name)
+        return string.format("  %s (venv)", venv_name)
       end
+    end
+
+    local function isRecording()
+      local reg = vim.fn.reg_recording()
+      if reg == "" then
+        return ""
+      end -- not recording
+      return "recording to " .. reg
     end
 
     -- configure lualine with modified theme
@@ -75,6 +83,8 @@ return {
         theme = my_lualine_theme,
       },
       sections = {
+
+        lualine_a = { "mode", { isRecording } },
 
         lualine_x = {
           {
@@ -89,11 +99,11 @@ return {
 
         lualine_y = {
 
-          "copilot",
-          function()
-            local venv = virtual_env()
-            return venv
-          end,
+          { "copilot" },
+          {
+            virtual_env,
+          },
+          { "progress" },
         },
       },
     })
