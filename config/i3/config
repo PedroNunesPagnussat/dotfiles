@@ -258,7 +258,7 @@ smart_gaps on
 exec_always --no-startup-id nitrogen --restore
 
 # Borders
-default_border pixel 2
+default_border pixel 3
 default_floating_border pixel 3
 smart_borders on
 
