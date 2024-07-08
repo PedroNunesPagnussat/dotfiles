@@ -1,5 +1,7 @@
 ./bash_config/installs
 
+./config/nvim/lazy-lock.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
