@@ -11,6 +11,7 @@ return {
       violet = "#b4befe",
       yellow = "#f9e2af",
       red = "#f38ba8",
+      mauve = "#cba6f7",
       fg = "#cdd6f4",
       bg = "#1e1e2e",
       inactive_bg = "#313244",
@@ -19,27 +20,27 @@ return {
     local my_lualine_theme = {
       normal = {
         a = { bg = colors.blue, fg = colors.bg, gui = "bold" },
-        b = { bg = colors.bg, fg = colors.fg },
+        b = { bg = colors.yellow, fg = colors.bg },
         c = { bg = colors.bg, fg = colors.fg },
       },
       insert = {
         a = { bg = colors.green, fg = colors.bg, gui = "bold" },
-        b = { bg = colors.bg, fg = colors.fg },
+        b = { bg = colors.yellow, fg = colors.bg },
         c = { bg = colors.bg, fg = colors.fg },
       },
       visual = {
         a = { bg = colors.violet, fg = colors.bg, gui = "bold" },
-        b = { bg = colors.bg, fg = colors.fg },
+        b = { bg = colors.yellow, fg = colors.bg },
         c = { bg = colors.bg, fg = colors.fg },
       },
       command = {
-        a = { bg = colors.yellow, fg = colors.bg, gui = "bold" },
-        b = { bg = colors.bg, fg = colors.fg },
+        a = { bg = colors.mauve, fg = colors.bg, gui = "bold" },
+        b = { bg = colors.yellow, fg = colors.bg },
         c = { bg = colors.bg, fg = colors.fg },
       },
       replace = {
         a = { bg = colors.red, fg = colors.bg, gui = "bold" },
-        b = { bg = colors.bg, fg = colors.fg },
+        b = { bg = colors.yellow, fg = colors.bg },
         c = { bg = colors.bg, fg = colors.fg },
       },
       inactive = {
@@ -74,7 +75,7 @@ return {
       if reg == "" then
         return ""
       end -- not recording
-      return "recording to " .. reg
+      return "recording @" .. reg
     end
 
     -- configure lualine with modified theme
@@ -84,7 +85,9 @@ return {
       },
       sections = {
 
-        lualine_a = { "mode", { isRecording } },
+        lualine_a = { "mode" },
+        lualine_b = { isRecording },
+        lualine_c = { "branch", "diff", "diagnostics", "filename" },
 
         lualine_x = {
           {
