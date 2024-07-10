@@ -11,8 +11,8 @@ alias nv="nvim"
 alias vim="nvim"
 
 # CD to common directories
-alias notes = "cd ~/vaults/second_brain"
-alias dotfiles = "cd ~/dotfiles"
+alias notes="cd ~/vaults/second_brain"
+alias dotfiles="cd ~/dotfiles"
 
 
 # ls customization
