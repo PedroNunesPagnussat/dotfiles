@@ -58,6 +58,8 @@ opt.scrolloff = 8 -- Minimal number of screen lines to keep above and below the 
 opt.spell = false
 opt.spelllang = { "en" }
 
+--MD
+opt.conceallevel = 1
 -- Cursor Line
 opt.cursorline = true -- Highlight the current cursor line
 
