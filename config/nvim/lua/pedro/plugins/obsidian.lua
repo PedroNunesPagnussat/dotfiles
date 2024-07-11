@@ -21,4 +21,16 @@ return {
       },
     },
   },
+
+  keys = {
+    { "<leader>oc", "<cmd>lua require('obsidian').util.toggle_checkbox()<CR>", desc = "Change check box state" },
+    { "<leader>ot", "<cmd>ObsidianTemplate<CR>", desc = "Insert Template" },
+    { "<leader>oo", "<cmd>ObsidianOpen<CR>", desc = "Open note" },
+    { "<leader>ob", "<cmd>ObsidianBacklinks<CR>", desc = "Open backlinks" },
+    { "<leader>ol", "<cmd>ObsidianLink<CR>", desc = "Insert link" },
+    { "<leader>oi", "<cmd>ObsidianInsert<CR>", desc = "Insert note" },
+    { "<leader>on", "<cmd>ObsidianNew<CR>", desc = "Create new note" },
+    { "<leader>os", "<cmd>ObsidianSearch<CR>", desc = "Search notes" },
+    { "<leader>oq", "<cmd>ObsidianQuickSwitch<CR>", desc = "Quick switch" },
+  },
 }
