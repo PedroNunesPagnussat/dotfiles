@@ -46,12 +46,16 @@ map("i", "<S-tab>", "<C-d>")
 
 -- Move Lines
 map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
+map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
 map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move Up" })
-map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
-map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
-map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move Down" })
-map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
-
+map("n", "<A-down>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
+map("n", "<A-up>", "<cmd>m .-2<cr>==", { desc = "Move Up" })
+map("i", "<A-down>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
+map("i", "<A-up>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
+map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "move down" })
+map("v", "<a-k>", ":m '<-2<cr>gv=gv", { desc = "move up" })
+map("v", "<A-down>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
+map("v", "<A-up>", "<cmd>m .-2<cr>==", { desc = "Move Up" })
 -- Windows
 map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
 map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })

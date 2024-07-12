@@ -18,6 +18,7 @@ return {
       ["<leader>v"] = { name = "+Venv" },
       ["<leader>r"] = { name = "+Replace" },
       ["<leader>c"] = { name = "Code" },
+      ["<leader>o"] = { name = "Obsidian" },
       ["<leader>l"] = { name = "LSP" },
       ["<leader>t"] = { name = "Trouble" },
       ["<leader>m"] = { name = "MiniMap" },
