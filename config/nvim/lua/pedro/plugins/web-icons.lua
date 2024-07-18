@@ -9,6 +9,11 @@ return {
           color = "#6d8086",
           name = "Toml",
         },
+        zip = {
+          icon = "",
+          color = "#f38ba8",
+          name = "Zip",
+        },
       },
       default = true,
     })
