@@ -13,11 +13,13 @@ return {
     "nvim-lua/plenary.nvim",
   },
   opts = {
-    workspaces = {
-      {
-        name = "second_brain",
-        path = "~/vaults/second_brain",
-      },
+    dir = "~/vaults/second_brain", -- Directory of your Obsidian vault
+    notes_subdir = "01. Zettelkasten",
+    templates = {
+      default = "~/vaults/second_brain/04. Templates/Note.md",
+      folder = "~/vaults/second_brain/04. Templates",
+      date_format = "%Y-%m-%d",
+      time_format = "%H:%M",
     },
     mappings = {
       ["gd"] = {
