@@ -13,14 +13,23 @@ return {
     "nvim-lua/plenary.nvim",
   },
   opts = {
-    dir = "~/vaults/second_brain", -- Directory of your Obsidian vault
-    notes_subdir = "01. Zettelkasten",
+    -- Directory of your Obsidian vault
+    dir = "~/vaults/second_brain",
+
+    -- Not add YAML frontmatter to notes
+    disable_frontmatter = true,
+
+    new_notes_location = "00. Inbox",
+    notes_subdir = "00. Inbox",
+    -- notes_subdir = "01. Zettelkasten",
+
     templates = {
       default = "~/vaults/second_brain/04. Templates/Note.md",
       folder = "~/vaults/second_brain/04. Templates",
       date_format = "%Y-%m-%d",
       time_format = "%H:%M",
     },
+
     mappings = {
       ["gd"] = {
         action = function()
@@ -36,6 +45,7 @@ return {
       },
     },
   },
+
   vim.api.nvim_set_keymap(
     "n",
     "<leader>oc",

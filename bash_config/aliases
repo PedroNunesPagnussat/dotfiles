@@ -11,7 +11,7 @@ alias nv="nvim"
 alias vim="nvim"
 
 # CD to common directories
-alias notes="cd ~/vaults/second_brain"
+alias notes="cd ~/vaults/second_brain && nv ./Meta\ Tag.md"
 alias dotfiles="cd ~/dotfiles"
 
 
