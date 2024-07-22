@@ -61,7 +61,7 @@ bindsym Print exec --no-startup-id maim -s | xclip -selection clipboard -t image
 # Print Screen
 
 # Kill Application
-bindsym $mod+Shift+x kill
+bindsym $mod+q kill
 
 # Lock screen
 bindsym $mod+Shift+q exec power-menu
