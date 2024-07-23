@@ -7,26 +7,49 @@ return {
   end,
   opts = {
     plugins = { spelling = true },
-    defaults = {
-      mode = { "n", "v" },
-      ["<leader><tab>"] = { name = "+Tabs" },
-      ["<leader>f"] = { name = "+Find" },
-      ["<leader>w"] = { name = "+Windows" },
-      ["<leader>q"] = { name = "+Quit" },
-      ["<leader>e"] = { name = "+File Explorer" },
-      ["<leader>s"] = { name = "+Sessions" },
-      ["<leader>v"] = { name = "+Venv" },
-      ["<leader>r"] = { name = "+Replace" },
-      ["<leader>c"] = { name = "Code" },
-      ["<leader>o"] = { name = "Obsidian" },
-      ["<leader>l"] = { name = "LSP" },
-      ["<leader>t"] = { name = "Trouble" },
-      ["<leader>m"] = { name = "MiniMap" },
+    defaults = {},
+    spec = {
+      {
+        {
+          mode = { "n", "v" },
+          { "<leader><tab>", group = "Tabs" },
+          { "<leader>c", group = "Code" },
+          { "<leader>e", group = "File Explorer" },
+          { "<leader>f", group = "Find", icon = { icon = "" } },
+          { "<leader>l", group = "LSP" },
+          { "<leader>m", group = "MiniMap" },
+          { "<leader>o", group = "Obsidian" },
+          { "<leader>q", group = "Quit" },
+          { "<leader>r", group = "Replace" },
+          { "<leader>s", group = "Sessions" },
+          { "<leader>t", group = "Trouble" },
+          { "<leader>v", group = "Venv" },
+          { "<leader>w", group = "Windows" },
+          { "<leader>u", group = "Notify", icon = { icon = "" } },
+          { "<leader>y", group = "Yank Path/File", icon = { icon = "" } },
+        },
+      },
+    },
+  },
+  keys = {
+    {
+      "<leader>?",
+      function()
+        require("which-key").show({ global = false })
+      end,
+      desc = "Buffer Keymaps (which-key)",
+    },
+    {
+      "<c-l><space>",
+      function()
+        require("which-key").show({ keys = "<c-w>", loop = true })
+      end,
+      desc = "Window Hydra Mode (which-key)",
     },
   },
   config = function(_, opts)
     local wk = require("which-key")
     wk.setup(opts)
-    wk.register(opts.defaults)
+    -- wk.register(opts.defaults)
   end,
 }
