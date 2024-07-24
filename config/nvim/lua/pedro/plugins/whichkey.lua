@@ -18,7 +18,7 @@ return {
           { "<leader>f", group = "Find", icon = { icon = "" } },
           { "<leader>l", group = "LSP" },
           { "<leader>m", group = "MiniMap" },
-          { "<leader>o", group = "Obsidian" },
+          { "<leader>o", group = "Obsidian", icon = { icon = "", color = "purple" } },
           { "<leader>q", group = "Quit" },
           { "<leader>r", group = "Replace" },
           { "<leader>s", group = "Sessions" },
