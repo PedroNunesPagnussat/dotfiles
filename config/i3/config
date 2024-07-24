@@ -37,8 +37,11 @@ bindsym $mod+Return exec kitty
 bindsym $mod+b exec google-chrome
 # bindsym $mod+b exec firefox
 
+# Notes
+exec --no-startup-id obsidian
+
 # Auto Tilling
-exec_always --no-startup-id autotiling
+exec --no-startup-id autotiling
 
 # Launcher
 bindsym $mod+d exec --no-startup-id rofi -show drun -theme ~/.config/rofi/launcher.rasi
@@ -132,6 +135,8 @@ assign [class="^DBeaver$"] $ws7
 assign [class="^Java$"] $ws7
 assign [class="MongoDB Compass"] $ws7
 assign [class="^discord$"] $ws10
+assign [class="^obsidian$"] $ws8
+assign [class="^todoist$"] $ws8
 
 ### Window sizes and positions ###
 
@@ -160,7 +165,7 @@ bindsym $mod+Shift+Up    move up
 bindsym $mod+Shift+Right move right
 
 # Enter fullscreen mode for the focused window
-bindsym $mod+f fullscreen toggle
+bindsym $mod+z fullscreen toggle
 
 # Toggle tiling / floating
 bindsym $mod+Shift+f floating toggle
@@ -301,14 +306,17 @@ bindsym $mod+e layout toggle split
 # Show scratchpad terminal
 for_window [instance="dropdown_terminal"] floating enable
 # for_window [instance="dropdown_terminal"] resize set 2128 1128 # Good for ultra wide
-for_window [instance="dropdown_terminal"] resize set 768 768 # Good for ultra wide
+for_window [instance="dropdown_terminal"] resize set 768 768
 for_window [instance="dropdown_terminal"] move to scratchpad
 for_window [instance="dropdown_terminal"] border pixel 3
 exec --no-startup-id kitty --name dropdown_terminal
 
-bindsym $mod+t scratchpad show; [instance="dropdown_terminal"] move position center
+bindsym $mod+f scratchpad show; [instance="dropdown_terminal"] move position center
 
-
+# exec --no-startup-id obsidian 
+# for_window [class="^obsidian"] move to scratchpad
+# for_window [class="^obsidian"] floating disable
+# bindsym $mod+n [class="^obsidian"]scratchpad show; 
 
 # bindsym $mod+minus move scratchpad
 # bindsym $mod+plus  scratchpad show
