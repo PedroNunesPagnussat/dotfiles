@@ -40,6 +40,9 @@ bindsym $mod+b exec google-chrome
 # Notes
 exec --no-startup-id obsidian
 
+# Comunication
+exec --no-startup-id discord
+
 # Auto Tilling
 exec --no-startup-id autotiling
 
