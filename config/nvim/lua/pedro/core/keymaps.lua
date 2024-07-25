@@ -21,7 +21,6 @@ map("x", "<leader>p", [["_dP]], { desc = "Don't copy to buffer when pasting" })
 -- File Operations
 map({ "n", "v" }, "<leader>yp", [[:let @+ = expand("%:p")<cr>]], { desc = "Copy file path to clipboard" })
 map({ "n", "v" }, "<leader>yf", "<cmd>%y+<cr>", { desc = "Copy whole file to clipboard" })
-map({ "n", "v" }, "<leader>df", "ggdG", { desc = "Delete buffer" })
 
 -- Exit insert mode
 map("i", "jk", "<ESC>", { desc = "Exit insert mode" })

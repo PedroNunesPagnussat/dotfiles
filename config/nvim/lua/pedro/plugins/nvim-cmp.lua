@@ -34,11 +34,8 @@ return {
 
   config = function()
     local cmp = require("cmp")
-
     local luasnip = require("luasnip")
-
     local lspkind = require("lspkind")
-
     require("luasnip.loaders.from_vscode").lazy_load()
 
     cmp.setup({
@@ -72,8 +69,8 @@ return {
       }),
 
       sources = cmp.config.sources({
-        { name = "nvim_lsp", max_item_count = 3, keyword_lenght = 3 },
-        { name = "buffer", max_item_count = 3 },
+        { name = "nvim_lsp", max_item_count = 5, keyword_lenght = 1 },
+        { name = "buffer", max_item_count = 5 },
         { name = "path" },
         { name = "nvim_lua" },
         { name = "luasnip", max_item_count = 3 },
