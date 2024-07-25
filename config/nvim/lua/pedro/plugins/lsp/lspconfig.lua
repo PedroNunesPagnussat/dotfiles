@@ -109,6 +109,7 @@ return {
                   reportMissingTypeArgument = "none",
                   reportMissingTypeAnnotation = "none",
                   reportInvalidTypeVarUse = "none",
+                  reportUnusedExpression = "none",
                   reportUnboundVariable = "none",
                 },
                 typeCheckingMode = "basic",
