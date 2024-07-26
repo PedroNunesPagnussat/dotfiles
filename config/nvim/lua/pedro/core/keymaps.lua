@@ -26,6 +26,9 @@ map({ "n", "v" }, "<leader>yf", "<cmd>%y+<cr>", { desc = "Copy whole file to cli
 map("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 map("i", "jj", "<ESC>", { desc = "Exit insert mode" })
 
+-- GO to match symbol
+map("n", "gm", "%", { desc = "Go to match symbol" })
+
 -- Add ; as :
 map("n", ";", ":", { desc = "Enter command mode" })
 

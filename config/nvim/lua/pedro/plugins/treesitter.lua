@@ -29,11 +29,11 @@ return {
       },
 
       -- Enable rainbow parentheses
-      rainbow = {
-        enable = true,
-        extended_mode = true, -- Highlight also non-bracket delimiters
-        max_file_lines = nil, -- No line limit for rainbow highlight
-      },
+      -- rainbow = {
+      --   enable = true,
+      --   extended_mode = true, -- Highlight also non-bracket delimiters
+      --   max_file_lines = nil, -- No line limit for rainbow highlight
+      -- },
 
       -- Ensure these language parsers are installed
       ensure_installed = {
