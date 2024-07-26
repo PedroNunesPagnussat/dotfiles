@@ -3,20 +3,20 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   main = "ibl",
   opts = {
-    indent = { 
+    indent = {
       char = "┊",
       tab_char = "┊",
     },
 
     whitespace = {
       highlight = {
-          "CursorColumn",
-          "Whitespace",
+        "CursorColumn",
+        "Whitespace",
       },
       remove_blankline_trail = false,
     },
 
-    scope = {enabled = false},
+    scope = { enabled = false },
     exclude = {
       filetypes = {
         "help",

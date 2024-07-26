@@ -21,9 +21,7 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     {
       "L3MON4D3/LuaSnip",
-      -- follow latest release.
-      version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-      -- install jsregexp (optional!).
+      version = "v2.*",
       build = "make install_jsregexp",
     },
     "saadparwaiz1/cmp_luasnip", -- for autocompletion
@@ -57,8 +55,6 @@ return {
       },
 
       mapping = cmp.mapping.preset.insert({
-        -- ["<Tab>"] = cmp.mapping.select_next_item(), -- previous suggestion
-        -- ["<S-Tab>"] = cmp.mapping.select_prev_item(), -- next suggestion
         ["<C-j>"] = cmp.mapping.select_next_item(), -- previous suggestion
         ["<C-k>"] = cmp.mapping.select_prev_item(), -- next suggestion
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -86,7 +82,6 @@ return {
       },
     })
 
-    -- completion for command mode
     cmp.setup.cmdline({ "/", "?" }, {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {

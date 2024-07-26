@@ -46,7 +46,7 @@ return {
     map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
     map("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Find recent files" })
     map("n", "<leader>fw", "<cmd>Telescope live_grep<cr>", { desc = "Find word" })
-    map("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find word under cursor" })
+    map("n", "<leader>fg", "<cmd>Telescope grep_string<cr>", { desc = "Find word under cursor" })
     map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
   end,
 }

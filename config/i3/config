@@ -40,6 +40,10 @@ bindsym $mod+b exec google-chrome
 # Notes
 exec --no-startup-id obsidian
 
+# Task Manager
+exec --no-startup-id todoist
+
+
 # Comunication
 exec --no-startup-id discord
 
