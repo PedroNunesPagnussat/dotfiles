@@ -4,8 +4,12 @@ return {
   main = "ibl",
   opts = {
     indent = {
-      char = "┊",
-      tab_char = "┊",
+      char = "󰇙",
+      tab_char = "󰇙",
+      highlight = {
+        "Normal", -- Typically black text on white background in most color schemes
+        "NonText", -- Often used for non-visible characters, usually in white
+      },
     },
 
     whitespace = {
@@ -16,7 +20,14 @@ return {
       remove_blankline_trail = false,
     },
 
-    scope = { enabled = false },
+    scope = {
+      enabled = false,
+      highlight = {
+        "Normal", -- Black text on white background
+        "NonText", -- White text
+      },
+    },
+
     exclude = {
       filetypes = {
         "help",

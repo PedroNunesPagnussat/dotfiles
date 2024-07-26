@@ -4,24 +4,38 @@ return {
   build = ":TSUpdate",
   dependencies = {
     "windwp/nvim-ts-autotag",
+    "p00f/nvim-ts-rainbow",
   },
   config = function()
-    -- import nvim-treesitter plugin
-    local treesitter = require("nvim-treesitter.configs")
+    local status_ok, treesitter = pcall(require, "nvim-treesitter.configs")
+    if not status_ok then
+      vim.notify("nvim-treesitter not found!")
+      return
+    end
 
-    treesitter.setup({ 
-
+    treesitter.setup({
+      -- Enable syntax highlighting
       highlight = {
         enable = true,
-        use_languagetree = true
+        use_languagetree = true,
       },
 
+      -- Enable indentation based on treesitter
       indent = { enable = true },
 
+      -- Enable autotagging for HTML and XML
       autotag = {
         enable = true,
       },
-      -- ensure these language parsers are installed
+
+      -- Enable rainbow parentheses
+      rainbow = {
+        enable = true,
+        extended_mode = true, -- Highlight also non-bracket delimiters
+        max_file_lines = nil, -- No line limit for rainbow highlight
+      },
+
+      -- Ensure these language parsers are installed
       ensure_installed = {
         "bash",
         "c",
@@ -49,6 +63,8 @@ return {
         "yaml",
         "xml",
       },
+
+      -- Enable incremental selection
       incremental_selection = {
         enable = true,
         keymaps = {

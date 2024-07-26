@@ -1,10 +1,10 @@
 return {
   "echasnovski/mini.indentscope",
-  version = false, 
+  version = false,
   event = { "BufReadPre", "BufNewFile" },
   opts = {
-    -- symbol = "▏",
-    symbol = "┊",
+    symbol = "~",
+    -- symbol = "|",
     options = { try_as_border = true },
   },
   init = function()
@@ -25,6 +25,6 @@ return {
       callback = function()
         vim.b.miniindentscope_disable = true
       end,
-    }) 
+    })
   end,
 }

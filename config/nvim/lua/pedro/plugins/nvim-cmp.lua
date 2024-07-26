@@ -46,6 +46,10 @@ return {
           border = border("CmpDocBorder"),
           winhighlight = "Normal:CmpDoc",
         },
+        completion = {
+          border = border("CmpCompletionBorder"),
+          winhighlight = "Normal:CmpCompletion",
+        },
       },
 
       snippet = {
@@ -55,25 +59,23 @@ return {
       },
 
       mapping = cmp.mapping.preset.insert({
-        ["<C-j>"] = cmp.mapping.select_next_item(), -- previous suggestion
-        ["<C-k>"] = cmp.mapping.select_prev_item(), -- next suggestion
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
+        ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4), -- scroll docs up
+        ["<C-f>"] = cmp.mapping.scroll_docs(4), -- scroll docs down
         ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
         ["<C-e>"] = cmp.mapping.abort(), -- close completion window
-        ["<C-a>"] = cmp.mapping.confirm({ select = true }),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }), -- confirm selection
       }),
 
       sources = cmp.config.sources({
-        { name = "nvim_lsp", max_item_count = 5, keyword_lenght = 1 },
+        { name = "nvim_lsp", max_item_count = 5, keyword_length = 1 },
         { name = "buffer", max_item_count = 5 },
         { name = "path" },
         { name = "nvim_lua" },
         { name = "luasnip", max_item_count = 3 },
       }),
 
-      -- configure lspkind for vs-code like pictograms in completion menu
-      ---@diagnostic disable-next-line: missing-fields
       formatting = {
         format = lspkind.cmp_format({
           maxwidth = 50,
