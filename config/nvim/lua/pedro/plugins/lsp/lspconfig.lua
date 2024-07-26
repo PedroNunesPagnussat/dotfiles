@@ -42,7 +42,7 @@ return {
         map("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
 
         opts.desc = "Find diagnostics"
-        map("n", "<leader>fd", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
+        map("n", "<leader>fd", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show diagnostics for file
 
         opts.desc = "Line diagnostics"
         map("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
@@ -61,7 +61,6 @@ return {
       end,
     })
 
-    -- used to enable autocompletion (assign to every lsp server config)
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
     -- Change the Diagnostic symbols in the sign column (gutter)
@@ -72,18 +71,9 @@ return {
     end
 
     mason_lspconfig.setup_handlers({
-      -- default handler for installed servers
-      function(server_name)
-        lspconfig[server_name].setup({
-          capabilities = capabilities,
-        })
-      end,
       ["ruff_lsp"] = function()
         lspconfig["ruff_lsp"].setup({
           capabilities = capabilities,
-          on_attach = function(client, _)
-            client.server_capabilities.hoverProvider = false
-          end,
         })
       end,
       ["pyright"] = function()

@@ -12,13 +12,11 @@ return {
         yaml = { "prettier" },
         markdown = { "prettier" },
         lua = { "stylua" },
-        -- python = { "isort", "black" },
         python = { -- To fix auto-fixable lint errors.
           "ruff_fix",
-          -- To run the Ruff formatter.
           "ruff_format",
-          -- To organize the imports.
           "ruff_organize_imports",
+          -- "ruff",
         },
       },
       format_on_save = {
@@ -27,10 +25,6 @@ return {
         timeout_ms = 1000,
       },
     })
-
-    conform.formatters.black = {
-      prepend_args = { "--line-length", "80" },
-    }
 
     vim.keymap.set({ "n", "v" }, "<leader>cf", function()
       conform.format({

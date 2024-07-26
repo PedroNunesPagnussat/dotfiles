@@ -27,7 +27,7 @@ return {
       -- list of servers for mason to install
       ensure_installed = {
         "lua_ls",
-        -- "pyright",
+        "pyright",
         "ruff_lsp",
       },
     })
@@ -36,8 +36,6 @@ return {
       ensure_installed = {
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
-        "isort", -- python formatter
-        "black", -- python formatter
         "shfmt", -- bash formatter
         "pylint", --python linter
         "eslint_d", -- js linter
