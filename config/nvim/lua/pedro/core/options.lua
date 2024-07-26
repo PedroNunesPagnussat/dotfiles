@@ -74,4 +74,4 @@ opt.list = true -- Show invisable chars
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" } -- Change the icons
 
 -- Color Line
-opt.colorcolumn = "80" -- Set Color line char
+opt.colorcolumn = "88" -- Set Color line char

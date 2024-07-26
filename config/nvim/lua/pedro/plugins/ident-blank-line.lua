@@ -4,8 +4,8 @@ return {
   main = "ibl",
   opts = {
     indent = {
-      char = "󰇙",
-      tab_char = "󰇙",
+      char = "┊",
+      tab_char = "┊",
       highlight = {
         "Normal", -- Typically black text on white background in most color schemes
         "NonText", -- Often used for non-visible characters, usually in white
