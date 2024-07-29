@@ -46,6 +46,9 @@ map("v", "<S-tab>", "<gv")
 map("v", "<tab>", ">gv")
 map("i", "<S-tab>", "<C-d>")
 
+-- Open VSCode
+map("n", "<leader>co", "<cmd>!code .<cr>", { desc = "Open in VSCode" })
+
 -- Move Lines
 map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
 map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
