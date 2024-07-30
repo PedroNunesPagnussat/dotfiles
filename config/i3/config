@@ -38,17 +38,17 @@ bindsym $mod+b exec google-chrome
 # bindsym $mod+b exec firefox
 
 # Notes
-exec --no-startup-id obsidian
+# exec --no-startup-id obsidian
 
 # Task Manager
-exec --no-startup-id todoist
+# exec --no-startup-id todoist
 
 
 # Comunication
 exec --no-startup-id discord
 
 # Auto Tilling
-exec --no-startup-id autotiling
+# exec --no-startup-id autotiling
 
 # Launcher
 bindsym $mod+d exec --no-startup-id rofi -show drun -theme ~/.config/rofi/launcher.rasi
