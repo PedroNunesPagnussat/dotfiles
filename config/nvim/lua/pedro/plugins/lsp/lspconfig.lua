@@ -69,6 +69,7 @@ return {
                 diagnosticSeverityOverrides = {
                   reportUnusedVariable = "warning",
                   reportCallIssue = "none",
+                  reportAttributeAccessIssue = "none",
                   -- reportMissingImports = "none",
                   -- reportMissingTypeStubs = "none",
                   -- reportGeneralTypeIssues = "none",
