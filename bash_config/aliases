@@ -17,6 +17,7 @@ alias dotfiles="cd ~/dotfiles"
 
 # ls customization
 alias ls="eza --color=always --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias la="eza -a --color=always --git --no-filesize --icons=always --no-time --no-user --no-permissions"
 alias tree="eza --color=always --git --no-filesize --icons=always --no-time --no-user --no-permissions --tree"
 
 # better cat
