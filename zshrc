@@ -1,3 +1,7 @@
+# P10K Stuff
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 # Plugin Manager
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -29,7 +33,7 @@ zinit snippet OMZP::sudo
 zinit snippet OMZP::git
 zinit snippet OMZP::ubuntu
 # zinit snippet OMZP::tmux
-zinit snippet OMZP::zoxide
+# zinit snippet OMZP::zoxide
 zinit snippet OMZP::brew
 zinit snippet OMZP::command-not-found
 
@@ -97,10 +101,9 @@ zstyle ':fzf-tab:complete:*:*' fzf-preview ''${combined_styles}' $realpath'
 # Shell integrations
 eval "$(fzf --zsh)"
 # eval "$(zoxide init zsh)" # unlink cd to z
-eval "$(zoxide init --cmd cd zsh)" # link cd to z
+# eval "$(zoxide init --cmd cd zsh)" # link cd to z
 
 source ~/.bash_config/aliases
-source ~/.bash_config/lf_icons
 
 # Exports
 export PYTHONDONTWRITEBYTECODE=1
@@ -117,5 +120,6 @@ export VISUAL=nvim
 # Add .local/bin to path
 export PATH=$PATH:$HOME/.local/bin
 
-eval "$(oh-my-posh --init --shell zsh --config $HOME/.config/ohmyposh/ohmyposh.omp.toml)"
 
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ohmyposh.omp.toml)"
+source "$HOME/.rye/env"
