@@ -76,7 +76,7 @@ return {
                   reportReturnType = "none",
                   reportInvalidTypeForm = "none",
                   reportArgumentType = "none",
-                  -- reportUndefinedVariable = "none",
+                  reportUndefinedVariable = "none",
                   -- reportUnusedImport = "none",
                   -- reportUnusedFunction = "none",
                   -- reportUnusedClass = "none",
