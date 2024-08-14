@@ -19,3 +19,26 @@ return {
     -- vim.cmd("highlight ColorColumn ctermbg=235 guibg=#d20f39") -- Set to be really red
   end,
 }
+
+-- Gruvbox
+
+-- return {
+--   {
+--     "ellisonleao/gruvbox.nvim",
+--     priority = 1000,
+--     config = function()
+--       require("gruvbox").setup({
+--         invert_selection = true,
+--         invert_signs = true,
+--         invert_tabline = true,
+--         invert_intend_guides = true,
+--         inverse = true,
+--         contrast = "",
+--         dim_inactive = true, -- Ok
+--         transparent_mode = false, -- Ok
+--       })
+--       vim.o.background = "dark"
+--       vim.cmd("colorscheme gruvbox")
+--     end,
+--   },
+-- }
