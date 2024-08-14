@@ -72,5 +72,5 @@ opt.showmode = false -- Don't show mode in the command line (assuming a statusli
 opt.list = true -- Show invisible characters
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" } -- Customize the display of invisible characters
 
--- Color Column
-opt.colorcolumn = "79" -- Highlight column 79 for guiding line length
+-- Color Line
+opt.colorcolumn = "80" -- Set Color line char
