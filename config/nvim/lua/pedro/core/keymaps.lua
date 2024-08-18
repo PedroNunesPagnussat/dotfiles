@@ -23,7 +23,7 @@ map("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 map("i", "jj", "<ESC>", { desc = "Exit insert mode" })
 
 -- Symbol Matching
-map("n", "gm", "%", { desc = "Go to matching symbol" })
+map({ "n", "v" }, "gm", "%", { desc = "Go to matching symbol" })
 
 -- Command Mode and Yank Enhancements
 map("n", ";", ":", { desc = "Enter command mode" })

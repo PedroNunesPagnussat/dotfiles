@@ -1,8 +1,3 @@
-# P10K Stuff
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
-
 # Plugin Manager
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -12,7 +7,7 @@ if [ ! -d "$ZINIT_HOME" ]; then
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
-# Source/Load zinit
+# Source/Load Zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Load Brew
@@ -21,26 +16,22 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # Load installs
 source ~/.bash_config/installs
 
-# Add in Powerlevel10k
-# zinit ice depth=1; zinit light romkatv/powerlevel10k
-
 # Plugins
 zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions 
-zinit light Aloxaf/fzf-tab # Add in snippets zinit snippet OMZP::git
+zinit light zsh-users/zsh-completions
+zinit light Aloxaf/fzf-tab 
+
+# Add in snippets
 zinit snippet OMZP::sudo
 zinit snippet OMZP::git
 zinit snippet OMZP::ubuntu
-# zinit snippet OMZP::tmux
-# zinit snippet OMZP::zoxide
 zinit snippet OMZP::brew
 zinit snippet OMZP::command-not-found
 
 # Load completions
-autoload -Uz compinit && compinit 
+autoload -Uz compinit && compinit -C
 zinit cdreplay -q
-
 
 # Keybindings
 # bindkey -v
@@ -49,14 +40,13 @@ bindkey '^j' history-search-forward
 bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward
 bindkey jj vi-cmd-mode
-bindkey -s '^z' '\e\e' # Add sudo at the front 
-bindkey -s '^h' '^r' # search history
+bindkey -s '^z' '\e\e'       # Add sudo at the front
+bindkey -s '^h' '^r'         # Search history
 bindkey '^w' vi-forward-char
-bindkey "^?" backward-delete-char # Fix backspace bug when switching modes
+bindkey "^?" backward-delete-char  # Fix backspace bug when switching modes
 bindkey '^[[3~' delete-char        # Delete key
-bindkey '^[[1~' beginning-of-line   # Home key
-bindkey '^[[4~' end-of-line         # End key
-
+bindkey '^[[1~' beginning-of-line  # Home key
+bindkey '^[[4~' end-of-line        # End key
 
 repeat-last-command() {
   zle up-history
@@ -79,10 +69,8 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # Completion styling
-
 # Define dir_style
 dir_style='eza --color=always --git --no-filesize --icons --no-time --no-user --no-permissions --long --tree --level=2'
-# dir_style='eza --color=always --git --no-filesize --icons --no-time --no-user --no-permissions --long'
 file_style='bat -n --color=always'
 combined_styles='[[ -d $realpath ]] && '${dir_style}' $realpath || '${file_style}' $realpath'
 
@@ -97,13 +85,8 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview ''${dir_style}' $realpath'
 zstyle ':fzf-tab:complete:nvim:*' fzf-preview ''${combined_styles}' $realpath'
 zstyle ':fzf-tab:complete:*:*' fzf-preview ''${combined_styles}' $realpath'
 
-
 # Shell integrations
 eval "$(fzf --zsh)"
-# eval "$(zoxide init zsh)" # unlink cd to z
-# eval "$(zoxide init --cmd cd zsh)" # link cd to z
-
-source ~/.bash_config/aliases
 
 # Exports
 export PYTHONDONTWRITEBYTECODE=1
@@ -117,9 +100,9 @@ export EZA_COLORS="$(vivid generate catppuccin-mocha)"
 export EDITOR=nvim
 export VISUAL=nvim
 
-# Add .local/bin to path
+# Add .local/bin to PATH
 export PATH=$PATH:$HOME/.local/bin
 
-
+# Source aliases and Oh My Posh
+source ~/.bash_config/aliases
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ohmyposh.omp.toml)"
-source "$HOME/.rye/env"

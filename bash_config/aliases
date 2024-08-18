@@ -4,7 +4,7 @@
 alias dev='cd ~/dev'
 
 # Copy current directory to clipboard
-alias cpwd="pwd | xclip -selection clipboard"   
+alias cpwd="pwd | xclip -selection clipboard"
 
 # Open nvim
 alias nv="nvim"
@@ -13,6 +13,7 @@ alias vim="nvim"
 # CD to common directories
 alias notes="cd ~/vaults/notes && nv ./Home.md"
 alias dotfiles="cd ~/dotfiles"
+alias dev="cd ~/dev"
 
 
 # ls customization
@@ -24,7 +25,6 @@ alias tree="eza --color=always --git --no-filesize --icons=always --no-time --no
 alias cat="bat"
 
 # better cd already on .zshrc
-# alias cd="z"
 alias update="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean"
 
 
