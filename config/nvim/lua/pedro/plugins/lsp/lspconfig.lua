@@ -67,7 +67,7 @@ return {
               analysis = {
                 useLibraryCodeForTypes = true,
                 diagnosticSeverityOverrides = {
-                  reportUnusedVariable = "warning",
+                  reportUnusedVariable = "none",
                   reportCallIssue = "none",
                   reportAttributeAccessIssue = "none",
                   -- reportMissingImports = "none",
