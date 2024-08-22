@@ -66,6 +66,7 @@ return {
         ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
         ["<C-e>"] = cmp.mapping.abort(), -- close completion window
         -- ["<CR>"] = cmp.mapping.confirm({ select = true }), -- confirm selection
+        ["<C-l>"] = cmp.mapping.confirm({ select = true }), -- confirm selection
       }),
 
       sources = cmp.config.sources({

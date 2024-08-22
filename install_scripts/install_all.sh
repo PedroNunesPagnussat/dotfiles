@@ -18,7 +18,7 @@ confirm() {
 
 # Make sure all scripts are executable
 chmod +x ./install_tmux_dependencies.sh
-chmod +x ./install_nvm.sh
+chmod +x ./install_fnm.sh
 chmod +x ./install_nerd_font.sh
 chmod +x ./install_from_sanp_store.sh
 chmod +x ./install_docker.sh
@@ -40,11 +40,11 @@ else
     echo "Skipping zsh dependencies installation."
 fi
 
-if confirm "Do you want to install NVM?"; then
-    echo "Installing NVM..."
-    ./install_nvm.sh
+if confirm "Do you want to install FNM?"; then
+    echo "Installing FNM..."
+    ./install_fnm.sh
 else
-    echo "Skipping NVM installation."
+    echo "Skipping FNM installation."
 fi
 
 if confirm "Do you want to install Nerd Font?"; then
