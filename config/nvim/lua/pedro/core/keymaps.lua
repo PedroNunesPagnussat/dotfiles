@@ -13,6 +13,7 @@ map({ "n", "v" }, "x", '"_x', { desc = "Delete without adding to buffer" })
 map({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy to system clipboard" })
 map("n", "<leader>p", [["+p]], { desc = "Paste from system clipboard" })
 map("n", "<leader>P", [["+P]], { desc = "Paste from system clipboard before cursor" })
+map("x", "<leader>r", '"_dp', { desc = "Paste from system clipboard" })
 
 -- File Operations
 map("n", "<leader>yp", [[:let @+ = expand("%:p")<cr>]], { desc = "Copy file path to clipboard" })
@@ -35,6 +36,7 @@ map({ "n", "i" }, "<C-z>", "<cmd>undo<cr>", { desc = "Undo" })
 -- Improved Indentation
 map("v", "<", "<gv", { desc = "Indent left and reselect" })
 map("v", ">", ">gv", { desc = "Indent right and reselect" })
+map("v", "tab", ">gv", { desc = "Indent right and reselect" })
 map("i", "<S-tab>", "<C-d>", { desc = "Un-indent in insert mode" })
 map("v", "<S-tab>", "<gv")
 
@@ -44,10 +46,10 @@ map("n", "<leader>co", "<cmd>!code .<cr>", { desc = "Open in VSCode" })
 -- Line Movement
 map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move line down" })
 map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move line up" })
-map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move line down" })
-map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move line up" })
 map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move selection down" })
 map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move selection up" })
+map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move line down" })
+map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move line up" })
 
 -- Window Navigation and Management
 map("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
