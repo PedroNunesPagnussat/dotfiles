@@ -10,10 +10,10 @@ map("n", "k", "gk", { desc = "Move up visual line" })
 
 -- Copy and Paste with Clipboard
 map({ "n", "v" }, "x", '"_x', { desc = "Delete without adding to buffer" })
-map({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy to system clipboard" })
-map("n", "<leader>p", [["+p]], { desc = "Paste from system clipboard" })
-map("n", "<leader>P", [["+P]], { desc = "Paste from system clipboard before cursor" })
-map("x", "<leader>r", '"_dp', { desc = "Paste from system clipboard" })
+map("n", "<leader>y", [["+yy]], { desc = "Copy to system clipboard" })
+map("v", "<leader>y", [["+y]], { desc = "Copy to system clipboard" })
+map({ "n", "v" }, "<leader>p", [["+p]], { desc = "Paste from system clipboard" })
+map({ "n", "v" }, "<leader>P", [["+P]], { desc = "Paste from system clipboard before cursor" })
 
 -- File Operations
 map("n", "<leader>yp", [[:let @+ = expand("%:p")<cr>]], { desc = "Copy file path to clipboard" })

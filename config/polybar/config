@@ -81,8 +81,8 @@ module-margin = 1
 separator = |
 separator-foreground = ${colors.flamingo}
 
-font-0 = JetBrainsMonoNL Nerd Font Mono:size=14;6
-font-1 = JetBrainsMonoNL Nerd Font Mono:size=18;6
+font-0 = JetBrainsMonoNL Nerd Font Mono:size=18;6
+font-1 = JetBrainsMonoNL Nerd Font Mono:size=20;6
 font-2 = JetBrainsMonoNL Nerd Font Mono:size=22;6
 
 # modules-left = xworkspaces xwindow i3

@@ -1,4 +1,4 @@
-#i3
+#
 #  _ _____                    __ _
 # (_)___ /    ___ ___  _ __  / _(_) __ _
 # | | |_ \   / __/ _ \| '_ \| |_| |/ _` |
@@ -35,13 +35,13 @@ bindsym $mod+Return exec kitty
 
 # Web Browser
 bindsym $mod+b exec google-chrome
-# bindsym $mod+b exec firefox
 
 # Comunication
 exec --no-startup-id discord
 
-
-exec --no-startup-id autotiling
+# Tiling
+exec_always killall autotiling
+exec_always --no-startup-id autotiling
 
 # Launcher
 bindsym $mod+d exec --no-startup-id rofi -show drun -theme ~/.config/rofi/launcher.rasi
@@ -80,13 +80,13 @@ bindsym $mod+Shift+Tab workspace prev
 
 set $ws1 "1: "
 set $ws2 "2: 󰖟"
-set $ws3 "3: "
+set $ws3 "3: "
 set $ws4 "4: "
 set $ws5 "5: "
 set $ws6 "6: "
-set $ws7 "7: "
-set $ws8 "8: "
-set $ws9 "9: 󰝚"
+set $ws7 "7: "
+set $ws8 "8: "
+set $ws9 "9: "
 set $ws10 "󰙯"
 
 # switch to workspace
@@ -114,19 +114,19 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Define output display
-set $secondary HDMI-A-0
-set $primary DisplayPort-0
+set $primary HDMI-0
+set $secondary DVI-D-0
 
-workspace 1 output $primary
-workspace 2 output $primary
-workspace 3 output $primary
-workspace 4 output $primary
-workspace 5 output $primary
-workspace 6 output $secondary
-workspace 7 output $secondary
-workspace 8 output $secondary
-workspace 9 output $secondary
-workspace 0 output $secondary
+workspace 1 output $secondary
+workspace 2 output $secondary
+workspace 3 output $secondary
+workspace 4 output $secondary
+workspace 5 output $secondary
+workspace 6 output $primary
+workspace 7 output $primary
+workspace 8 output $primary
+workspace 9 output $primary
+workspace 0 output $primary
 
 exec --no-startup-id display-teia
 
@@ -254,8 +254,8 @@ client.background        $base
 new_window pixel
 
 # Gaps
-gaps inner 12
-gaps outer 10
+gaps inner 7
+gaps outer 5
 smart_gaps on
 
 # Set random wallpaper
@@ -264,8 +264,8 @@ smart_gaps on
 exec_always --no-startup-id nitrogen --restore
 
 # Borders
-default_border pixel 3
-default_floating_border pixel 3
+default_border pixel 2
+default_floating_border pixel 1
 smart_borders on
 
 ### Volume and Media Control ###
@@ -307,7 +307,7 @@ bindsym $mod+e layout toggle split
 # Show scratchpad terminal
 for_window [instance="dropdown_terminal"] floating enable
 # for_window [instance="dropdown_terminal"] resize set 2128 1128 # Good for ultra wide
-for_window [instance="dropdown_terminal"] resize set 768 768
+for_window [instance="dropdown_terminal"] resize set 1024 1024
 for_window [instance="dropdown_terminal"] move to scratchpad
 for_window [instance="dropdown_terminal"] border pixel 3
 exec --no-startup-id kitty --name dropdown_terminal
