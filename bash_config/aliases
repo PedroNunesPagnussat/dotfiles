@@ -12,7 +12,7 @@ alias vim="nvim"
 
 # CD to common directories
 alias notes="cd ~/vaults/notes && nv ./Home.md"
-alias df="cd ~/dotfiles"
+alias dtf="cd ~/dotfiles"
 alias dev="cd ~/dev"
 
 

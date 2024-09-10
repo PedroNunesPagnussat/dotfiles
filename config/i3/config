@@ -24,7 +24,7 @@ exec --no-startup-id nm-applet                                           #
 ### Application ###
 
 # Windown Compositor
-exec --no-startup-id picom
+exec_always --no-startup-id picom
 
 # Bar
 exec_always killall polybar
@@ -40,8 +40,8 @@ bindsym $mod+b exec google-chrome
 exec --no-startup-id discord
 
 # Tiling
-exec_always killall autotiling
-exec_always --no-startup-id autotiling
+default_orientation vertical
+for_window [class="^"] split toggle
 
 # Launcher
 bindsym $mod+d exec --no-startup-id rofi -show drun -theme ~/.config/rofi/launcher.rasi
@@ -78,16 +78,26 @@ bindsym $mod+Shift+Tab workspace prev
 
 # Define names for default workspaces for which we configure key bindings later on.
 
-set $ws1 "1: "
-set $ws2 "2: 󰖟"
-set $ws3 "3: "
-set $ws4 "4: "
-set $ws5 "5: "
-set $ws6 "6: "
-set $ws7 "7: "
-set $ws8 "8: "
-set $ws9 "9: "
+# set $ws1 "1: "
+# set $ws2 "2: "
+# set $ws3 "3: "
+# set $ws4 "4: "
+# set $ws5 "5: 󰖟"
+# set $ws6 "6: "
+# set $ws7 "7: "
+# set $ws8 "8: "
+# set $ws9 "9: "
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
 set $ws10 "󰙯"
+# set $ws10 "0"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
