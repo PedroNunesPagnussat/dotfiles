@@ -40,8 +40,8 @@ bindsym $mod+b exec google-chrome
 exec --no-startup-id discord
 
 # Tiling
-default_orientation vertical
-for_window [class="^"] split toggle
+# exec_always killall autotiling
+exec --no-startup-id autotiling
 
 # Launcher
 bindsym $mod+d exec --no-startup-id rofi -show drun -theme ~/.config/rofi/launcher.rasi

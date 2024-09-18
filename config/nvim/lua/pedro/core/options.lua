@@ -73,4 +73,4 @@ opt.list = true -- Show invisible characters
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" } -- Customize the display of invisible characters
 
 -- Color Line
-opt.colorcolumn = "80" -- Set Color line char
+opt.colorcolumn = "89" -- Set Color line char
