@@ -25,7 +25,7 @@ return {
           { desc = "Show LSP implementations", keys = "gi", cmd = "<cmd>Telescope lsp_implementations<CR>" },
           { desc = "Go to type definitions", keys = "gt", cmd = "<cmd>Telescope lsp_type_definitions<CR>" },
           { desc = "Code actions", keys = "<leader>ca", cmd = vim.lsp.buf.code_action, mode = { "n", "v" } },
-          { desc = "Smart replace", keys = "<leader>rn", cmd = vim.lsp.buf.rename },
+          { desc = "Smart replace", keys = "<leader>rs", cmd = vim.lsp.buf.rename },
           { desc = "Find diagnostics", keys = "<leader>fd", cmd = "<cmd>Telescope diagnostics bufnr=0<CR>" },
           { desc = "Line diagnostics", keys = "<leader>d", cmd = vim.diagnostic.open_float },
           { desc = "Go to previous diagnostic", keys = "[d", cmd = vim.diagnostic.goto_prev },
