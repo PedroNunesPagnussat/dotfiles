@@ -106,3 +106,5 @@ export PATH=$PATH:$HOME/.local/bin
 # Source aliases and Oh My Posh
 source ~/.bash_config/aliases
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ohmyposh.omp.toml)"
+
+. "$HOME/.cargo/env"
