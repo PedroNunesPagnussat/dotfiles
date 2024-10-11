@@ -29,6 +29,8 @@ return {
         "lua_ls",
         "pyright",
         "ruff_lsp",
+        "ruff",
+        "dockerls",
       },
     })
 
@@ -40,6 +42,8 @@ return {
         "pylint", --python linter
         "eslint_d", -- js linter
         "ruff", -- python linter
+        "hadolint", -- dockerfile linter
+        "mypy", -- python type checker
       },
     })
   end,
