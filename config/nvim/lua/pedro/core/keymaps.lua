@@ -92,3 +92,7 @@ map("n", "<C-d>", "<C-d>zz", { desc = "Keep cursor centered on half-page down" }
 map("n", "<C-u>", "<C-u>zz", { desc = "Keep cursor centered on half-page up" })
 map("n", "n", "nzzzv", { desc = "Keep cursor centered on search result" })
 map("n", "N", "Nzzzv", { desc = "Keep cursor centered on previous search result" })
+
+-- Unbind Keys
+vim.api.nvim_set_keymap("n", "S", "", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "s", "", { noremap = true, silent = true })

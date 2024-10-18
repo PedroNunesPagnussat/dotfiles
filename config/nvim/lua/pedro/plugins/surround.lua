@@ -1,16 +1,18 @@
 return {
-  "kylechui/nvim-surround",
+  "echasnovski/mini.surround",
+  version = "*", -- You can specify the version or use the latest one.
   event = { "BufReadPre", "BufNewFile" },
-  version = "*", -- Use for stability; omit to use `main` branch for the latest features
-  config = true,
-  keymaps = {
-    insert = "<C-g>s",
-    insert_line = "<C-g>S",
-    normal = "<leader>s",
-    normal_cur = "yss",
-    visual = "S",
-    delete = "ds",
-    change = "cs",
-    change_line = "cS",
-  },
+  config = function()
+    require("mini.surround").setup({
+      -- You can customize the setup here, or leave it as default
+      mappings = {
+        add = "sa", -- Add surrounding in Normal and Visual modes
+        delete = "sd", -- Delete surrounding
+        replace = "sc", -- Replace surrounding
+        find = "sf", -- Find surrounding (to the right)
+        find_left = "sF", -- Find surrounding (to the left)
+        highlight = "sh", -- Highlight surroundina
+      },
+    })
+  end,
 }
