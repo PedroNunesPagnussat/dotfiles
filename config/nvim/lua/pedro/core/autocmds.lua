@@ -9,10 +9,10 @@ end
 -- })
 
 -- Close Toggle File explorer on exit
-vim.api.nvim_create_autocmd("WinLeave", {
-  pattern = "NvimTree_*",
-  command = "close",
-})
+-- vim.api.nvim_create_autocmd("WinLeave", {
+--   pattern = "NvimTree_*",
+--   command = "close",
+-- })
 
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {

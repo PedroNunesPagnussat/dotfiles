@@ -1,6 +1,7 @@
 return {
   "folke/flash.nvim",
-  event = "BufReadPre",
+  -- event = "BufReadPre",
+  lazy = false,
   opts = {
     modes = {
       search = {
@@ -15,7 +16,7 @@ return {
 
   keys = {
     {
-      "s",
+      "S",
       mode = { "n", "x", "o" },
       function()
         require("flash").jump()
