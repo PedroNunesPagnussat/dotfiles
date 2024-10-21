@@ -5,17 +5,7 @@ return {
     local lualine = require("lualine")
     local lazy_status = require("lazy.status")
 
-    -- local colors = {
-    --   blue = "#89b4fa",
-    --   green = "#a6e3a1",
-    --   violet = "#b4befe",
-    --   yellow = "#f9e2af",
-    --   red = "#f38ba8",
-    --   mauve = "#cba6f7",
-    --   fg = "#cdd6f4",
-    --   bg = "#1e1e2e",
-    --   inactive_bg = "#313244",
-    -- }
+    -- Define colors
     local colors = {
       blue = "#83a598",
       green = "#b8bb26",
@@ -26,8 +16,10 @@ return {
       fg = "#ebdbb2",
       bg = "#282828",
       inactive_bg = "#3c3836",
+      semilightgray = "#a89984", -- Added missing color definition
     }
 
+    -- Define lualine theme
     local my_lualine_theme = {
       normal = {
         a = { bg = colors.blue, fg = colors.bg, gui = "bold" },
@@ -76,6 +68,7 @@ return {
       },
     }
 
+    -- Function to detect virtual environment for Python
     local virtual_env = function()
       if vim.bo.filetype ~= "python" then
         return ""
@@ -88,14 +81,16 @@ return {
         if conda_env == nil then
           return ""
         else
-          return string.format(" %s (conda)", conda_env)
+          return string.format("conda", conda_env)
         end
+      -- component_separators = { left = '', right = '' },
       else
         local venv_name = vim.fn.fnamemodify(venv_path, ":t")
-        return string.format(" %s (venv)", venv_name)
+        return string.format("venv", venv_name)
       end
     end
 
+    -- Function to check if macro recording is active
     local function isRecording()
       local reg = vim.fn.reg_recording()
       if reg == "" then
@@ -104,18 +99,20 @@ return {
       return "recording @" .. reg
     end
 
-    -- configure lualine with modified theme
+    local function vim_logo()
+      return " "
+    end
+
     lualine.setup({
       options = {
         theme = my_lualine_theme,
       },
       sections = {
-
-        lualine_a = { "mode" },
+        lualine_a = { vim_logo, "mode" },
         lualine_b = { isRecording },
         lualine_c = { "branch", "diff", "diagnostics", "filename" },
-
         lualine_x = {
+          { "copilot" },
           {
             lazy_status.updates,
             cond = lazy_status.has_updates,
@@ -124,16 +121,22 @@ return {
           { "encoding" },
           { "fileformat" },
           { "filetype" },
-        },
-
-        lualine_y = {
-
-          { "copilot" },
           {
             virtual_env,
+            color = function()
+              local conda_env = os.getenv("CONDA_DEFAULT_ENV")
+              if conda_env ~= nil then
+                return { fg = colors.green } -- Conda environment in green
+              else
+                return { fg = colors.yellow } -- Venv in yellow
+              end
+            end,
           },
           { "progress" },
+          { "location" },
         },
+        lualine_y = {},
+        lualine_z = {},
       },
     })
   end,

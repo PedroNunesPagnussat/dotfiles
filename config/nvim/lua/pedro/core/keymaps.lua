@@ -41,7 +41,8 @@ map("i", "<S-tab>", "<C-d>", { desc = "Un-indent in insert mode" })
 map("v", "<S-tab>", "<gv")
 
 -- Open Current Directory in VSCode
-map("n", "<leader>co", "<cmd>!code .<cr>", { desc = "Open in VSCode" })
+map("n", "<leader>oc", "<cmd>!code .<cr>", { desc = "Open in VSCode" })
+map("n", "<leader>of", "<cmd>!nautilus .<cr>", { desc = "Open in File Explorer" })
 
 -- Line Movement
 map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move line down" })

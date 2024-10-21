@@ -44,6 +44,7 @@ return {
         "ruff", -- python linter
         "hadolint", -- dockerfile linter
         "mypy", -- python type checker
+        "debugpy", -- Python debugger (for nvim-dap)
       },
     })
   end,

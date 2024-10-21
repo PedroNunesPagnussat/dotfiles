@@ -2,29 +2,34 @@ return {
   "nvim-telescope/telescope.nvim",
   branch = "0.1.x",
   dependencies = {
+    -- Core dependencies
     "nvim-lua/plenary.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     "nvim-tree/nvim-web-devicons",
-    "folke/todo-comments.nvim",
+
+    -- Additional features
+    "folke/todo-comments.nvim", -- Todo comments integration
     "nvim-telescope/telescope-project.nvim", -- Project management
     "nvim-telescope/telescope-file-browser.nvim", -- File browser
     "nvim-telescope/telescope-ui-select.nvim", -- Improved UI selector
-    -- Add nvim-dap as a dependency:
-    -- TODO: Make dap its own module
-    {
-      "mfussenegger/nvim-dap",
-      config = function()
-        -- Optionally configure nvim-dap here
-      end,
-    },
-    "nvim-telescope/telescope-dap.nvim", -- Debugger integration
+    "folke/trouble.nvim", -- Trouble.nvim for diagnostics, quickfix, etc.
+
+    -- TODO: Make its own module
+    -- Debugging (nvim-dap as a dependency)
+    -- {
+    --   "mfussenegger/nvim-dap",
+    --   config = function()
+    --     -- Optional dap configuration
+    --   end,
+    -- },
+    -- "nvim-telescope/telescope-dap.nvim", -- Debugger integration
   },
   config = function()
     local telescope = require("telescope")
     local actions = require("telescope.actions")
-    local trouble = require("trouble.sources.telescope")
+    local trouble = require("trouble.providers.telescope")
 
-    -- Custom function to toggle preview
+    -- Custom function: Toggle preview in Telescope
     local function toggle_preview()
       local action_state = require("telescope.actions.state")
       local picker = action_state.get_current_picker(vim.api.nvim_get_current_buf())
@@ -42,12 +47,13 @@ return {
       end
     end
 
+    -- Telescope setup
     telescope.setup({
       defaults = {
         path_display = { "smart" },
         file_ignore_patterns = { ".git/", "node_modules", "*.lock" },
-        prompt_prefix = " ",
-        selection_caret = " ",
+        prompt_prefix = " ",
+        selection_caret = "󰐾 ",
         layout_config = {
           horizontal = {
             preview_width = 0.55,
@@ -69,8 +75,8 @@ return {
             ["<C-h>"] = actions.select_horizontal,
             ["<C-v>"] = actions.select_vertical,
             ["<C-t>"] = actions.select_tab,
-            -- ["<C-l>"] = trouble.open,
-            ["<C-p>"] = toggle_preview, -- Use custom function to toggle preview
+            ["<C-p>"] = toggle_preview, -- Custom preview toggle function
+            -- ["<C-l>"] = trouble.open_with_trouble, -- Open selected with Trouble
           },
         },
         vimgrep_arguments = {
@@ -103,15 +109,6 @@ return {
             },
           },
         },
-        git_commits = {
-          previewer = true,
-        },
-        git_branches = {
-          previewer = true,
-        },
-        git_status = {
-          previewer = true,
-        },
       },
       extensions = {
         fzf = {
@@ -127,43 +124,38 @@ return {
           },
           hidden_files = true,
         },
-        file_browser = {
-          theme = "ivy",
-          hijack_netrw = true,
-        },
         ["ui-select"] = {
-          require("telescope.themes").get_dropdown({
-            -- even more opts
-          }),
+          require("telescope.themes").get_dropdown(),
         },
       },
     })
 
-    -- Load extensions
+    -- Load Telescope extensions
     telescope.load_extension("fzf")
     telescope.load_extension("project")
     telescope.load_extension("file_browser")
     telescope.load_extension("ui-select")
     telescope.load_extension("todo-comments")
-    telescope.load_extension("dap") -- Ensure dap extension is loaded after nvim-dap
+    -- telescope.load_extension("dap") -- Load dap extension after nvim-dap
 
-    -- Set keymaps
+    -- Key mappings for Telescope
     local map = vim.keymap.set
+    local opts = { desc = "Telescope" }
 
-    -- Basic mappings for Telescope
+    -- Basic Telescope mappings
     map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
     map("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Find recent files" })
     map("n", "<leader>fw", "<cmd>Telescope live_grep<cr>", { desc = "Find word" })
     map("n", "<leader>fg", "<cmd>Telescope grep_string<cr>", { desc = "Find word under cursor" })
     map("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Find buffers" })
+
+    -- Additional mappings
     map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = "Find help tags" })
-    map("n", "<leader>fm", "<cmd>Telescope keymaps<cr>", { desc = "Find keymaps" })
+    map("n", "<leader>fk", "<cmd>Telescope keymaps<cr>", { desc = "Find keymaps" })
     map("n", "<leader>fp", "<cmd>Telescope project<cr>", { desc = "Switch projects" })
     map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
 
-    -- Git mappings
-    map("n", "<leader>gfc", "<cmd>Telescope git_commits<cr>", { desc = "View git commits" })
-    map("n", "<leader>gfb", "<cmd>Telescope git_branches<cr>", { desc = "View git branches" })
-    map("n", "<leader>gfs", "<cmd>Telescope git_status<cr>", { desc = "View git status" })
+    -- New mapping: Find diagnostics/issues with Trouble
+    map("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", { desc = "Find diagnostics" })
   end,
 }

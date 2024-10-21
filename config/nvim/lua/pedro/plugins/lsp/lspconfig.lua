@@ -92,13 +92,15 @@ return {
         end
       end,
       -- Specific configuration for ruff (built-in Ruff LSP server)
-      ["ruff"] = function()
-        lspconfig.ruff.setup({
+      ["ruff_lsp"] = function()
+        lspconfig.ruff_lsp.setup({
           capabilities = capabilities,
           on_attach = on_attach,
           init_options = {
-            -- Settings should be directly under init_options
-            args = {}, -- Add any specific arguments for Ruff here
+            -- Ruff LSP specific settings can be added here
+            settings = {
+              args = {}, -- Add any Ruff-specific arguments here
+            },
           },
         })
       end,
