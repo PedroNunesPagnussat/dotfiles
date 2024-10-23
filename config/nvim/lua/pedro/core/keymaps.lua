@@ -65,7 +65,7 @@ map("n", "<leader>wx", "<cmd>close<CR>", { desc = "Close current window" })
 
 -- Tab Management
 map("n", "<leader><tab>c", "<cmd>tabnew<cr>", { desc = "New Tab" })
-map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
+map("n", "<leader><tab><tab>", "<cmd>tab split<cr>", { desc = "New Tab" })
 map("n", "<tab>", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<s-tab>", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 map("n", "<leader><tab>x", "<cmd>tabclose<cr>", { desc = "Close Tab" })
