@@ -40,11 +40,15 @@ bindsym $mod+b exec google-chrome
 exec --no-startup-id discord
 
 # Tiling
-# exec_always killall autotiling
-exec --no-startup-id autotiling
+exec_always killall autotiling
+exec_always --no-startup-id autotiling.py
+
+# Layouts
+bindsym $mod+d exec --no-startup-id i3-msg "resize set width 66 ppt"
+
 
 # Launcher
-bindsym $mod+d exec --no-startup-id rofi -show drun -theme ~/.config/rofi/launcher.rasi
+# bindsym $mod+d exec --no-startup-id rofi -show drun -theme ~/.config/rofi/launcher.rasi
 bindsym $mod+o exec --no-startup-id rofi -show drun -theme ~/.config/rofi/launcher.rasi
 bindsym $mod+Shift+b exec --no-startup-id rofi -show filebrowser -theme ~/.config/rofi/launcher.rasi
 bindsym $mod+Shift+w exec --no-startup-id rofi -show window -theme ~/.config/rofi/launcher.rasi
