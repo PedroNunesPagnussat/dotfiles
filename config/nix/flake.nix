@@ -8,6 +8,19 @@
   outputs = { nixpkgs, ...} @ inputs:
   let
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
+
+    # All packages that need to be installed system-wide
+    enviroment.systemPackages = [
+      pkgs.git
+      pkgs.less
+      pkgs.openssh
+    ];
+
+
+    # Set default shell to zsh
+    programs.zsh.enable = true;
+
+
   in
   {
 
