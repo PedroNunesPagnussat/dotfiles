@@ -8,7 +8,7 @@ alias cpwd="pwd | xclip -selection clipboard"
 
 # Open nvim
 alias nv="nvim"
-alias vim="nvim"
+# alias vim="nvim"
 
 # CD to common directories
 alias notes="cd ~/vaults/notes"

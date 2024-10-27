@@ -2,15 +2,6 @@
 
 My Dotfiles and some system setup stuff
 
-## Setup
-
-```bash
-sudo pacman -S git
-git clone https://github.com/PedroNunesPagnussat/dotfiles.git $HOME/dotfiles
-cd $HOME/dotfiles
-xargs --arg-file packages.txt sudo apt install -y
-```
-
 ## Specs
 
 - OS: `Arch Linux`
@@ -19,3 +10,28 @@ xargs --arg-file packages.txt sudo apt install -y
 - WM: `HyprLand`
 - Terminal Emulator: `Kitty`
 - Terminal Multiplexer: `Tmux`
+
+## Setup
+
+### Install Git and Clone the Repository
+
+```bash
+sudo pacman -S git
+git clone https://github.com/PedroNunesPagnussat/dotfiles.git $HOME/dotfiles
+cd $HOME/dotfiles
+```
+
+### Install Nix
+
+```bash
+sh <(curl -L https://nixos.org/nix/install) --daemon
+```
+
+### Install Home Manager
+
+```bash
+nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs
+nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+nix-channel --update
+nix-shell '<home-manager>' -A install
+```
