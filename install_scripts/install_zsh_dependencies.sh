@@ -1,6 +1,6 @@
 #!/bin/bash
-sudo apt update
-sudo apt install -y gpg
+# sudo apt update
+# sudo apt install -y gpg
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"

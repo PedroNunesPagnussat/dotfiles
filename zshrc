@@ -107,4 +107,6 @@ export PATH=$PATH:$HOME/.local/bin
 source ~/.bash_config/aliases
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ohmyposh.omp.toml)"
 
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
+
+neofetch
