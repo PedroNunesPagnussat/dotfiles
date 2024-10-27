@@ -13,8 +13,8 @@ source "${ZINIT_HOME}/zinit.zsh"
 # Load Brew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-# Load installs
-source ~/.bash_config/installs
+# Load tools
+source ~/.zshrc_extratools
 
 # Plugins
 zinit light zsh-users/zsh-syntax-highlighting
@@ -104,9 +104,7 @@ export VISUAL=nvim
 export PATH=$PATH:$HOME/.local/bin
 
 # Source aliases and Oh My Posh
-source ~/.bash_config/aliases
+source ~/.zshrc_aliases
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ohmyposh.omp.toml)"
-
-# . "$HOME/.cargo/env"
 
 neofetch

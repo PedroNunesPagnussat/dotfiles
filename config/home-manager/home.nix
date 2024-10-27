@@ -5,6 +5,9 @@
   home.username = "pedro";
   home.homeDirectory = "/home/pedro";
 
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
@@ -20,6 +23,8 @@
   # Manage dotfiles
   home.file = {
     ".zshrc".source = ~/dotfiles/zshrc;
+    ".zshrc_aliases".source = ~/dotfiles/zshrc_aliases;
+    ".zshrc_extratools".source = ~/dotfiles/zshrc_extratools;
     ".tmux.conf".source = ~/dotfiles/tmux.conf;
 
     ".config/nvim" = {
@@ -48,16 +53,4 @@
     };
 
   };
-
-  home.sessionVariables = {
-    # EDITOR = "emacs";
-  };
-
-  programs.git = {
-    enable = true;
-    userEmail = "npedronp@outlook.com";
-    userName = "PedroNunesPagnussat";
-  };
-
-
 }

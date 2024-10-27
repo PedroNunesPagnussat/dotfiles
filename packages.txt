@@ -1,4 +1,3 @@
-zsh
 build-essential
 gcc
 cmake

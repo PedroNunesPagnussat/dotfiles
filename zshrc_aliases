@@ -1,22 +1,16 @@
-#!/usr/bin/env bash
-
 # Most use dirs navigation
 alias dev='cd ~/dev'
+alias notes="cd ~/vaults/notes"
+alias dtf="cd ~/dotfiles"
 
 # Copy current directory to clipboard
 alias cpwd="pwd | xclip -selection clipboard"
 
-# Open nvim
-alias nv="nvim"
-# alias vim="nvim"
-
-# CD to common directories
-alias notes="cd ~/vaults/notes"
-alias dtf="cd ~/dotfiles"
-alias dev="cd ~/dev"
-
-# Add everything to git and push
+# GIT
 alias backup="git add . && git commit -m 'backup' && git push"
+alias lg="lazygit"
+alias gc="git clone"
+alias gs="git status"
 
 # ls customization
 alias ls="eza --color=always --git --no-filesize --icons=always --no-time --no-user --no-permissions"
@@ -25,11 +19,6 @@ alias tree="eza --color=always --git --no-filesize --icons=always --no-time --no
 
 # better cat
 alias cat="bat"
-
-# better cd already on .zshrc
-alias update="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean"
-
-
 
 # Show whole history
 alias history="history 1"
@@ -42,9 +31,13 @@ alias fgrep="fgrep --color=auto"
 # Search history
 alias shis="history | grep" 
 
-# Conda activate
-alias ca="conda activate"
+# Open nvim
+alias nv="nvim"
+alias vim="nvim"
+alias v="nvim"
 
+# Sync dotfiles
+alias hm="home-manager switch && clear && exec zsh"
 
-# Lazy git
-alias lg="lazygit"
+# Tmux
+alias ta="tmux attach -t"
