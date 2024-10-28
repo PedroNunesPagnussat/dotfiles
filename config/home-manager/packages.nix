@@ -1,58 +1,87 @@
 { config, pkgs, ... }:
 
-{
-  # List of packages to be installed
-  home.packages = with pkgs; [
-    # Shell tools
-    zsh
-    fzf
+let
+  # Shell and Terminal Tools
+  shellTools = with pkgs; [
     bat
-    vivid
-    eza
-    oh-my-posh
     btop
-
-    # Git
-    git
+    eza
+    fzf
     less
-    lazygit
-
-    # HyprLand
-    hyprland
-    wofi
-    waybar
-    hyprshot
-    swaynotificationcenter
-    nitrogen
-    hyprlock
-    # nm-applet
-
-
-    # This should be managed by mason
-    nixpkgs-fmt
-
-    # Docker
-    docker
-    lazydocker
-
-    # IDEs
-    # code
-    neovim 
-    vim 
-
-    # Misc
-    firefox # Browser
-    bitwarden # Password manager
-    discord # Communication
-    slack # Communication
-    tmux # Terminal multiplexer
-    playerctl # Media control
-    font-awesome # Icons
-    wget # Downloading
-    unzip # Unzipping
-    nautilus # File manager
-    feh # Image rendering
+    oh-my-posh
+    vivid
+    tmux
+    zsh
   ];
 
+  # Development Tools
+  devTools = with pkgs; [
+    docker
+    git
+    lazydocker
+    lazygit
+    neovim
+    nixpkgs-fmt
+    vim
+  ];
+
+  # Window Manager and Related Tools
+  wmTools = with pkgs; [
+    hyprland
+    hyprlock
+    hyprshot
+    libglvnd
+    libnotify
+    mesa
+    swaynotificationcenter
+    waybar
+    wayland
+    wofi
+  ];
+
+  # System Utilities
+  sysUtils = with pkgs; [
+    btop
+    wget               # Downloading
+    unzip              # Unzipping
+  ];
+
+  # Browsers and Communication
+  browsersAndComms = with pkgs; [
+    bitwarden          # Password manager
+    discord            # Communication
+    firefox            # Browser
+    slack              # Communication
+  ];
+
+  # Media and Graphics Tools
+  mediaAndGraphics = with pkgs; [
+    feh                # Image rendering
+    nitrogen           # Wallpaper setter
+    playerctl          # Media control
+    font-awesome       # Icons
+
+  ];
+
+  # File Management
+  fileManagement = with pkgs; [
+    nautilus           # File manager
+  ];
+
+in {
+  # List of packages to be installed
+  home.packages = 
+    shellTools       ++
+    devTools         ++
+    wmTools          ++
+    sysUtils         ++
+    browsersAndComms ++
+    mediaAndGraphics ++
+    fileManagement;
+   
+
+  # fonts.packages = [
+  #   (pkgs.nerdfonts.override {fonts = [ "JetBrainsMono" ];})
+  # ];
 }
 
