@@ -17,6 +17,13 @@
     less
     lazygit
 
+    # HyprLand
+    hyprland
+    wofi
+    waybar
+    # nm-applet
+
+
     # This should be managed by mason
     nixpkgs-fmt
 
@@ -35,7 +42,8 @@
     discord # Communication
     slack # Communication
     tmux # Terminal multiplexer
-    hyprland # Window manager
+    playerctl # Media control
+    font-awesome # Icons
   ];
 
 }

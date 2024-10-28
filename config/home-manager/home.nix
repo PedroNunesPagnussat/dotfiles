@@ -35,10 +35,6 @@
       source = ~/dotfiles/config/bat;
       recursive = true;
     };
-    ".config/rofi" = {
-      source = ~/dotfiles/config/rofi;
-      recursive = true;
-    };
     ".config/kitty" = {
       source = ~/dotfiles/config/kitty;
       recursive = true;
@@ -49,6 +45,18 @@
     };
     ".config/nix" = {
       source = ~/dotfiles/config/nix;
+      recursive = true;
+    };
+    ".config/waybar" = {
+      source = ~/dotfiles/config/waybar;
+      recursive = true;
+    };
+    ".config/wofi" = {
+      source = ~/dotfiles/config/wofi;
+      recursive = true;
+    };
+    ".config/hyprland" = {
+      source = ~/dotfiles/config/hyprland;
       recursive = true;
     };
 
