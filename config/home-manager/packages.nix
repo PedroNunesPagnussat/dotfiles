@@ -21,6 +21,10 @@
     hyprland
     wofi
     waybar
+    hyprshot
+    swaynotificationcenter
+    nitrogen
+    hyprlock
     # nm-applet
 
 
@@ -44,6 +48,10 @@
     tmux # Terminal multiplexer
     playerctl # Media control
     font-awesome # Icons
+    wget # Downloading
+    unzip # Unzipping
+    nautilus # File manager
+    feh # Image rendering
   ];
 
 }

@@ -13,8 +13,16 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
   [[blocks.segments]]
     type = 'os'
     style = 'plain'
-    foreground = 'p:os'
     template = '{{ if .WSL }}WSL at {{ end }}{{.Icon}} '
+
+    # For arch
+    foreground = 'p:sky'
+
+    # For ubuntu
+    # foreground = 'p:os'
+    
+
+
 
 
   [[blocks.segments]]
@@ -127,6 +135,7 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
 [palette]
   blue = '#89B4FA'
   closer = 'p:os'
+sky = '#89dceb'
   lavender = '#B4BEFE'
   os = '#ACB0BE'
   pink = '#F5C2E7'

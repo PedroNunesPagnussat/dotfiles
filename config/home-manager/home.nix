@@ -55,10 +55,10 @@
       source = ~/dotfiles/config/wofi;
       recursive = true;
     };
-    ".config/hyprland" = {
-      source = ~/dotfiles/config/hyprland;
-      recursive = true;
-    };
+    # ".config/hyprland" = {
+    #   source = ~/dotfiles/config/hypr;
+    #   recursive = true;
+    # };
 
   };
 }
