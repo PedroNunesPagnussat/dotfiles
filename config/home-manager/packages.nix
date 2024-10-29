@@ -12,6 +12,9 @@ let
     vivid
     tmux
     zsh
+    xclip
+    # fd-find
+    ripgrep
   ];
 
   # Development Tools
@@ -43,6 +46,7 @@ let
   sysUtils = with pkgs; [
     btop
     wget               # Downloading
+    curl               # Downloading
     unzip              # Unzipping
   ];
 

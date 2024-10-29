@@ -1,64 +1,60 @@
 { config, pkgs, ... }:
 
+let
+  # Helper function to create out-of-store symlinks
+  mkSymlink = path: config.lib.file.mkOutOfStoreSymlink path;
+in
 {
-  # Home Manager needs a bit of information about you and the paths it should
   home.username = "pedro";
   home.homeDirectory = "/home/pedro";
 
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
   home.stateVersion = "24.05";
 
   imports = [
-    ./packages.nix # Packages to install
+    ./packages.nix
   ];
-  # Manage dotfiles
-  home.file = {
-    ".zshrc".source = ~/dotfiles/zshrc;
-    ".zshrc_aliases".source = ~/dotfiles/zshrc_aliases;
-    ".zshrc_extratools".source = ~/dotfiles/zshrc_extratools;
-    ".tmux.conf".source = ~/dotfiles/tmux.conf;
 
+  home.file = {
+    ".zshrc".source = mkSymlink ~/dotfiles/zshrc;
+    ".zshrc_aliases".source = mkSymlink ~/dotfiles/zshrc_aliases;
+    ".zshrc_extratools".source = mkSymlink ~/dotfiles/zshrc_extratools;
+    ".tmux.conf".source = mkSymlink ~/dotfiles/tmux.conf;
+
+    # Recursively symlink directories
     ".config/nvim" = {
-      source = ~/dotfiles/config/nvim;
+      source = mkSymlink ~/dotfiles/config/nvim;
       recursive = true;
     };
     ".config/bat" = {
-      source = ~/dotfiles/config/bat;
+      source = mkSymlink ~/dotfiles/config/bat;
       recursive = true;
     };
     ".config/kitty" = {
-      source = ~/dotfiles/config/kitty;
+      source = mkSymlink ~/dotfiles/config/kitty;
       recursive = true;
     };
     ".config/ohmyposh" = {
-      source = ~/dotfiles/config/ohmyposh;
+      source = mkSymlink ~/dotfiles/config/ohmyposh;
       recursive = true;
     };
     ".config/nix" = {
-      source = ~/dotfiles/config/nix;
+      source = mkSymlink ~/dotfiles/config/nix;
       recursive = true;
     };
     ".config/waybar" = {
-      source = ~/dotfiles/config/waybar;
+      source = mkSymlink ~/dotfiles/config/waybar;
       recursive = true;
     };
     ".config/wofi" = {
-      source = ~/dotfiles/config/wofi;
+      source = mkSymlink ~/dotfiles/config/wofi;
       recursive = true;
     };
     # ".config/hyprland" = {
-    #   source = ~/dotfiles/config/hypr;
+    #   source = mkSymlink ~/dotfiles/config/hypr;
     #   recursive = true;
     # };
-
   };
 }
+

@@ -10,9 +10,6 @@ fi
 # Source/Load Zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Load Brew
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
 # Load tools
 source ~/.zshrc_extratools
 
