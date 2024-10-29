@@ -34,4 +34,18 @@ nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 nix-channel --update
 nix-shell '<home-manager>' -A install
+export NIX_CONFIG="experimental-features = nix-command flakes"
+home-manager switch
+```
+
+### Install PKGs that are not available with Nix
+
+```bash
+sudo pacman -S hyprlock
+```
+
+### Remove Old Configurations
+
+```bash
+nix-collect-garbage -d
 ```

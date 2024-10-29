@@ -31,7 +31,7 @@ let
   # Window Manager and Related Tools
   wmTools = with pkgs; [
     hyprland
-    hyprlock
+    # hyprlock This does not work with nix for some reason using pacman
     hyprshot
     libglvnd
     libnotify
