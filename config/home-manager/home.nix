@@ -13,7 +13,9 @@ in
   nixpkgs.config.allowUnfreePredicate = 
     pkg: builtins.elem (pkgs.lib.getName pkg) [
     "discord"
+    "obsidian"
     "slack"
+    "todoist"
   ];
 
   programs.home-manager.enable = true;

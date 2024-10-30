@@ -32,6 +32,7 @@ let
   wmTools = with pkgs; [
     hyprland
     # hyprlock This does not work with nix for some reason using pacman
+    hyprpaper
     hyprshot
     libglvnd
     libnotify
@@ -55,7 +56,9 @@ let
     bitwarden          # Password manager
     discord            # Communication
     firefox            # Browser
+    obsidian           # Note taking
     slack              # Communication
+    todoist            # Task management
   ];
 
   # Media and Graphics Tools
