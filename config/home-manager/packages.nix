@@ -75,6 +75,16 @@ let
     nautilus           # File manager
   ];
 
+  virtualMachine = with pkgs; [
+    # qemu
+    # libvirt
+    # virt-manager
+    # ebtables
+    # dnsmasq
+    # bridge-utils
+    # tuned
+  ];
+
 in {
   # List of packages to be installed
   home.packages = 
@@ -84,7 +94,8 @@ in {
     sysUtils         ++
     browsersAndComms ++
     mediaAndGraphics ++
-    fileManagement;
+    fileManagement;   
+    # virtualMachine;
    
 
   # fonts.packages = [
