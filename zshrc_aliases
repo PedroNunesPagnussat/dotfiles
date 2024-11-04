@@ -4,7 +4,7 @@ alias notes="cd ~/vaults/notes"
 alias dtf="cd ~/dotfiles"
 
 # Copy current directory to clipboard
-alias cpwd="pwd | xclip -selection clipboard"
+alias cpwd='pwd | tee >(wl-copy) >(echo "Copied $(pwd) to clipboard")'
 
 # GIT
 alias backup="git add . && git commit -m 'backup' && git push"

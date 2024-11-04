@@ -25,6 +25,10 @@ in
     ./packages.nix
   ];
 
+  programs.zsh = {
+    enable= true;
+  };
+
   home.file = {
     ".zshrc".source = Symlink ~/dotfiles/zshrc;
     ".zshrc_aliases".source = Symlink ~/dotfiles/zshrc_aliases;
@@ -34,6 +38,10 @@ in
     # Recursively symlink directories
     ".config/nvim" = {
       source = Symlink ~/dotfiles/config/nvim;
+      recursive = true;
+    };
+    ".config/home-manager" = {
+      source = Symlink ~/dotfiles/config/home-manager;
       recursive = true;
     };
     ".config/bat" = {

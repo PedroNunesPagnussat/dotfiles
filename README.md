@@ -30,18 +30,16 @@ sh <(curl -L https://nixos.org/nix/install) --daemon
 ### Install Home Manager
 
 ```bash
-nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs
-nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-nix-channel --update
-nix-shell '<home-manager>' -A install
-export NIX_CONFIG="experimental-features = nix-command flakes"
-home-manager switch
+chmod +x $HOME/dotfiles/scripts/install_hm.sh
 ```
 
-### Install PKGs that are not available with Nix
+### Final setup
 
 ```bash
 sudo pacman -S hyprlock
+# sudo chsh -s /usr/bin/zsh
+sh $HOME/dotfiles/scripts/install_nerd_font.sh
+mkdir ~/dev
 ```
 
 ### Remove Old Configurations

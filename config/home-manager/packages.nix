@@ -8,13 +8,15 @@ let
     eza
     fzf
     less
+    neofetch
     oh-my-posh
-    vivid
-    tmux
-    zsh
-    xclip
-    # fd-find
     ripgrep
+    tmux
+    vivid
+    # xclip
+    wl-clipboard
+    zsh
+    # fd-find
   ];
 
   # Development Tools
@@ -49,6 +51,7 @@ let
     wget               # Downloading
     curl               # Downloading
     unzip              # Unzipping
+    net-tools
   ];
 
   # Browsers and Communication
