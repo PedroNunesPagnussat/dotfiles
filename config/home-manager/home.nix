@@ -15,6 +15,7 @@ in
     "discord"
     "obsidian"
     "slack"
+    # "steam"
     "todoist"
   ];
 

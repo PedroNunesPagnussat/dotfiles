@@ -4,8 +4,7 @@
 echo "Enter the email address for the SSH key:"
 read email
 
-ssh-keygen -t ed25519 -C "$email" -f ~/.ssh/github_ed25519 -N ""
-
+ssh-keygen -t ed25519 -C "$email"
 # Start the ssh-agent in the background if not already running
 eval "$(ssh-agent -s)"
 

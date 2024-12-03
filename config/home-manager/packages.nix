@@ -51,7 +51,7 @@ let
     wget               # Downloading
     curl               # Downloading
     unzip              # Unzipping
-    net-tools
+    # net-tools
   ];
 
   # Browsers and Communication
