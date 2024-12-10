@@ -41,3 +41,7 @@ alias hm="home-manager switch && clear && exec zsh"
 
 # Tmux
 alias ta="tmux attach -t"
+
+# Remove Cringe Python 3
+alias python=python3
+alias pip=pip3

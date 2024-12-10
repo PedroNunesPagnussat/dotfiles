@@ -104,4 +104,7 @@ export PATH=$PATH:$HOME/.local/bin
 source ~/.zshrc_aliases
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ohmyposh.omp.toml)"
 
-neofetch
+# neofetch
+
+
+

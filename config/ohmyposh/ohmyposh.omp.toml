@@ -1,90 +1,112 @@
-#:schema https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
-
-version = 2
-final_space = true
 console_title_template = '{{ .Shell }} in {{ .Folder }}'
+version = 3
+final_space = true
+
+[palette]
+  blue = '#89B4FA'
+  closer = 'p:os'
+  flamingo = '#f2cdcd'
+  green = '#a6e3a1'
+  grey = '#7f849c'
+  lavender = '#B4BEFE'
+  mauve = '#cba6f7'
+  os = '#ACB0BE'
+  peach = '#fab387'
+  pink = '#F5C2E7'
+  red = '#f38ba8'
+  sapphire = '#74c7ec'
+  sky = '#89dceb'
+  yellow = '#f9e2af'
+
+[secondary_prompt]
+  template = '󰘧 ❯❯ '
+  foreground = 'p:magenta'
+  background = 'transparent'
+
+[transient_prompt]
+  template = '❯ '
+  background = 'transparent'
+  foreground_templates = ['{{if gt .Code 0}}p:red{{end}}', '{{if eq .Code 0}}p:lavender{{end}}']
 
 [[blocks]]
   type = 'prompt'
   alignment = 'left'
   newline = true
 
-
   [[blocks.segments]]
+    template = '{{ if .WSL }}WSL at {{ end }}{{.Icon}} '
+    foreground = 'p:sky'
     type = 'os'
     style = 'plain'
-    template = '{{ if .WSL }}WSL at {{ end }}{{.Icon}} '
 
-    # For arch
-    foreground = 'p:sky'
-
-    # For ubuntu
-    # foreground = 'p:os'
-    
-
-
-
+    [blocks.segments.properties]
+      cache_duration = 'none'
 
   [[blocks.segments]]
+    template = '{{ if .SSHSession }} {{ .UserName }}@{{ .HostName }} {{else}}{{.UserName}}{{ end }}'
+    foreground = 'p:blue'
     type = 'session'
     style = 'plain'
-    foreground = 'p:blue'
-    template = '{{ if .SSHSession }} {{ .UserName }}@{{ .HostName }} {{else}}{{.UserName}}{{ end }}'
 
+    [blocks.segments.properties]
+      cache_duration = 'none'
 
   [[blocks.segments]]
+    template = ' ❯ '
+    foreground = 'p:closer'
+    background = 'transparent'
     type = 'text'
     style = 'plain'
-    background = 'transparent'
-    foreground = 'p:closer'
-    template = " ❯ "
 
+    [blocks.segments.properties]
+      cache_duration = 'none'
 
   [[blocks.segments]]
+    template = '{{ .Path }}'
+    foreground = 'p:mauve'
     type = 'path'
     style = 'plain'
-    foreground = 'p:mauve'
-    template = '{{ .Path }}'
 
     [blocks.segments.properties]
-      folder_icon = "..."
+      cache_duration = 'none'
+      folder_icon = '...'
       home_icon = '~'
-      style = 'agnoster_short'
       max_depth = 3
-
+      style = 'agnoster_short'
 
   [[blocks.segments]]
+    template = ' ❯ '
+    foreground = 'p:closer'
     type = 'git'
     style = 'plain'
-    foreground = 'p:closer'
-    template = " ❯ "
-
-
-  [[blocks.segments]]
-    type = "git"
-    style = "plain"
-    foreground = "p:grey"
-    background = "transparent"
-    # template = "{{ .UpstreamIcon }} {{ .RepoName }} @ {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}"
-    template = "{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}"
 
     [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}'
+    foreground = 'p:grey'
+    background = 'transparent'
+    type = 'git'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
       fetch_status = true
       fetch_upstream_icon = true
-
-
 
 [[blocks]]
   type = 'prompt'
   alignment = 'right'
 
   [[blocks.segments]]
-    type = "python"
-    style = "plain"
-    foreground = "p:peach"
-    # background = "p:blue"
-    template = "{{ if .Error }}{{ .Error }}{{ else }}  @ {{ if .Venv }}{{ .Venv }} {{ end }}{{ .Major }}.{{ .Minor }}{{ end }}"
+    template = '{{ if .Error }}{{ .Error }}{{ else }}  @ {{ if .Venv }}{{ .Venv }} {{ end }}{{ .Major }}.{{ .Minor }}{{ end }}'
+    foreground = 'p:peach'
+    type = 'python'
+    style = 'plain'
 
+    [blocks.segments.properties]
+      cache_duration = 'none'
 
 [[blocks]]
   type = 'prompt'
@@ -92,59 +114,26 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
   newline = true
 
   [[blocks.segments]]
+    template = '󰘧 ❯'
+    background = 'transparent'
     type = 'text'
     style = 'plain'
-    foreground_templates = [
-      "{{if gt .Code 0}}p:red{{end}}",
-      "{{if eq .Code 0}}p:lavender{{end}}",
-    ]
-    background = 'transparent'
-    template = '󰘧 ❯'
+    foreground_templates = ['{{if gt .Code 0}}p:red{{end}}', '{{if eq .Code 0}}p:lavender{{end}}']
 
+    [blocks.segments.properties]
+      cache_duration = 'none'
 
 [[blocks]]
   type = 'rprompt'
   overflow = 'hidden'
 
   [[blocks.segments]]
-    type = 'executiontime'
-    style = 'plain'
+    template = ' {{ .FormattedMs }}'
     foreground = 'p:yellow'
     background = 'transparent'
-    template = ' {{ .FormattedMs }}'
+    type = 'executiontime'
+    style = 'plain'
 
     [blocks.segments.properties]
+      cache_duration = 'none'
       threshold = 5000
-
-[secondary_prompt]
-  foreground = 'p:magenta'
-  background = 'transparent'
-  template = '󰘧 ❯❯ '
-
-
-[transient_prompt]
-  foreground_templates = [
-    "{{if gt .Code 0}}p:red{{end}}",
-    "{{if eq .Code 0}}p:lavender{{end}}",
-  ]
-  background = 'transparent'
-  template = '❯ '
-
-
-
-[palette]
-  blue = '#89B4FA'
-  closer = 'p:os'
-sky = '#89dceb'
-  lavender = '#B4BEFE'
-  os = '#ACB0BE'
-  pink = '#F5C2E7'
-  green = "#a6e3a1"
-  red = "#f38ba8"
-  peach = "#fab387"
-  flamingo = "#f2cdcd"
-  yellow = "#f9e2af"
-  sapphire = "#74c7ec"
-  mauve = "#cba6f7"
-  grey = "#7f849c"
-
