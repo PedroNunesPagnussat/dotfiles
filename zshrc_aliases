@@ -2,6 +2,9 @@
 alias dev='cd ~/dev'
 alias notes="cd ~/vaults/notes"
 alias dtf="cd ~/dotfiles"
+alias ..="cd .."
+alias ...="cd ../.."
+
 
 # Copy current directory to clipboard
 alias cpwd='pwd | tee >(wl-copy) >(echo "Copied $(pwd) to clipboard")'
@@ -45,3 +48,22 @@ alias ta="tmux attach -t"
 # Remove Cringe Python 3
 alias python=python3
 alias pip=pip3
+
+# Python Venv
+alias newvenv="python3 -m venv"
+alias va="source venv/bin/activate"
+alias vde="deactivate"
+
+# Function to quickly create and activate a virtual environment
+function mkvenv() {
+    if [ -z "$1" ]; then
+        echo "Usage: mkvenv <env_name>"
+    else
+        python3 -m venv "$1" && source "$1/bin/activate"
+        echo "Virtual environment '$1' created and activated."
+    fi
+}
+
+
+# Conda
+alias ca="conda activate"
