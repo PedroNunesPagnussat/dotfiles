@@ -51,9 +51,18 @@ alias pip=pip3
 
 # Python Venv
 alias newvenv="python3 -m venv"
-alias va="source venv/bin/activate"
 alias vde="deactivate"
 
+function va() {
+    if [ -z "$1" ]; then
+        echo "Usage: va <env_name>"
+    elif [ -d "./$1" ]; then
+        source "./$1/bin/activate"
+        echo "Activated virtual environment: $1"
+    else
+      echo "Error: Virtual environment '$1' does not exist in $(pwd)."
+    fi
+}
 # Function to quickly create and activate a virtual environment
 function mkvenv() {
     if [ -z "$1" ]; then

@@ -51,6 +51,7 @@ main() {
   # CONFIG
 	symlink_file "config/nvim"
 	symlink_file "config/kitty"
+	symlink_file "config/ghostty"
 	symlink_file "config/bat"
 	symlink_file "config/ohmyposh"
   
