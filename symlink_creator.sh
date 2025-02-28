@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 set -o errexit
 set -o nounset
 
@@ -42,29 +43,18 @@ main() {
 
   # MISC
   symlink_file "tmux.conf"
-  symlink_file "pylintrc"
-  symlink_file "wallpapers"
   # SHELL
   symlink_file "zshrc" 
+  symlink_file "zshrc_aliases" 
+  symlink_file "zshrc_extratools" 
   symlink_file "bash_config"
   # CONFIG
 	symlink_file "config/nvim"
-  symlink_file "config/picom"
-  symlink_file "config/rofi"
-  symlink_file "config/polybar"
-	symlink_file "config/i3"
 	symlink_file "config/kitty"
-	symlink_file "config/terminator"
+	symlink_file "config/ghostty"
 	symlink_file "config/bat"
 	symlink_file "config/ohmyposh"
-	symlink_file "config/lf"
-  symlink_file "Xmodmap"
-  # Custom scripts
-  symlink_file "local/bin/greenclip"
-  symlink_file "local/bin/power-menu"
-  symlink_file "local/bin/autotiling"
-  symlink_file "local/bin/display-teia"
-
+  
 
   print_success "Done installing dotfiles!"
 }

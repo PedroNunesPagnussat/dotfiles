@@ -1,0 +1,24 @@
+[settings]
+# # Show icons with specified icon theme
+# show_icons = true
+# icon_theme = Oranchelo
+# drun_display_format = "{icon} {name}"
+#
+# # Prompt labels for each mode
+# prompt = "   Apps "      # Main app mode
+# run_prompt = "   Run "
+# window_prompt = "   Windows "
+# # No filebrowser or network directly in wofi, but alternative scripts can achieve similar functionality
+#
+# # Only show launchable applications
+# drun = true
+#
+# # Appearance and layout settings
+# width = 50%                 # Centered and responsive width
+# height = 25%
+# border_width = 1
+# opacity = 0.95              # Slight transparency
+# hide_scrollbar = true       # No scrollbar for cleaner look
+#
+# # font = "JetBrainsMonoNL Nerd Font Mono 12"
+#
