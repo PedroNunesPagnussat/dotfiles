@@ -1,57 +1,141 @@
-[palette]
-os = "#ACB0BE"
-closer = "p:os"
-pink = "#F5C2E7"
-lavender = "#B4BEFE"
-blue = "#89B4FA"
+#:schema https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+version = 2
+final_space = true
+console_title_template = '{{ .Shell }} in {{ .Folder }}'
 
 [[blocks]]
-alignment = "left"
-type = "prompt"
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
 
   [[blocks.segments]]
-  foreground = "p:os"
-  style = "plain"
-  template = "{{.Icon}} "
-  type = "os"
+    type = 'os'
+    style = 'plain'
+    foreground = 'p:os'
+    template = '{{ if .WSL }}WSL at {{ end }}{{.Icon}} '
+
 
   [[blocks.segments]]
-  foreground = "p:blue"
-  style = "plain"
-  template = "{{ .UserName }}@{{ .HostName }} "
-  type = "session"
+    type = 'session'
+    style = 'plain'
+    foreground = 'p:blue'
+    template = '{{ if .SSHSession }} {{ .UserName }}@{{ .HostName }} {{else}}{{.UserName}}{{ end }}'
+
 
   [[blocks.segments]]
-  foreground = "p:pink"
-  style = "plain"
-  template = "{{ .Path }} "
-  type = "path"
-  
+    type = 'text'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'p:closer'
+    template = " ❯ "
+
+
+  [[blocks.segments]]
+    type = 'path'
+    style = 'plain'
+    foreground = 'p:mauve'
+    template = '{{ .Path }}'
+
     [blocks.segments.properties]
-    folder_icon = "..\\ue5fe.."
-    home_icon = "~"
-    style = "agnoster_short"
+      folder_icon = "..."
+      home_icon = '~'
+      style = 'agnoster_short'
+      max_depth = 3
+
 
   [[blocks.segments]]
-  foreground = "p:lavender"
-  style = "plain"
-  template = "{{ .HEAD }} "
-  type = "git"
-  
+    type = 'git'
+    style = 'plain'
+    foreground = 'p:closer'
+    template = " ❯ "
+
+
+  [[blocks.segments]]
+    type = "git"
+    style = "plain"
+    foreground = "p:grey"
+    background = "transparent"
+    # template = "{{ .UpstreamIcon }} {{ .RepoName }} @ {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}"
+    template = "{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}"
+
     [blocks.segments.properties]
-    branch_icon = "\\ue725 "
-    cherry_pick_icon = "\\ue29b "
-    commit_icon = "\\uf417 "
-    fetch_status = false
-    fetch_upstream_icon = false
-    merge_icon = "\\ue727 "
-    no_commits_icon = "\\uf0c3 "
-    rebase_icon = "\\ue728 "
-    revert_icon = "\\uf0e2 "
-    tag_icon = "\\uf412 "
+      fetch_status = true
+      fetch_upstream_icon = true
+
+
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'right'
 
   [[blocks.segments]]
-  style = "plain"
-  foreground = "p:closer"
-  template = "\\uf105"
-  type = "text"
+    type = "python"
+    style = "plain"
+    foreground = "p:peach"
+    # background = "p:blue"
+    template = "{{ if .Error }}{{ .Error }}{{ else }}  @ {{ if .Venv }}{{ .Venv }} {{ end }}{{ .Major }}.{{ .Minor }}{{ end }}"
+
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    foreground_templates = [
+      "{{if gt .Code 0}}p:red{{end}}",
+      "{{if eq .Code 0}}p:lavender{{end}}",
+    ]
+    background = 'transparent'
+    template = '󰘧 ❯'
+
+
+[[blocks]]
+  type = 'rprompt'
+  overflow = 'hidden'
+
+  [[blocks.segments]]
+    type = 'executiontime'
+    style = 'plain'
+    foreground = 'p:yellow'
+    background = 'transparent'
+    template = ' {{ .FormattedMs }}'
+
+    [blocks.segments.properties]
+      threshold = 5000
+
+[secondary_prompt]
+  foreground = 'p:magenta'
+  background = 'transparent'
+  template = '󰘧 ❯❯ '
+
+
+[transient_prompt]
+  foreground_templates = [
+    "{{if gt .Code 0}}p:red{{end}}",
+    "{{if eq .Code 0}}p:lavender{{end}}",
+  ]
+  background = 'transparent'
+  template = '❯ '
+
+
+
+[palette]
+  blue = '#89B4FA'
+  closer = 'p:os'
+  lavender = '#B4BEFE'
+  os = '#ACB0BE'
+  pink = '#F5C2E7'
+  green = "#a6e3a1"
+  red = "#f38ba8"
+  peach = "#fab387"
+  flamingo = "#f2cdcd"
+  yellow = "#f9e2af"
+  sapphire = "#74c7ec"
+  mauve = "#cba6f7"
+  grey = "#7f849c"
+

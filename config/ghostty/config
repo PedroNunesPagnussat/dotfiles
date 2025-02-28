@@ -1,0 +1,8 @@
+theme = catppuccin-mocha
+cursor-style = block
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 2
+macos-titlebar-style = hidden
+window-padding-balance = true
+window-save-state = always
+background-opacity = 0.85

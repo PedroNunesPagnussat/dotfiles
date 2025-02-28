@@ -46,7 +46,8 @@ main() {
   symlink_file "wallpapers"
   # SHELL
   symlink_file "zshrc" 
-  symlink_file "bash_config"
+  symlink_file "zshrc_aliases"
+  symlink_file "zshrc_extratools"
   # CONFIG
 	symlink_file "config/nvim"
   symlink_file "config/picom"
@@ -54,6 +55,7 @@ main() {
   symlink_file "config/polybar"
 	symlink_file "config/i3"
 	symlink_file "config/kitty"
+	symlink_file "config/ghostty"
 	symlink_file "config/terminator"
 	symlink_file "config/bat"
 	symlink_file "config/ohmyposh"

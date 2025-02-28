@@ -1,0 +1,82 @@
+# Most use dirs navigation
+alias dev='cd ~/dev'
+alias notes="cd ~/vaults/notes"
+alias dtf="cd ~/dotfiles"
+alias ..="cd .."
+alias ...="cd ../.."
+
+
+# Copy current directory to clipboard
+alias cpwd='pwd | tee >(wl-copy) >(echo "Copied $(pwd) to clipboard")'
+
+# GIT
+alias backup="git add . && git commit -m 'backup' && git push"
+alias lg="lazygit"
+alias gc="git clone"
+alias gs="git status"
+
+# ls customization
+alias ls="eza --color=always --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias la="eza -a --color=always --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias tree="eza --color=always --git --no-filesize --icons=always --no-time --no-user --no-permissions --tree"
+
+# better cat
+alias cat="bat"
+
+# Show whole history
+alias history="history 1"
+
+# grep settings
+alias grep="grep --color=auto"
+alias egrep="egrep --color=auto"
+alias fgrep="fgrep --color=auto"
+
+# Search history
+alias shis="history | grep" 
+
+# Open nvim
+alias nv="nvim"
+alias vim="nvim"
+alias v="nvim"
+
+# Sync dotfiles
+alias hm="home-manager switch && clear && exec zsh"
+
+# Tmux
+alias ta="tmux attach -t"
+
+# Remove Cringe Python 3
+alias python=python3
+alias pip=pip3
+
+# Python Venv
+alias newvenv="python3 -m venv"
+alias vde="deactivate"
+alias vd="deactivate"
+
+function va() {
+    if [ -z "$1" ]; then
+        echo "Usage: va <env_name>"
+    elif [ -d "./$1" ]; then
+        source "./$1/bin/activate"
+        echo "Activated virtual environment: $1"
+    else
+      echo "Error: Virtual environment '$1' does not exist in $(pwd)."
+    fi
+}
+# Function to quickly create and activate a virtual environment
+function mkvenv() {
+    if [ -z "$1" ]; then
+        echo "Usage: mkvenv <env_name>"
+    else
+        python3 -m venv "$1" && source "$1/bin/activate"
+        echo "Virtual environment '$1' created and activated."
+    fi
+}
+
+# Multiple ways to call help for venv
+alias helpvenv="echo 'va <env_name> - Activate virtual environment'; echo 'mkvenv <env_name> - Create and activate virtual environment'; echo 'newvenv <env_name> - Create virtual environment'; echo 'vde | vd - Deactivate virtual environment'"
+alias venvhelp="helpvenv"
+
+# Conda
+alias ca="conda activate"
