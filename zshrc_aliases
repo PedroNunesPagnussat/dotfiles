@@ -52,6 +52,7 @@ alias pip=pip3
 # Python Venv
 alias newvenv="python3 -m venv"
 alias vde="deactivate"
+alias vd="deactivate"
 
 function va() {
     if [ -z "$1" ]; then
@@ -73,6 +74,9 @@ function mkvenv() {
     fi
 }
 
+# Multiple ways to call help for venv
+alias helpvenv="echo 'va <env_name> - Activate virtual environment'; echo 'mkvenv <env_name> - Create and activate virtual environment'; echo 'newvenv <env_name> - Create virtual environment'; echo 'vde | vd - Deactivate virtual environment'"
+alias venvhelp="helpvenv"
 
 # Conda
 alias ca="conda activate"
