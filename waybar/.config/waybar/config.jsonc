@@ -7,6 +7,7 @@
   "modules-left": ["custom/omarchy", "hyprland/workspaces"],
   "modules-center": ["clock", "custom/update", "custom/voxtype", "custom/screenrecording-indicator", "custom/idle-indicator", "custom/notification-silencing-indicator"],
   "modules-right": [
+    "custom/claude-code",
     "group/tray-expander",
     "bluetooth",
     "network",
@@ -170,5 +171,13 @@
   "tray": {
     "icon-size": 12,
     "spacing": 12
+  },
+  "custom/claude-code": {
+    "exec": "claude-code-waybar",
+    "return-type": "json",
+    "interval": 10,
+    "format": "{}",
+    "tooltip": true,
+    "on-click": "claude-code-waybar-toggle"
   }
 }
