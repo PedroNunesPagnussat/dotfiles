@@ -28,6 +28,7 @@ dotfiles/
 ├── kitty/.config/kitty/
 ├── lazygit/.config/lazygit/
 ├── mako/.config/mako/
+├── nvim/.config/nvim/
 ├── omarchy/.config/omarchy/
 ├── starship/.config/starship.toml
 ├── swayosd/.config/swayosd/

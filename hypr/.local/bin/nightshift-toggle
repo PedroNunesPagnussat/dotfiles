@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Only toggle after 8 PM (20:00)
+hour=$(date +%H)
+if (( hour < 20 )); then
+    notify-send -u low "Nightshift only available after 8 PM"
+    exit 0
+fi
+
+current=$(hyprctl hyprsunset temperature 2>/dev/null | grep -oE '[0-9]+')
+
+if [[ "$current" == "1000" ]]; then
+    hyprctl hyprsunset temperature 4000
+    notify-send -u low "Nightshift: 4000K (mild)"
+else
+    hyprctl hyprsunset temperature 1000
+    notify-send -u low "Nightshift: 1000K (max filter)"
+fi

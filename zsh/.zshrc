@@ -63,10 +63,23 @@ alias la='ls -A'
 alias grep='grep --color=auto'
 alias ..='cd ..'
 alias ...='cd ../..'
+alias nv='nvim'
+alias dev='cd ~/dev'
+alias investments='cd ~/dev/investment-portfolio'
+alias notes='cd ~/notes'
 
 # Python venvs
 alias mkvenv='python -m venv .venv'
 alias avenv='source .venv/bin/activate'
+
+# Git
+alias g='git'
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gp='git push'
+alias gb='git branch'
 
 # Git backup
 alias backup='git add . && git commit -m "$(TZ=America/Sao_Paulo date +"%Y-%m-%d %H:%M:%S %Z")" && git push'
@@ -76,3 +89,6 @@ alias backup='git add . && git commit -m "$(TZ=America/Sao_Paulo date +"%Y-%m-%d
 # =============================================================================
 
 eval "$(starship init zsh)"
+
+# opencode
+export PATH=/home/pedro/.opencode/bin:$PATH
