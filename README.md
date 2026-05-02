@@ -41,7 +41,7 @@ dotfiles/
 Clone the repo into your home directory:
 
 ```bash
-git clone <repo-url> ~/dotfiles
+git clone https://github.com/PedroNunesPagnussat/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ```
 
