@@ -20,17 +20,14 @@ Each top-level directory is a stow package that mirrors the home directory struc
 
 ```
 dotfiles/
-├── alacritty/.config/alacritty/alacritty.toml
 ├── btop/.config/btop/
 ├── .claude/.claude/                  # Claude Code config, skills, hooks
 ├── fastfetch/.config/fastfetch/
 ├── ghostty/.config/ghostty/
 ├── hypr/.config/hypr/
-├── kitty/.config/kitty/
 ├── lazygit/.config/lazygit/
 ├── mako/.config/mako/
 ├── nvim/.config/nvim/
-├── omarchy/.config/omarchy/
 ├── starship/.config/starship.toml
 ├── swayosd/.config/swayosd/
 ├── tmux/.tmux.conf
