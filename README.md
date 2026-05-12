@@ -22,6 +22,7 @@ Each top-level directory is a stow package that mirrors the home directory struc
 dotfiles/
 ├── alacritty/.config/alacritty/alacritty.toml
 ├── btop/.config/btop/
+├── .claude/.claude/                  # Claude Code config, skills, hooks
 ├── fastfetch/.config/fastfetch/
 ├── ghostty/.config/ghostty/
 ├── hypr/.config/hypr/
@@ -73,3 +74,17 @@ stow -R */
 ```
 
 > **Note:** If a config file already exists at the target location, stow will refuse to overwrite it. Back up or remove the existing file first, then run `stow` again.
+
+## Claude Code package
+
+The `.claude` package tracks `~/.claude/` config: `settings.json`, `CLAUDE.md`, `statusline.sh`, `file-suggestion.sh`, and `skills/`.
+
+`settings.local.json` is intentionally gitignored (per-machine permissions).
+
+### One manual step after `stow .claude`
+
+The omarchy skill points to a machine-local path, so stow can't track it. Recreate the symlink manually:
+
+```bash
+ln -s ~/.local/share/omarchy/default/omarchy-skill ~/.claude/skills/omarchy
+```

@@ -1,0 +1,21 @@
+{
+  "fileSuggestion": {
+    "type": "command",
+    "command": "~/.claude/file-suggestion.sh"
+  },
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "model": "opus",
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
+  "outputStyle": "concise-quality",
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "high",
+  "advisorModel": "opus",
+  "preferences": {
+    "tmuxSplitPanes": true
+  }
+}
