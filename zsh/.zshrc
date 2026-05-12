@@ -71,6 +71,7 @@ alias notes='cd ~/notes'
 # Python venvs
 alias mkvenv='python -m venv .venv'
 alias avenv='source .venv/bin/activate'
+alias va='source .venv/bin/activate'
 
 # Git
 alias g='git'
