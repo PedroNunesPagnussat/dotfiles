@@ -97,8 +97,8 @@ MODEL_LEN=${#MODEL}
 BRANCH_TEXT="${BRANCH}${GIT_DIRTY}"
 BRANCH_LEN=${#BRANCH_TEXT}
 
-# Context field: "📂 PCT%" (emoji is 2 chars wide in most terminals)
-CTX_TEXT="📂 ${PCT}%"
+# Context field: " PCT%" (emoji is 2 chars wide in most terminals)
+CTX_TEXT=" ${PCT}%"
 CTX_LEN=$(( ${#CTX_TEXT} + 1 ))  # +1 for emoji width
 
 # Mods field: "+X -Y (N files)" or "+X -Y"
@@ -140,7 +140,7 @@ CTX_PAD=$(( COL2_WIDTH - CTX_LEN ))
 MODS_PAD=$(( COL2_WIDTH - MODS_LEN ))
 
 # Line 1: model | context | cost
-printf "${CYAN}%s${RESET}%*s  │  ${CTX_COLOR}📂 ${PCT}%%${RESET}%*s" "$MODEL" "$MODEL_PAD" "" "$CTX_PAD" ""
+printf "${CYAN}%s${RESET}%*s  │  ${CTX_COLOR}󰓅 ${PCT}%%${RESET}%*s" "$MODEL" "$MODEL_PAD" "" "$CTX_PAD" ""
 [ -n "$COST_PART" ] && printf "  │  %b" "$COST_PART"
 printf "\n"
 

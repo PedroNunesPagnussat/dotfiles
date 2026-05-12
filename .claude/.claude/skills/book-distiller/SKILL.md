@@ -63,8 +63,12 @@ This section is where you stop summarizing and start thinking. The book itself u
 **Mental models / frameworks**
 When the book offers explicit named frameworks (e.g., Eisenhower Matrix, OODA loop, the four agreements), pull them out as their own section. Name them, explain what they do, show when to reach for them. Skip this section if the book is more narrative or argumentative without distinct frameworks.
 
-**Connections**
-When the book connects strongly to other well-known ideas, books, or thinkers, note the connections briefly. Helps the user place this in their existing knowledge. Skip when the connections are weak or forced.
+**Connections and further reading**
+When useful, point the user outward along two axes. Keep it tight, a few items max per axis, skip the section entirely if the pointers would be weak or forced.
+- *Adjacent*: peer books, complementary frameworks, or alternative takes that sit at roughly the same level. Helps the user triangulate and place this in their existing knowledge.
+- *Deeper*: foundational sources the book draws on, or more rigorous/advanced treatments of the same subject for readers who want to push past the popular version.
+
+Same citation rule as elsewhere: if you're not sure a pointer is real or accurate, flag it ("I think X covers this, verify") rather than asserting it.
 
 ### Step 3: Calibration questions
 
