@@ -13,7 +13,7 @@
   },
   "outputStyle": "concise-quality",
   "alwaysThinkingEnabled": true,
-  "effortLevel": "high",
+  "effortLevel": "xhigh",
   "advisorModel": "opus",
   "preferences": {
     "tmuxSplitPanes": true
