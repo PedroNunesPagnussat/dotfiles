@@ -11,8 +11,6 @@ The next agent has none of this session's context. Their only input is the hando
 
 The audience is an agent, not a human. Optimize for parseability and completeness over readability. Don't soften, don't pad, don't editorialize.
 
-Assume the next agent already has access to the user's stored preferences. Do not restate them in the handoff.
-
 ## Trigger
 
 The user invokes this manually via `/hand-off` (or close variants: `/handoff`, "hand off", "handoff please"). Do not invoke automatically.
@@ -21,9 +19,9 @@ The user invokes this manually via `/hand-off` (or close variants: `/handoff`, "
 
 1. Review the full conversation from the start. Extract state from what actually happened, not what was planned.
 2. Infer aggressively. If something is unclear, mark it `[UNCERTAIN: <what's unclear and why>]` inline rather than asking the user. The point of `/hand-off` is one shot, not an interview.
-3. Write the file to `./handoff-YYYY-MM-DD-HHMM.md` using the user's local time. If user-local time is unknown, use UTC and add a `-UTC` suffix like `handoff-2026-05-15-1430-UTC.md`.
-4. Show the full contents of the handoff in the chat reply, in a fenced markdown block, so the user can read it without opening the file.
-5. Keep any prose around the block to one short line confirming the file path. No summary, no commentary.
+3. Write the file to `/mnt/user-data/outputs/handoff-YYYY-MM-DD-HHMM.md` using the user's local time. If user-local time is unknown, use UTC and note `UTC` in the timestamp like `handoff-2026-05-15-1430-UTC.md`.
+4. Call `present_files` on the resulting path. Do not paste the contents into chat. The deliverable is the file.
+5. Keep your chat reply minimal: one sentence confirming the file was written, nothing else.
 
 ## Output format
 
@@ -33,6 +31,7 @@ Use this exact template. Section order is fixed. Section headers are fixed. Do n
 # Handoff: <one-line task description>
 
 **Session date:** <YYYY-MM-DD HH:MM timezone>
+**Handoff written by:** Claude (model: <model name if known, else "unknown">)
 
 ## Goal
 
@@ -65,7 +64,7 @@ Use this exact template. Section order is fixed. Section headers are fixed. Do n
 
 ## Key context
 
-<Anything the next agent won't infer from the file structure alone: constraints specific to this task, gotchas, things that were tried and rejected, domain assumptions. Do NOT include general user preferences, those are already available to the next agent. Bias toward including borderline task-specific items.>
+<Anything the next agent won't infer from the file structure alone: constraints, user preferences specific to this task, gotchas, things that were tried and rejected, domain assumptions. Bias toward including borderline items.>
 
 - <item>
 
@@ -80,7 +79,7 @@ Use this exact template. Section order is fixed. Section headers are fixed. Do n
 
 - **Be specific.** "Working on the API" is useless. "Implementing POST /users endpoint, currently writing request validation in `handlers/users.py`" is useful.
 - **Names, not pronouns.** "The user wants X" not "they want X". The next agent has no antecedent for "they" or "it".
-- **Quote task-specific user statements verbatim** when they appear. If the user said "always use tabs in this project", write that exactly, not "the user prefers tab indentation in this project".
+- **Quote user preferences verbatim** when they appear. If the user said "always use tabs", write that exactly, not "the user prefers tab indentation".
 - **Mark uncertainty inline.** Use `[UNCERTAIN: <reason>]` immediately after the claim. Do not have a separate "uncertain" section.
 - **No filler.** Drop "Let me know if you need clarification", "Hope this helps", "I think", etc. The reader is an agent.
 - **No reasoning narration.** Don't explain why you chose to include something. Just include it.
@@ -104,12 +103,8 @@ be worth checking with the user first. There's also some cleanup to do.
 
 ## After writing
 
-After saving the file, the chat reply should look like:
+After `present_files`, the chat reply should be a single line, e.g.:
 
-> Handoff written to `./handoff-2026-05-15-1430.md`.
->
-> ```markdown
-> <full contents of the handoff file>
-> ```
+> Handoff written to `handoff-2026-05-15-1430.md`.
 
-No further commentary.
+Do not summarize the handoff in chat. The next agent reads the file, not the chat.
