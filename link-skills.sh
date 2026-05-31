@@ -7,6 +7,7 @@ set -euo pipefail
 SKILLS=(
     "second-order-thinking"
     "hand-off"
+    "grill-me"
 )
 
 repo_root=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
@@ -15,6 +16,8 @@ dst_dir="$repo_root/web_claude_skills"
 rel_src="../.claude/.claude/skills"
 
 mkdir -p "$dst_dir"
+
+created=0
 
 for skill in "${SKILLS[@]}"; do
     src="$src_dir/$skill"
@@ -40,4 +43,10 @@ for skill in "${SKILLS[@]}"; do
 
     ln -s "$rel_src/$skill" "$dst"
     echo "link $skill"
+    created=$((created + 1))
 done
+
+if (( created > 0 )); then
+    echo "stow .claude ($created new link(s))"
+    (cd "$repo_root" && stow .claude)
+fi

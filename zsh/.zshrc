@@ -67,6 +67,7 @@ alias nv='nvim'
 alias dev='cd ~/dev'
 alias investments='cd ~/dev/investment-portfolio'
 alias notes='cd ~/notes'
+alias c='claude'
 
 # Python venvs
 alias mkvenv='python -m venv .venv'
