@@ -17,8 +17,12 @@
   "outputStyle": "concise-quality",
   "alwaysThinkingEnabled": true,
   "effortLevel": "xhigh",
-  "advisorModel": "opus",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
   "agentPushNotifEnabled": true,
+  "voiceEnabled": true,
   "preferences": {
     "tmuxSplitPanes": true
   }

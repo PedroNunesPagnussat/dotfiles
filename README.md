@@ -74,7 +74,7 @@ stow -R */
 
 ## Claude Code package
 
-The `.claude` package tracks `~/.claude/` config: `settings.json`, `CLAUDE.md`, `statusline.sh`, `file-suggestion.sh`, and `skills/`.
+The `.claude` package tracks `~/.claude/` config: `settings.json`, `CLAUDE.md`, `statusline.sh`, `file-suggestion.sh`, `skills/`, and `commands/`.
 
 `settings.local.json` is intentionally gitignored (per-machine permissions).
 
