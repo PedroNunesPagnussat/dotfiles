@@ -85,12 +85,9 @@ alias gb='git branch'
 
 # Git backup
 alias backup='git add . && git commit -m "$(TZ=America/Sao_Paulo date +"%Y-%m-%d %H:%M:%S %Z")" && git push'
-
+alias bkp='backup'
 # =============================================================================
 # Starship Prompt
 # =============================================================================
 
 eval "$(starship init zsh)"
-
-# opencode
-export PATH=/home/pedro/.opencode/bin:$PATH

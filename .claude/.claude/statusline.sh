@@ -18,6 +18,9 @@ CTX_ICON=$''
 MODEL=$(echo "$input" | jq -r '.model.display_name // "?"')
 EFFORT=$(echo "$input" | jq -r '.effort.level // empty')
 PCT=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
+# Current context-window occupancy (input includes cache; not cumulative session totals)
+TOK_IN=$(echo "$input" | jq -r '.context_window.total_input_tokens // 0')
+TOK_OUT=$(echo "$input" | jq -r '.context_window.total_output_tokens // 0')
 DIR=$(echo "$input" | jq -r '.workspace.current_dir // ""')
 RL_5H_PCT=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty' | cut -d. -f1)
 RL_5H_RESET=$(echo "$input" | jq -r '.rate_limits.five_hour.resets_at // empty')
@@ -29,6 +32,17 @@ pct_color() {
     if [ "$1" -ge 80 ]; then
         printf '%s' "$RED"
     elif [ "$1" -ge 50 ]; then
+        printf '%s' "$YELLOW"
+    else
+        printf '%s' "$GREEN"
+    fi
+}
+
+# Green <40k → yellow 40-400k → red ≥400k by absolute token count
+tok_color() {
+    if [ "$1" -ge 400000 ]; then
+        printf '%s' "$RED"
+    elif [ "$1" -ge 40000 ]; then
         printf '%s' "$YELLOW"
     else
         printf '%s' "$GREEN"
@@ -95,9 +109,15 @@ if [ -n "$EFFORT" ]; then
     EFFORT_PART="${DIM}effort:${RESET} ${EFFORT_COLOR}${EFFORT}${RESET}"
 fi
 
-CTX_TEXT="${CTX_ICON} ${PCT}%"
+TOK_TOTAL=$(( TOK_IN + TOK_OUT ))
+if [ "$TOK_TOTAL" -ge 1000 ]; then
+    TOK_FMT=$(awk "BEGIN {printf \"%.1fk\", $TOK_TOTAL/1000}")
+else
+    TOK_FMT="$TOK_TOTAL"
+fi
+CTX_TEXT="${CTX_ICON} ${PCT}% (${TOK_FMT})"
 CTX_LEN=${#CTX_TEXT}
-CTX_PART="$(pct_color "$PCT")${CTX_TEXT}${RESET}"
+CTX_PART="$(pct_color "$PCT")${CTX_ICON} ${PCT}%${RESET} $(tok_color "$TOK_TOTAL")(${TOK_FMT})${RESET}"
 
 # --- Row 2: session (5h) limit | week limit | cost ---
 S5_PART=""
@@ -112,6 +132,11 @@ if [ -n "$RL_5H_PCT" ]; then
         S5_PART="${S5_PART} ${DIM}(resets ${RL_RESET_TIME})${RESET}"
     fi
     S5_LEN=${#S5_TEXT}
+else
+    # Placeholder before first message: reserve full width so dividers don't shift
+    S5_TEXT="5h --% (resets --:--)"
+    S5_LEN=${#S5_TEXT}
+    S5_PART="${DIM}${S5_TEXT}${RESET}"
 fi
 
 WK_PART=""
@@ -120,12 +145,18 @@ if [ -n "$RL_7D_PCT" ]; then
     WK_TEXT="wk ${RL_7D_PCT}%"
     WK_LEN=${#WK_TEXT}
     WK_PART="$(pct_color "$RL_7D_PCT")${WK_TEXT}${RESET}"
+else
+    WK_TEXT="wk --%"
+    WK_LEN=${#WK_TEXT}
+    WK_PART="${DIM}${WK_TEXT}${RESET}"
 fi
 
 COST_PART=""
 if [ -n "$COST" ]; then
     COST_FMT=$(printf "%.2f" "$COST")
     COST_PART="${DIM}\$${COST_FMT}${RESET}"
+else
+    COST_PART="${DIM}\$--.--${RESET}"
 fi
 
 # --- Row 3: branch | mods (files) | time since last commit ---
@@ -175,9 +206,7 @@ print_row() {
 }
 
 print_row "$MODEL_PART" "$MODEL_LEN" "$EFFORT_PART" "$EFFORT_LEN" "$CTX_PART"
-if [ -n "$S5_PART" ] || [ -n "$WK_PART" ] || [ -n "$COST_PART" ]; then
-    print_row "$S5_PART" "$S5_LEN" "$WK_PART" "$WK_LEN" "$COST_PART"
-fi
+print_row "$S5_PART" "$S5_LEN" "$WK_PART" "$WK_LEN" "$COST_PART"
 if [ -n "$GIT_PART" ] || [ -n "$MODS_TEXT" ] || [ -n "$COMMIT_PART" ]; then
     print_row "$GIT_PART" "$BRANCH_LEN" "$LINES_PART" "$MODS_LEN" "$COMMIT_PART"
 fi

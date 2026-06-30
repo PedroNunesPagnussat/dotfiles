@@ -18,6 +18,7 @@ cursor-style-blink = false
 shell-integration-features = no-cursor
 
 # Keyboard bindings
+keybind = ctrl+backspace=text:\x17
 keybind = f11=toggle_fullscreen
 keybind = shift+insert=paste_from_clipboard
 keybind = control+insert=copy_to_clipboard

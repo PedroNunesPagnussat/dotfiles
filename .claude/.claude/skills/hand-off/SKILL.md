@@ -1,6 +1,7 @@
 ---
 name: hand-off
 description: Produce an end-of-session handoff document that lets another Claude agent resume the current work cleanly. Use this whenever the user types "/hand-off", "/handoff", "hand off", or otherwise signals they want to dump session state for a successor agent. The output is a strictly structured markdown file optimized for another agent to parse, not a human-readable summary.
+disable-model-invocation: true
 ---
 
 # Hand-off

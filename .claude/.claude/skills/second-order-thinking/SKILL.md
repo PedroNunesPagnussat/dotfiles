@@ -1,115 +1,94 @@
 ---
-name: hand-off
-description: Produce an end-of-session handoff document that lets another Claude agent resume the current work cleanly. Use this whenever the user types "/hand-off", "/handoff", "hand off", or otherwise signals they want to dump session state for a successor agent. The output is a strictly structured markdown file optimized for another agent to parse, not a human-readable summary.
+name: second-order-thinking
+description: "Apply rigorous second-order thinking to a hard decision, plan, or proposal. Use whenever the user is weighing a non-trivial choice (\"should I quit my job\", \"we're considering migrating to microservices\", \"thinking about moving cities\") and wants to surface downstream consequences, hidden costs, what gets foreclosed, and failure modes before committing. Trigger phrases include \"second-order effects of X\", \"what am I missing about X\", \"think through the consequences of X\", \"what could go wrong with X\", \"help me decide whether to X\", or any variant where the user wants structured analysis of a decision rather than a quick opinion. Use this even when the user is just describing a decision they're wrestling with, since the skill exists to force the structured analysis they probably need."
 ---
-
-# Hand-off
-
-## Purpose
-
-The next agent has none of this session's context. Their only input is the handoff file. If a section is vague, missing, or assumed, the next agent will either redo work, ask the user redundant questions, or make a wrong decision. Treat the file as the complete state transfer.
-
-The audience is an agent, not a human. Optimize for parseability and completeness over readability. Don't soften, don't pad, don't editorialize.
-
-Assume the next agent already has access to the user's stored preferences. Do not restate them in the handoff.
-
-## Trigger
-
-The user invokes this manually via `/hand-off` (or close variants: `/handoff`, "hand off", "handoff please"). Do not invoke automatically.
-
+ 
+# Second-Order Thinking
+ 
+Force structured analysis of a hard decision by surfacing what comes after the obvious first effect.
+ 
+This skill exists because most decision-making stops at first-order effects. "If we move closer to my partner's family, the kids will see their grandparents more" is first-order. The interesting questions are second-order: what happens to your own friendships when you're three hours from your closest friends, what does the longer commute do to your evening energy over five years, what does living near in-laws do to the dynamics in your marriage, what becomes harder to reverse once the kids put down roots in the new school. That's where the real stakes are, and it's the part most people skip.
+ 
+The user is using this skill on a decision that matters. Don't be shallow, don't pad, don't hedge. Push them.
+ 
 ## Workflow
-
-1. Review the full conversation from the start. Extract state from what actually happened, not what was planned.
-2. Infer aggressively. If something is unclear, mark it `[UNCERTAIN: <what's unclear and why>]` inline rather than asking the user. The point of `/hand-off` is one shot, not an interview.
-3. Write the file to `./handoff-YYYY-MM-DD-HHMM.md` using the user's local time. If user-local time is unknown, use UTC and add a `-UTC` suffix like `handoff-2026-05-15-1430-UTC.md`.
-4. Show the full contents of the handoff in the chat reply, in a fenced markdown block, so the user can read it without opening the file.
-5. Keep any prose around the block to one short line confirming the file path. No summary, no commentary.
-
-## Output format
-
-Use this exact template. Section order is fixed. Section headers are fixed. Do not add, rename, or reorder sections. If a section has no content, write `None.` rather than omitting it, so the next agent can confirm nothing was missed.
-
-```markdown
-# Handoff: <one-line task description>
-
-**Session date:** <YYYY-MM-DD HH:MM timezone>
-
-## Goal
-
-<The ultimate objective the user is trying to accomplish. Not the immediate task, the underlying goal. One to three sentences.>
-
-## Current state
-
-<Concrete description of where things stand right now. What exists, what's been decided, what's running. No vibes, no "we explored X". State facts the next agent can act on.>
-
-## What's been done
-
-<Chronological or thematic list of the key actions taken and decisions made this session. Skip exploratory dead-ends unless they constrain future choices. Each item is one line.>
-
-- <item>
-- <item>
-
-## What's next
-
-<The immediate next action the agent should take, followed by the queued actions after that. Be specific enough that the next agent doesn't need to re-plan.>
-
-1. <immediate next step>
-2. <next>
-3. <next>
-
-## Open questions and blockers
-
-<Things that require user input or external resolution before the agent can proceed. If none, write "None.">
-
-- <question or blocker>
-
-## Key context
-
-<Anything the next agent won't infer from the file structure alone: constraints specific to this task, gotchas, things that were tried and rejected, domain assumptions. Do NOT include general user preferences, those are already available to the next agent. Bias toward including borderline task-specific items.>
-
-- <item>
-
-## Conventions established
-
-<Naming choices, tool/library choices, style decisions, file layout, or any other convention agreed upon mid-session that the next agent should preserve. If none, write "None.">
-
-- <item>
-```
-
-## Rules for content
-
-- **Be specific.** "Working on the API" is useless. "Implementing POST /users endpoint, currently writing request validation in `handlers/users.py`" is useful.
-- **Names, not pronouns.** "The user wants X" not "they want X". The next agent has no antecedent for "they" or "it".
-- **Quote task-specific user statements verbatim** when they appear. If the user said "always use tabs in this project", write that exactly, not "the user prefers tab indentation in this project".
-- **Mark uncertainty inline.** Use `[UNCERTAIN: <reason>]` immediately after the claim. Do not have a separate "uncertain" section.
-- **No filler.** Drop "Let me know if you need clarification", "Hope this helps", "I think", etc. The reader is an agent.
-- **No reasoning narration.** Don't explain why you chose to include something. Just include it.
-
-## Example
-
-**Bad** (vague, narrated, human-toned):
-```
-## What's next
-We were thinking about maybe refactoring the auth module next, but it might
-be worth checking with the user first. There's also some cleanup to do.
-```
-
-**Good** (specific, imperative, agent-toned):
-```
-## What's next
-1. Refactor `auth/session.py` to extract token validation into a separate function (user agreed to this in turn 14).
-2. Run the test suite at `tests/auth/` and fix any failures.
-3. [UNCERTAIN: whether the user wants the refactor to also cover `auth/oauth.py` — they mentioned it once but didn't confirm scope].
-```
-
-## After writing
-
-After saving the file, the chat reply should look like:
-
-> Handoff written to `./handoff-2026-05-15-1430.md`.
->
-> ```markdown
-> <full contents of the handoff file>
-> ```
-
-No further commentary.
+ 
+The default mode is **wide**: cast a broad net across the categories below, surface effects the user probably hasn't considered. The user will pick threads they want to pull, and subsequent turns will go **deep** on those specific threads (third-order, fourth-order, gaming out specific scenarios).
+ 
+Don't go deep on the first pass. The point of the wide pass is to give the user a map of what's worth thinking harder about.
+ 
+### Step 1: Restate the decision
+ 
+One sentence at the top, in your own words. This catches misreadings before they cascade. If the decision as stated is ambiguous (e.g., "should I quit my job", but quit to do what?), name the ambiguity and either ask or pick the most likely interpretation and flag it.
+ 
+### Step 2: First-order effects (brief)
+ 
+Two or three bullets, no more. Just the obvious immediate consequences. The point is to acknowledge them and clear them out of the way, not analyze them. If you find yourself spending time here, you're stalling.
+ 
+### Step 3: Second-order effects (the meat)
+ 
+Organize by category. Use as many categories as the decision warrants, group or skip when they don't apply. Within each category, push for specifics, not abstractions. "You'll lose flexibility" is weak. "Once the kids are enrolled in this school, switching mid-year costs them their friend group and you a 40-minute longer commute, so you're effectively locked in for at least 18 months" is strong.
+ 
+**What it costs**
+Beyond money. Time, attention, identity, optionality, social capital, energy, status, momentum, peace of mind. The non-obvious costs that don't show up on a spreadsheet but determine whether the decision was actually worth it.
+ 
+**What it forecloses**
+Paths that close once you commit. Some decisions are reversible, some aren't. Some are reversible in theory but not in practice (rolling back a database migration is technically possible but in practice nobody ever does it once production has run on the new schema for a month). Name what gets locked in.
+ 
+**What it enables**
+Compounding effects, new options that open up, second-order benefits that aren't visible from the starting position. Push for specifics here too, vague upside is as useless as vague downside. Useful angles:
+- What new options open up that weren't accessible before? (a working second language opens up not just travel but specific job markets, friendships, and content you couldn't access before)
+- What compounds over time? Skills, network, reputation, optionality, leverage
+- What identity shifts become possible? (going from "person who attends conferences" to "person who speaks at conferences" changes who reaches out to you)
+- What does the user learn or notice that they couldn't from the starting position?
+This section deserves the same weight as the cost analysis. The skill is biased toward surfacing what's hidden, and upside is often as hidden as downside.
+ 
+**Who or what loses**
+Every decision has people or systems that lose, even if the loss is small or diffuse. Naming them makes the tradeoff concrete instead of abstract. Sometimes the answer is "no one significant", say so when it's true. But check first.
+ 
+### Step 4: Failure modes
+ 
+This is a pre-mortem: imagine the decision has been made and it failed badly. Now work backwards. What happened? What signals were ignored? What assumption turned out to be wrong?
+ 
+Costs are expected, failure modes are when things go sideways. Useful prompts:
+- What does the worst plausible version of this decision look like one year out? Three years out?
+- What would have to be true for this to fail badly?
+- What's the early warning sign that things are going wrong, and would the user notice it in time to course-correct?
+- What's the user underestimating? What are they overestimating?
+Pre-mortem is from Gary Klein, the idea is that imagining failure concretely (rather than abstractly worrying about risk) is the most reliable way to surface failure modes that prevention is actually possible for. Use it that way: concrete scenarios, not vague risks.
+ 
+### Step 5: Counterfactual and opportunity cost
+ 
+Compared to what? Most decision analysis fails because it analyzes the proposed action in isolation. The right question is always "this versus what alternative?"
+ 
+Three angles worth covering:
+ 
+- **Doing nothing**: what happens if the user just doesn't decide, or maintains the status quo? Status quo has its own second-order effects, and people often forget that not deciding is itself a decision. Sometimes the status quo is quietly degrading and inaction is the real risk
+- **The opposite**: what happens if the user does the opposite of what they're proposing? Sometimes this reveals that the proposed action is obviously right, sometimes it reveals that the alternative was never seriously considered
+- **The best alternative use of the same resources**: if the user is committing time/money/attention to this, what else could those resources do? This is the explicit opportunity cost question, and it's the one most people skip
+If the user has already named alternatives, evaluate against those instead of generating hypotheticals.
+ 
+### Step 6: Calibration questions for going deeper
+ 
+End with pointed questions about which threads are worth pulling. Not generic ("what are your goals?"), but pointed at specific effects you surfaced. Examples:
+ 
+- "You said the income drop is fine for 12 months, but the foreclosure on going back to a senior role at a top-tier company compounds the longer you're out. How long do you actually expect to be out?"
+- "The microservices migration enables independent team velocity, but you have 12 engineers. At what team size does the operational overhead start to pay back?"
+- "If you move cities, the loss of weekly in-person time with your aging parents is the failure mode. Have you thought about what frequency of visits would make this acceptable to you?"
+The user will pick which threads to pull. Subsequent turns go deep on those, gaming out third-order effects, specific scenarios, what-ifs.
+ 
+## Tone and format
+ 
+- Write in plain language. The user is making a real decision, don't lecture, don't pad
+- Use bullets, tables, scenarios, whatever fits. Structure should serve the analysis
+- No em-dashes, use commas, parentheses, colons, or two sentences instead
+- Skip preambles like "This is a tough decision!" or "Great question"
+- When the decision is obviously good or obviously bad, say so. Don't manufacture balance for the sake of looking neutral
+- Be willing to push back on the framing. If the user's stated decision is the wrong question, say so. ("You're asking which diet to follow, but the real question seems to be why the last three didn't stick")
+## Things to avoid
+ 
+- **Symmetric hedging.** "On one hand X, on the other hand Y" without weight. If the evidence leans one way, say so. The user came for analysis, not balanced both-sidesing
+- **Generic risks.** "There's uncertainty" applies to everything. Specific failure modes only
+- **Going deep on the first pass.** Wide first, deep on follow-ups. Don't try to game out every scenario in the initial response
+- **Being agreeable.** If the user's plan has a flaw, name it. Softening the critique to stay friendly is the failure mode of this skill
+- **Pretending to know things you don't.** If the analysis depends on numbers or facts you don't have, ask for them or flag the dependency
