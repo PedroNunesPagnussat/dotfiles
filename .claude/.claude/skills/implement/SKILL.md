@@ -4,10 +4,10 @@ description: "Implement a piece of work based on a PRD or set of issues."
 disable-model-invocation: true
 ---
 
-Implement the work described by the user in a PRD, Spec, Plan, Issues, or the conversation context if none is present
+Work through `PLAN.md`: execute its Steps in order, each done when its checkable condition holds. (No `PLAN.md`? use the conversation context)
 
-Use /tdd where possible, at pre-agreed seams.
+Run /tdd at the seams the plan's Testing Decisions named, testing the behaviours it prioritised.
 
-Run typechecking regularly, single test files regularly, and the full test suite once at the end.
+Typecheck and run single test files as you go; run the full suite once at the end.
 
-Once done, use /code-review to review the work.
+When every Step is done, run /code-review.
