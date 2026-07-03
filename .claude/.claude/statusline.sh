@@ -40,9 +40,9 @@ pct_color() {
 
 # Green <40k → yellow 40-400k → red ≥400k by absolute token count
 tok_color() {
-    if [ "$1" -ge 400000 ]; then
+    if [ "$1" -ge 100000 ]; then
         printf '%s' "$RED"
-    elif [ "$1" -ge 40000 ]; then
+    elif [ "$1" -ge 50000 ]; then
         printf '%s' "$YELLOW"
     else
         printf '%s' "$GREEN"

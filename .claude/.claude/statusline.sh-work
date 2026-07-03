@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+input=$(cat)
+JQ=$(command -v jq)
+
+echo "$input" > /tmp/claude-statusline-debug.json
+
+RESET=$'\033[0m'
+BOLD=$'\033[1m'
+YELLOW=$'\033[33m'
+GREEN=$'\033[32m'
+RED=$'\033[91m'
+BLUE=$'\033[34m'
+DIM=$'\033[2m'
+MAGENTA=$'\033[35m'
+
+cwd=$(echo "$input" | "$JQ" -r '.workspace.current_dir // empty')
+[ -z "$cwd" ] && cwd=$(pwd)
+
+used_pct=$(echo "$input" | "$JQ" -r '.context_window.used_percentage // empty')
+total_input=$(echo "$input" | "$JQ" -r '.context_window.total_input_tokens // empty')
+model=$(echo "$input" | "$JQ" -r '(.model.display_name // .model.id) // empty')
+effort=$(echo "$input" | "$JQ" -r '.effort.level // empty')
+
+# --- Model color: haiku=green, sonnet=yellow, opus=red ---
+model_lower=$(echo "$model" | tr '[:upper:]' '[:lower:]')
+case "$model_lower" in
+  *haiku*)  model_color="$GREEN" ;;
+  *sonnet*) model_color="$YELLOW" ;;
+  *opus*)   model_color="$RED" ;;
+  *)        model_color="$RESET" ;;
+esac
+
+# --- CTX string and color ---
+# green: tokens < 40k; yellow: 40k <= tokens and % < 40; red: % >= 40
+used_pct="${used_pct:-0}"
+total_input="${total_input:-0}"
+used_int=$(printf '%.0f' "$used_pct")
+ctx_k=$(awk "BEGIN {printf \"%.0fK\", $total_input/1000}")
+col3_top="CTX: ${ctx_k} (${used_int}%)"
+if [ "$total_input" -lt 50000 ]; then
+  ctx_color="$GREEN"
+elif [ "$total_input" -lt 100000 ]; then
+  ctx_color="$YELLOW"
+else
+  ctx_color="$RED"
+fi
+
+# --- Git info ---
+has_git=0
+branch_label="" insertions=0 deletions=0 last_commit=""
+if git -C "$cwd" rev-parse --git-dir >/dev/null 2>&1; then
+  has_git=1
+  branch=$(git -C "$cwd" symbolic-ref --short HEAD 2>/dev/null || git -C "$cwd" rev-parse --short HEAD 2>/dev/null)
+  pr_num=$(gh pr view --json number -q .number 2>/dev/null)
+  [ -n "$pr_num" ] && branch_label="${branch} (#${pr_num})" || branch_label="$branch"
+
+  stat=$(git -C "$cwd" diff HEAD --shortstat 2>/dev/null)
+  insertions=$(echo "$stat" | grep -o '[0-9]* insertion' | grep -o '[0-9]*')
+  deletions=$(echo "$stat" | grep -o '[0-9]* deletion' | grep -o '[0-9]*')
+  [ -z "$insertions" ] && insertions=0
+  [ -z "$deletions" ] && deletions=0
+
+  last_commit=$(git -C "$cwd" log -1 --format="%cr" 2>/dev/null)
+fi
+
+# --- Visible strings for width calculation ---
+col1_top="${model}"
+col1_bot="${branch_label}"
+col2_top="${effort}"
+col2_bot="+${insertions} -${deletions}"
+
+# --- Column widths ---
+col1_w=${#col1_top}
+[ $has_git -eq 1 ] && [ ${#col1_bot} -gt $col1_w ] && col1_w=${#col1_bot}
+
+col2_w=${#col2_top}
+[ $has_git -eq 1 ] && [ ${#col2_bot} -gt $col2_w ] && col2_w=${#col2_bot}
+
+SEP="${DIM} | ${RESET}"
+
+# --- Line 1: model | effort | CTX ---
+printf "${model_color}%-${col1_w}s${RESET}" "$col1_top"
+printf "%s" "$SEP"
+case "$effort" in
+  xhigh|max) effort_color="$RED" ;;
+  high)      effort_color="$YELLOW" ;;
+  *)         effort_color="$GREEN" ;;
+esac
+printf "${effort_color}%-${col2_w}s${RESET}" "$col2_top"
+printf "%s" "$SEP"
+printf "${ctx_color}%s${RESET}\n" "$col3_top"
+
+# --- Line 2: branch (PR#) | +lines -lines | time ---
+if [ $has_git -eq 1 ]; then
+  if [ "$branch" = "main" ]; then
+    branch_color="$GREEN"
+  else
+    branch_color="$YELLOW"
+  fi
+  printf "${branch_color}${BOLD}%-${col1_w}s${RESET}" "$branch_label"
+  printf "%s" "$SEP"
+  diff_pad=$((col2_w - ${#col2_bot}))
+  printf "${GREEN}+%s${RESET} ${RED}-%s${RESET}" "$insertions" "$deletions"
+  [ "$diff_pad" -gt 0 ] && printf "%${diff_pad}s" ""
+  printf "%s" "$SEP"
+  printf "${DIM}%s${RESET}\n" "$last_commit"
+fi
