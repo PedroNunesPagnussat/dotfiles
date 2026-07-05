@@ -9,9 +9,9 @@ Produce a **briefing**: a compact document that orients an agent arriving cold. 
 
 ## Steps
 
-1. Scan the conversation for: the goal, key decisions and their rationale, current state (done / in-progress / blocked), files and artifacts touched, and context that won't survive a fresh session. Done when every distinct thread is accounted for.
+1. Scan the conversation against every section of the template below. Done when each section has content or is explicitly marked N/A.
 
-2. Write the briefing using the template below. Cut anything a cold agent can skip and still act well.
+2. Write the briefing using the template below.
 
 3. Write the briefing to a file named `hand-off-<timestamp>.md` (e.g. `hand-off-2026-07-03T14-32.md`) in the current working directory. Tell the user the filename. Done when the file exists and the user confirms it looks right.
 

@@ -115,9 +115,10 @@ if [ "$TOK_TOTAL" -ge 1000 ]; then
 else
     TOK_FMT="$TOK_TOTAL"
 fi
-CTX_TEXT="${CTX_ICON} ${PCT}% (${TOK_FMT})"
+CTX_TEXT="${TOK_FMT} (${PCT}%) ${CTX_ICON}"
 CTX_LEN=${#CTX_TEXT}
-CTX_PART="$(pct_color "$PCT")${CTX_ICON} ${PCT}%${RESET} $(tok_color "$TOK_TOTAL")(${TOK_FMT})${RESET}"
+CTX_COLOR=$(tok_color "$TOK_TOTAL")
+CTX_PART="${CTX_COLOR}${TOK_FMT} (${PCT}%) ${CTX_ICON}${RESET}"
 
 # --- Row 2: session (5h) limit | week limit | cost ---
 S5_PART=""

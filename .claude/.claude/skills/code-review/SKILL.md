@@ -39,7 +39,7 @@ Then walk the smell baseline below against the diff, for the design smells tooli
 - **Divergent Change** — one module edited for several unrelated reasons. → split so each changes for one reason.
 - **Speculative Generality** — abstraction or hooks added for needs the spec doesn't have. → delete it; inline back until a real need shows.
 - **Message Chains** — long a.b().c().d() navigation the caller shouldn't depend on. → hide the walk behind one method on the first object.
-- **Middle Man** — a class or function that mostly just delegates onward. → cut it, call the real target direct.
+- **Middle Man / Shallow Module** — a unit that mostly delegates onward, or whose interface is nearly as complex as what it hides (Ousterhout, *A Philosophy of Software Design*). → cut it and call the real target, or deepen it behind a simpler interface.
 - **Refused Bequest** — a subclass that ignores most of what it inherits. → drop the inheritance, use composition.
 - **Dead weight** — unreachable code, unused params, leftover debug output. → remove it.
 

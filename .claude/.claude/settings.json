@@ -18,8 +18,7 @@
   "alwaysThinkingEnabled": true,
   "effortLevel": "xhigh",
   "voice": {
-    "enabled": true,
-    "mode": "tap"
+    "enabled": true
   },
   "autoMemoryEnabled": false,
   "agentPushNotifEnabled": true,

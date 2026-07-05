@@ -56,3 +56,18 @@ async def test_create_user_makes_user_retrievable():
     retrieved = await get_user(user.id)
     assert retrieved.name == "Alice"
 ```
+
+Tautological tests: Expected value restates the implementation, so the test passes by construction.
+
+```python
+# BAD: Expected value is recomputed the way the code computes it
+def test_calculate_total_sums_line_items():
+    items = [{"price": 10}, {"price": 5}]
+    expected = sum(i["price"] for i in items)
+    assert calculate_total(items) == expected
+
+
+# GOOD: Expected value is an independent, known literal
+def test_calculate_total_sums_line_items():
+    assert calculate_total([{"price": 10}, {"price": 5}]) == 15
+```
