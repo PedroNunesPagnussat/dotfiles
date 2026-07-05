@@ -1,10 +1,12 @@
 ---
 name: implement
-description: "Implement a piece of work based on a PRD or set of issues."
+description: "Implement a piece of work from a plan."
 disable-model-invocation: true
 ---
 
-Work through `PLAN.md`: execute its Steps in order, each done when its checkable condition holds. (No `PLAN.md`? use the conversation context)
+Work through `plan/plan.md`: execute its Steps in order, each done when its checkable condition holds. (No `plan/plan.md`? use the conversation context)
+
+After each Step completes, append one line to `plan/log.md` (if present): `- [x] <Step> — <brief outcome>`. Gives a resuming agent a breadcrumb trail without re-deriving state from the diff.
 
 Run /tdd at the seams the plan's Testing Decisions named, testing the behaviours it prioritised.
 

@@ -68,6 +68,9 @@ alias dev='cd ~/dev'
 alias investments='cd ~/dev/investment-portfolio'
 alias notes='cd ~/notes'
 alias c='claude'
+alias ch='claude --model haiku'
+alias cs='claude --model sonnet'
+alias co='claude --model opus'
 
 # Python venvs
 alias mkvenv='python -m venv .venv'
