@@ -197,106 +197,117 @@ def recent_session_files(days):
     return sorted(paths, key=os.path.getmtime)
 
 
-def record_assistant_tools(event, path, result, last_tool, shapes, shape_local):
-    """Fold an assistant turn's tool calls into the leverage aggregates."""
-    for block in event.get("message", {}).get("content", []) or []:
-        if not (isinstance(block, dict) and block.get("type") == "tool_use"):
-            continue
-        name = block.get("name", "?")
-        inp = block.get("input", {}) or {}
-        last_tool[block.get("id")] = name
-        if name == "Skill":
-            result.skill_calls[str(inp.get("skill", "?"))] += 1
-        elif name == "Bash":
-            shape = bash_shape(inp.get("command"))
-            if shape:
-                result.shape_count[shape] += 1
-                result.shape_sessions[shape].add(path)
-                shape_local[shape] += 1
-                shapes.append(shape)
-        elif name in ("Read", "Edit", "Write"):
-            file_path = inp.get("file_path")
-            if file_path:
-                result.file_sessions[abbreviate_home(file_path)].add(path)
+class SessionParser:
+    """Threads one transcript's mutable state (meta, the tool-id map, and the
+    Bash-shape trails) through the record_* folds, then emits its SessionMeta.
+    Cross-session aggregates land in the shared `result`."""
 
+    def __init__(self, path, result):
+        self.path = path
+        self.result = result
+        self.meta = SessionMeta()
+        self.last_tool = {}          # tool_use id -> tool name, to attribute later errors
+        self.shapes = []             # Bash shapes in encounter order (for ritual bigrams)
+        self.shape_local = Counter() # this session's shape frequencies (for top_shape)
 
-def record_tool_error(block, path, meta, result, last_tool):
-    """Route one errored tool_result to permission / rejection / error-cluster."""
-    raw = block.get("content")
-    text = raw if isinstance(raw, str) else json.dumps(raw)
-    kind = classify_error(text)
-    tool = last_tool.get(block.get("tool_use_id"), "?")
-    if kind == "permission-not-granted":
-        match = PERM_RE.search(text)
-        meta.perm_keys.append(normalize_perm_target(match.group(1)) if match else "?")
-    elif kind == "user-rejected":
-        result.rejections[path] += 1
-    else:
-        result.err_clusters[(tool, kind)] += 1
-        if len(result.err_samples[(tool, kind)]) < 2:
-            result.err_samples[(tool, kind)].append(text[:120].replace("\n", " "))
+    def record_assistant_tools(self, event):
+        """Fold an assistant turn's tool calls into the leverage aggregates."""
+        for block in event.get("message", {}).get("content", []) or []:
+            if not (isinstance(block, dict) and block.get("type") == "tool_use"):
+                continue
+            name = block.get("name", "?")
+            inp = block.get("input", {}) or {}
+            self.last_tool[block.get("id")] = name
+            if name == "Skill":
+                self.result.skill_calls[str(inp.get("skill", "?"))] += 1
+            elif name == "Bash":
+                shape = bash_shape(inp.get("command"))
+                if shape:
+                    self.result.shape_count[shape] += 1
+                    self.result.shape_sessions[shape].add(self.path)
+                    self.shape_local[shape] += 1
+                    self.shapes.append(shape)
+            elif name in ("Read", "Edit", "Write"):
+                file_path = inp.get("file_path")
+                if file_path:
+                    self.result.file_sessions[abbreviate_home(file_path)].add(self.path)
 
+    def record_tool_error(self, block):
+        """Route one errored tool_result to permission / rejection / error-cluster."""
+        raw = block.get("content")
+        text = raw if isinstance(raw, str) else json.dumps(raw)
+        kind = classify_error(text)
+        tool = self.last_tool.get(block.get("tool_use_id"), "?")
+        if kind == "permission-not-granted":
+            match = PERM_RE.search(text)
+            self.meta.perm_keys.append(normalize_perm_target(match.group(1)) if match else "?")
+        elif kind == "user-rejected":
+            self.result.rejections[self.path] += 1
+        else:
+            self.result.err_clusters[(tool, kind)] += 1
+            if len(self.result.err_samples[(tool, kind)]) < 2:
+                self.result.err_samples[(tool, kind)].append(text[:120].replace("\n", " "))
 
-def record_user_turn(event, path, meta, result, last_tool):
-    """Fold a user turn: human text (slash/corrective/repeat) and tool errors."""
-    human = human_message(event)
-    if human is not None:
-        meta.human_turns += 1
-        for m in CMD_RE.finditer(human):
-            result.slash[m.group(1)] += 1
-        if CORRECTIVE.match(human):
-            result.corrective.append((path, human[:200]))
-        result.human_msgs.append((path, re.sub(r"\s+", " ", human.lower()).strip()))
+    def record_user_turn(self, event):
+        """Fold a user turn: human text (slash/corrective/repeat) and tool errors."""
+        human = human_message(event)
+        if human is not None:
+            self.meta.human_turns += 1
+            for m in CMD_RE.finditer(human):
+                self.result.slash[m.group(1)] += 1
+            if CORRECTIVE.match(human):
+                self.result.corrective.append((self.path, human[:200]))
+            self.result.human_msgs.append((self.path, re.sub(r"\s+", " ", human.lower()).strip()))
 
-    content = event.get("message", {}).get("content")
-    if isinstance(content, str):
-        for m in CMD_RE.finditer(content):
-            result.slash[m.group(1)] += 1
-    elif isinstance(content, list):
-        for block in content:
-            if isinstance(block, dict) and block.get("type") == "tool_result" and block.get("is_error"):
-                record_tool_error(block, path, meta, result, last_tool)
+        content = event.get("message", {}).get("content")
+        if isinstance(content, str):
+            for m in CMD_RE.finditer(content):
+                self.result.slash[m.group(1)] += 1
+        elif isinstance(content, list):
+            for block in content:
+                if isinstance(block, dict) and block.get("type") == "tool_result" and block.get("is_error"):
+                    self.record_tool_error(block)
+
+    def run(self):
+        """Read the transcript into self.meta, folding cross-session aggregates
+        into `self.result` as it goes, then return the meta."""
+        for event in iter_events(self.path):
+            event_type = event.get("type")
+            if event.get("cwd"):
+                self.meta.cwd[abbreviate_home(event["cwd"])] += 1
+
+            if event_type == "ai-title":
+                self.meta.title = event.get("aiTitle")
+            elif event_type == "permission-mode":
+                mode = event.get("permissionMode")
+                if not self.meta.perm_modes or self.meta.perm_modes[-1] != mode:
+                    self.meta.perm_modes.append(mode)
+            elif event_type == "assistant":
+                self.meta.assistant_turns += 1
+                self.record_assistant_tools(event)
+            elif event_type == "system":
+                if event.get("subtype") == "turn_duration":
+                    self.meta.duration_ms += event.get("durationMs", 0)
+            elif event_type == "user":
+                self.record_user_turn(event)
+
+        # rituals: consecutive distinct shapes within this session
+        for first, second in zip(self.shapes, self.shapes[1:]):
+            if first != second:
+                self.result.bigram_count[(first, second)] += 1
+                self.result.bigram_sessions[(first, second)].add(self.path)
+        if self.shape_local:
+            self.meta.top_shape = self.shape_local.most_common(1)[0]
+        for key in self.meta.perm_keys:
+            target = self.result.perm_needed_auto if self.meta.automated else self.result.perm_needed
+            target[key] += 1
+        return self.meta
 
 
 def parse_session(path, result):
     """Read one transcript into a SessionMeta, folding cross-session aggregates
     into `result` as it goes."""
-    meta = SessionMeta()
-    last_tool = {}              # tool_use id -> tool name, to attribute later errors
-    shapes = []                 # Bash shapes in encounter order (for ritual bigrams)
-    shape_local = Counter()     # this session's shape frequencies (for top_shape)
-
-    for event in iter_events(path):
-        event_type = event.get("type")
-        if event.get("cwd"):
-            meta.cwd[abbreviate_home(event["cwd"])] += 1
-
-        if event_type == "ai-title":
-            meta.title = event.get("aiTitle")
-        elif event_type == "permission-mode":
-            mode = event.get("permissionMode")
-            if not meta.perm_modes or meta.perm_modes[-1] != mode:
-                meta.perm_modes.append(mode)
-        elif event_type == "assistant":
-            meta.assistant_turns += 1
-            record_assistant_tools(event, path, result, last_tool, shapes, shape_local)
-        elif event_type == "system":
-            if event.get("subtype") == "turn_duration":
-                meta.duration_ms += event.get("durationMs", 0)
-        elif event_type == "user":
-            record_user_turn(event, path, meta, result, last_tool)
-
-    # rituals: consecutive distinct shapes within this session
-    for first, second in zip(shapes, shapes[1:]):
-        if first != second:
-            result.bigram_count[(first, second)] += 1
-            result.bigram_sessions[(first, second)].add(path)
-    if shape_local:
-        meta.top_shape = shape_local.most_common(1)[0]
-    for key in meta.perm_keys:
-        target = result.perm_needed_auto if meta.automated else result.perm_needed
-        target[key] += 1
-    return meta
+    return SessionParser(path, result).run()
 
 
 def repeated_openings(human_msgs):

@@ -4,11 +4,11 @@ description: Decompose a shared understanding into a concrete spec that /impleme
 disable-model-invocation: true
 ---
 
-Each spec gets its own directory under `specs/` at the repo root, named `spec-{ticket}-{short-desc}` — ticket or issue number optional (e.g. `spec-142-oauth-login` or `spec-oauth-login`). Read and updated across sessions so work can resume where it left off. Inside it:
+Each spec gets its own directory under `specs/` at the repo root, named `spec-{ticket}-{slug}` — ticket or issue number optional (e.g. `spec-142-oauth-login` or `spec-oauth-login`). Read and updated across sessions so work can resume where it left off. Inside it:
 
 - `spec-{...}.md` — the spec (template below), same name as the directory.
 - `log.md` — append-only record of what's been done.
-- `step-{short-desc}.md` — detail for a Step complex enough to need its own sub-steps; the Step links to it.
+- `step-{slug}.md` — detail for a Step complex enough to need its own sub-steps; the Step links to it.
 
 ## Process
 
@@ -43,7 +43,7 @@ Cover: architecture choices, data model changes, API contracts, library/pattern 
 - Prior art in the codebase to follow
 
 ## Steps
-Checkboxes so a resuming agent sees done-vs-left at a glance. A Step complex enough to need its own sub-steps links to `step-{short-desc}.md`.
+Checkboxes so a resuming agent sees done-vs-left at a glance.
 - [ ] Step — done when [checkable condition].
 - [ ] ...
 

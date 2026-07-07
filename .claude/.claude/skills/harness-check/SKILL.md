@@ -1,6 +1,7 @@
 ---
 name: harness-check
 description: Review this session, or your last N days, for harness upgrades — friction to remove and leverage to add — and propose specific fixes (a CLAUDE.md line, a permission/settings change, a hook, a skill). Proposes only.
+argument-hint: period 7
 disable-model-invocation: true
 ---
 
