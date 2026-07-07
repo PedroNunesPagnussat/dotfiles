@@ -8,7 +8,7 @@ Each spec gets its own directory under `specs/` at the repo root, named `spec-{t
 
 - `spec-{...}.md` — the spec (template below), same name as the directory.
 - `log.md` — append-only record of what's been done.
-- `step-{slug}.md` — detail for a Step complex enough to need its own sub-steps; the Step links to it.
+- `step-{n}-{slug}.md` — detail for a Step complex enough to need its own sub-steps, numbered by its position in the Steps list (e.g. `step-3-oauth-callback.md`); the Step links to it.
 
 ## Process
 
@@ -16,7 +16,11 @@ Each spec gets its own directory under `specs/` at the repo root, named `spec-{t
 
 2. Identify what the conversation has already resolved and what is still unclear. For unclear points, interview the user one question at a time until everything needed to write the spec is decided.
 
-3. Write the spec using the template below, and create an empty `log.md` beside it. Present the spec and ask if it looks right. Done when the user approves or revises it to their satisfaction. The approved Steps are the contract /implement executes.
+3. Lay out the intended Steps before writing them into the spec. Present the Step list in the conversation, each phrased as it will appear — a Step with its checkable done-condition — and get the user's read on shape and ordering. They're the contract /implement executes, so it's cheapest to reshape them here, before the spec is written. Done when the user is satisfied with the Steps.
+
+4. Write the spec using the template below, folding in the agreed Steps, and create an empty `log.md` beside it. Present the spec and ask if it looks right. Done when the user approves or revises it to their satisfaction.
+
+5. Break down complex Steps. Go through the approved Steps one at a time. A Step needs its own detail file when its done-condition hides more than one independently checkable outcome, or its work spans several seams with internal ordering; a Step you can state as a single checkable condition stays inline. For each that qualifies, write its `step-{n}-{slug}.md` with the sub-steps and link it from the Step. Done when every approved Step has been assessed, not just once the first file is written.
 
 <spec-template>
 
