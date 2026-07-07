@@ -1,6 +1,6 @@
 ---
 name: brag-document-entry
-description: Fetch a Jira issue and write a brag-document entry from it: what it was, and why it mattered.
+description: "Fetch a Jira issue and write a brag-document entry from it: what it was, and why it mattered."
 argument-hint: Jira issue key(s) or URL(s), e.g. XXX-949
 disable-model-invocation: true
 ---
