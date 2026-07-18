@@ -20,7 +20,7 @@ Each spec gets its own directory under `specs/` at the repo root, named `spec-{t
 
 4. Write the spec using the template below, folding in the agreed Steps, and create an empty `log.md` beside it. Present the spec and ask if it looks right. Done when the user approves or revises it to their satisfaction.
 
-5. Break down complex Steps. Go through the approved Steps one at a time. A Step needs its own detail file when its done-condition hides more than one independently checkable outcome, or its work spans several seams with internal ordering; a Step you can state as a single checkable condition stays inline. For each that qualifies, write its `step-{n}-{slug}.md` with the sub-steps and link it from the Step. Done when every approved Step has been assessed, not just once the first file is written.
+5. Break down complex Steps. Go through the approved Steps one at a time. A Step needs its own detail file when its done-condition hides more than one independently checkable outcome, or its work spans several seams with internal ordering; a Step you can state as a single checkable condition stays inline. For each that qualifies, write its `step-{n}-{slug}.md` with the sub-steps and link it from the Step with an explicit markdown link (e.g. `[details](step-3-oauth-callback.md)`). Done when every approved Step has been assessed, not just once the first file is written.
 
 <spec-template>
 

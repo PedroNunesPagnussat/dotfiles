@@ -7,6 +7,12 @@ description: Review the current branch's changes for correctness bugs, lint/stan
 
 Review what the current branch changed, not the whole codebase.
 
+## Fresh eyes
+
+You can't review code whose rationale is already in your head — you check it against what you meant, not against what's on the page. So before anything else: did you author any part of this diff, or is its reasoning still in your context (including from a prior session since compacted or resumed)?
+
+If so, you're the wrong reviewer — spawn a sub-agent with clean context (hand it the whole diff, not your rationale) to run this skill, then relay its report. That's your entire job this run.
+
 ## 1. Scope
 
 Diff the working tree against the branch point:

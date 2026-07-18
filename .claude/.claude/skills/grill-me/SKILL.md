@@ -1,7 +1,6 @@
 ---
 name: grill-me
 description: Grill the user relentlessly on a plan or design before they build. Use when the user wants to stress-test a plan, or uses any 'grill' trigger phrase.
-
 ---
 
 Grill me relentlessly about every aspect of this plan until we reach a shared understanding. Walk down each branch of the design tree, resolving dependencies between decisions one-by-one. For each question, provide your recommended answer.
