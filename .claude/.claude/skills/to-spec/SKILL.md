@@ -14,7 +14,7 @@ Each spec gets its own directory under `specs/` at the repo root, named `spec-{t
 
 1. Explore the codebase to understand the current state, if you haven't already. Respect existing conventions and patterns — the spec should extend them, not contradict them.
 
-2. Identify what the conversation has already resolved and what is still unclear. For unclear points, interview the user one question at a time until everything needed to write the spec is decided.
+2. Identify what the conversation has already resolved and what is still unclear. If any decision the spec needs is still open, grill it out with the grill-me skill — don't run a separate interview here. Done when nothing the spec needs is left unsettled.
 
 3. Lay out the intended Steps before writing them into the spec. Present the Step list in the conversation, each phrased as it will appear — a Step with its checkable done-condition — and get the user's read on shape and ordering. They're the contract /implement executes, so it's cheapest to reshape them here, before the spec is written. Done when the user is satisfied with the Steps.
 
