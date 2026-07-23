@@ -95,6 +95,8 @@ alias bkp='backup'
 
 eval "$(starship init zsh)"
 
-# >>> Codex installer >>>
-export PATH="/home/pedro/.local/bin:$PATH"
-# <<< Codex installer <<<
+# =============================================================================
+# PATH
+# =============================================================================
+
+export PATH="$HOME/.local/bin:$PATH"
