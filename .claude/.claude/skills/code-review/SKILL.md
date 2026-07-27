@@ -5,7 +5,7 @@ description: Review the current branch's changes for correctness bugs, standards
 
 # Review
 
-Two passes over the diff. A pass is done when every item on its list has been weighed against the diff — an item you cleared counts, one you never looked at doesn't.
+Two review passes — Correctness, then Standards. A pass is done when every item on its list has been weighed against the diff — an item you cleared counts, one you never looked at doesn't.
 
 ## Fresh eyes
 

@@ -13,12 +13,10 @@ A **seam** is the public boundary you test at: the interface where you observe b
 
 **Test only at pre-agreed seams.** No test is written at a seam the user hasn't confirmed. You can't test everything — agreeing the seams up front is how testing effort lands on the critical paths and complex logic instead of every edge case.
 
-See [tests.md](tests.md) for worked examples and [mocking.md](mocking.md) for what to mock.
-
 ## The loop
 
 1. **Agree the seams.** Write down the seams under test and confirm them. Done when the user confirms, or the spec's Testing Decisions already named them.
-2. **Red.** One test at one agreed seam. Run it. Done when it fails for the reason you predicted, not a typo or an import error.
+2. **Red.** One test at one agreed seam — read [tests.md](tests.md) before your first test of a session, and [mocking.md](mocking.md) before any test that needs a mock. Run it. Done when it fails for the reason you predicted, not a typo or an import error.
 3. **Green.** Only enough code to pass it — don't anticipate future tests or add speculative features. Done when the new test and the affected tests pass.
 4. Repeat from 2, one **vertical slice** at a time.
 
