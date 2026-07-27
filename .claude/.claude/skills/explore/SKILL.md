@@ -10,7 +10,7 @@ Spawn an `Explore` subagent to answer the question. Its searching stays in *its*
 
 1. **State the question.** Take it from the argument, or from what the conversation is trying to find out. If it splits into independent parts ("where is X", "how does Y work"), spawn one `Explore` per part in a single message so they run in parallel.
 
-2. **Brief each agent** (`subagent_type: Explore`) with:
+2. **Brief each agent** (`subagent_type: Explore`, `model: sonnet`) with:
    - **The question**, concretely.
    - **Breadth**: `medium` for a scoped lookup, `very thorough` when it spans multiple locations or naming conventions.
    - **The return shape**: a tight answer, `file:line` pointers, and the exact facts asked for — code snippets or a fuller dump only when the answer needs them. No transcript of the search itself.
