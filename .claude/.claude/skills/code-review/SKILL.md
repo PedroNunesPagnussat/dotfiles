@@ -1,11 +1,11 @@
 ---
 name: code-review
-description: Review the current branch's changes for correctness bugs, lint/standards violations, and design smells before finishing a piece of work. Use after implementing a change, or when the user asks to review the branch.
+description: Review the current branch's changes for correctness bugs, standards violations, and design smells before finishing a piece of work. Use after implementing a change, or when the user asks to review the branch.
 ---
 
 # Review
 
-Review what the current branch changed, not the whole codebase.
+Two passes over the diff. A pass is done when every item on its list has been weighed against the diff — an item you cleared counts, one you never looked at doesn't.
 
 ## Fresh eyes
 
@@ -15,13 +15,13 @@ If so, you're the wrong reviewer — spawn a sub-agent with clean context (hand 
 
 ## 1. Scope
 
-Diff the working tree against the branch point:
+Diff the working tree against the branch point, which covers every change on the branch, committed and uncommitted:
 
     git diff $(git merge-base HEAD main)   # master if the repo has no main
 
-That covers every change on the branch, committed and uncommitted. Review those and their immediate blast radius.
+Review those changes and their immediate blast radius.
 
-## 2. Correctness (first pass)
+## 2. Correctness
 
 - Logic errors: off-by-one, wrong operator, inverted condition
 - Unhandled errors, nil/None/undefined, empty-collection and boundary cases
@@ -29,11 +29,11 @@ That covers every change on the branch, committed and uncommitted. Review those 
 - Broken, missing, or implementation-coupled tests for the new behavior
 - Security: injection, unsanitized input, committed secrets
 
-## 3. Standards (second pass)
+## 3. Standards
 
-First run the repo's own linters and formatters in check mode, so nothing gets rewritten — ruff, black, isort, mypy, `hatch fmt --check`, whatever the repo configures (look in pyproject.toml or .pre-commit-config.yaml). They own the mechanical violations; let them report those.
+First run the repo's own linters and formatters in check mode (`--check`, `--dry-run`, `--no-fix`), so nothing gets rewritten — whatever the repo configures (look in pyproject.toml, package.json, .pre-commit-config.yaml, or the Makefile). They own the mechanical violations; let them report those.
 
-Then walk the smell baseline below against the diff, for the design smells tooling can't see. It holds even in a repo with no lint setup. Each smell is a heuristic ("possible Feature Envy"), never an automatic fail — flag it as a judgement call, and skip anything the tooling already enforces or allows.
+Then walk the smell baseline below against the diff, for the design smells tooling can't see. Each smell is a heuristic, never an automatic fail; skip anything the tooling already enforces or allows.
 
 - **Mysterious Name** — a name that doesn't reveal what it does or holds. → rename it; if no honest name comes, the design's murky.
 - **Duplicated Code** — the same logic shape in more than one hunk or file. → extract the shared shape, call it from both.

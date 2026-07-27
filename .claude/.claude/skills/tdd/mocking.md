@@ -7,11 +7,7 @@ Mock at **system boundaries** only:
 - Time/randomness
 - File system (sometimes)
 
-Don't mock:
-
-- Your own classes/modules
-- Internal collaborators
-- Anything you control
+Never mock anything you control: your own modules, classes, and internal collaborators. That's mocking inside the seam.
 
 ## Designing for Mockability
 
@@ -56,8 +52,4 @@ class Api:
         return fetch(endpoint, options)
 ```
 
-The SDK approach means:
-- Each mock returns one specific shape
-- No conditional logic in test setup
-- Easier to see which endpoints a test exercises
-- Type safety per endpoint
+Each mock then returns one specific shape, with no conditional logic in test setup, type safety per endpoint, and the test's setup showing at a glance which endpoints it exercises.

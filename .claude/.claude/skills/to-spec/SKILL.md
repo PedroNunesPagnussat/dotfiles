@@ -4,15 +4,15 @@ description: Decompose a shared understanding into a concrete spec that /impleme
 disable-model-invocation: true
 ---
 
-Each spec gets its own directory under `specs/` at the repo root, named `spec-{ticket}-{slug}` — ticket or issue number optional (e.g. `spec-142-oauth-login` or `spec-oauth-login`). Read and updated across sessions so work can resume where it left off. Inside it:
+Each spec gets its own directory under `specs/` at the repo root, named `spec-{ticket}-{slug}` — ticket or issue number optional (e.g. `spec-142-oauth-login` or `spec-oauth-login`). Inside it:
 
 - `spec-{...}.md` — the spec (template below), same name as the directory.
 - `log.md` — append-only record of what's been done.
-- `step-{n}-{slug}.md` — detail for a Step complex enough to need its own sub-steps, numbered by its position in the Steps list (e.g. `step-3-oauth-callback.md`); the Step links to it.
+- `step-{n}-{slug}.md` — detail for a Step that isn't atomic, numbered by its position in the Steps list (e.g. `step-3-oauth-callback.md`); the Step links to it.
 
 ## Process
 
-1. Explore the codebase to understand the current state, if you haven't already. Respect existing conventions and patterns — the spec should extend them, not contradict them.
+1. Understand the current state of the codebase, reaching for the explore skill for anything you haven't already established. Done when you could write the spec's Background section from what you found — the files, patterns, and constraints this spec has to extend.
 
 2. Identify what the conversation has already resolved and what is still unclear. If any decision the spec needs is still open, grill it out with the grill-me skill — don't run a separate interview here. Done when nothing the spec needs is left unsettled.
 
@@ -20,7 +20,9 @@ Each spec gets its own directory under `specs/` at the repo root, named `spec-{t
 
 4. Write the spec using the template below, folding in the agreed Steps, and create an empty `log.md` beside it. Present the spec and ask if it looks right. Done when the user approves or revises it to their satisfaction.
 
-5. Break down complex Steps. Go through the approved Steps one at a time. A Step needs its own detail file when its done-condition hides more than one independently checkable outcome, or its work spans several seams with internal ordering; a Step you can state as a single checkable condition stays inline. For each that qualifies, write its `step-{n}-{slug}.md` with the sub-steps and link it from the Step with an explicit markdown link (e.g. `[details](step-3-oauth-callback.md)`). Done when every approved Step has been assessed, not just once the first file is written.
+5. Break down the Steps that aren't atomic. Go through the approved Steps one at a time: a Step is atomic when one checkable condition settles it, and stays inline. Every other Step gets a `step-{n}-{slug}.md` holding its sub-steps, linked from the Step with an explicit markdown link (e.g. `[details](step-3-oauth-callback.md)`). Done when every approved Step has been assessed, not just once the first file is written.
+
+Then tell the user to run /implement.
 
 <spec-template>
 
@@ -47,7 +49,6 @@ Cover: architecture choices, data model changes, API contracts, library/pattern 
 - Prior art in the codebase to follow
 
 ## Steps
-Checkboxes so a resuming agent sees done-vs-left at a glance.
 - [ ] Step — done when [checkable condition].
 - [ ] ...
 
