@@ -1,20 +1,5 @@
 {
   "model": "opus",
-  "outputStyle": "Brief",
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline.sh"
-  },
-  "enabledPlugins": {
-    "frontend-design@claude-plugins-official": false
-  },
-  "alwaysThinkingEnabled": true,
-  "effortLevel": "xhigh",
-  "voice": {
-    "enabled": false
-  },
-  "autoMemoryEnabled": false,
-  "agentPushNotifEnabled": false,
   "skillOverrides": {
     "run": "off",
     "simplify": "off",
@@ -26,5 +11,20 @@
     "security-review": "off",
     "claude-api": "user-invocable-only",
     "dataviz": "user-invocable-only"
-  }
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": false
+  },
+  "outputStyle": "Brief",
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "xhigh",
+  "voice": {
+    "enabled": false
+  },
+  "autoMemoryEnabled": false,
+  "agentPushNotifEnabled": false
 }
