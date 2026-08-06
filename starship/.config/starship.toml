@@ -1,6 +1,6 @@
 add_newline = true
-command_timeout = 200
-format = "$python[$directory$git_branch$git_status$git_metrics]($style)$character"
+command_timeout = 500
+format = "${env_var.VIRTUAL_ENV_PROMPT}[$directory$git_branch$git_status$git_metrics]($style)$character"
 
 [character]
 error_symbol = "[✗](bold cyan)"
@@ -37,9 +37,7 @@ format = '([+$added]($added_style) )([-$deleted]($deleted_style) )'
 added_style = "bold green"
 deleted_style = "bold red"
 
-[python]
-format = '[( $virtualenv )]($style)'
+# Reads VIRTUAL_ENV_PROMPT instead of the python module: same output, no directory scan
+[env_var.VIRTUAL_ENV_PROMPT]
+format = '[( $env_value )]($style)'
 style = "yellow"
-detect_files = []
-detect_extensions = []
-detect_folders = []
