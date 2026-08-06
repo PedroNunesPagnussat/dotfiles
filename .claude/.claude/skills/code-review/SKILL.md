@@ -1,39 +1,49 @@
 ---
 name: code-review
-description: Review the current branch's changes for correctness bugs, standards violations, and design smells before finishing a piece of work. Use after implementing a change, or when the user asks to review the branch.
+description: Review code for correctness bugs and design smells, over the branch diff by default or any path you name. Use after implementing a change, when the user asks for a review, or when cleaning up smells in existing code.
 ---
 
 # Review
 
-Two review passes — Correctness, then Standards. A pass is done when every item on its list has been weighed against the diff — an item you cleared counts, one you never looked at doesn't.
+Weigh every item on both lists below against every file in scope: an item you cleared counts, one you never looked at doesn't. Telling is narrower than looking.
+
+An input-shape finding needs evidence the bad input occurs: a caller that produces it, a test that feeds it, or a stated requirement that permits it. Without that you invented the input, and the finding is speculative. Speculative findings stay out of the report. Security is the exception, kept to what is cheap to see: injection, unsanitized input reaching a sink, committed secrets.
 
 ## Fresh eyes
 
-You can't review code whose rationale is already in your head — you check it against what you meant, not against what's on the page. So before anything else: did you author any part of this diff, or is its reasoning still in your context (including from a prior session since compacted or resumed)?
+You can't review code whose rationale is already in your head — you check it against what you meant, not against what's on the page. So before anything else: did you author any part of the code in scope, or is its reasoning still in your context (including from a prior session since compacted or resumed)?
 
-If so, you're the wrong reviewer — spawn a sub-agent with clean context (hand it the whole diff, not your rationale) to run this skill, then relay its report. That's your entire job this run.
+If so, you're the wrong reviewer. Dispatch a cold-context subagent (general-purpose, never a fork) to run this skill, hand it the scope and nothing else, and relay its report. That's your entire job this run.
 
 ## 1. Scope
 
-Diff the working tree against the branch point, which covers every change on the branch, committed and uncommitted:
+Take the scope from the invocation argument:
 
-    git diff $(git merge-base HEAD main)   # master if the repo has no main
+- **no argument** — the branch diff, every change committed and uncommitted, plus its immediate blast radius:
 
-Review those changes and their immediate blast radius.
+      git diff $(git merge-base HEAD main)   # master if the repo has no main
+
+- **a path** — that file or directory
+- **`.`** — the repo
+
+List the files in scope before you start. That list is what the bar above holds you to.
 
 ## 2. Correctness
+
+Stay inside the scope and its blast radius.
 
 - Logic errors: off-by-one, wrong operator, inverted condition
 - Unhandled errors, nil/None/undefined, empty-collection and boundary cases
 - Concurrency issues and resource leaks (unclosed files/connections)
-- Broken, missing, or implementation-coupled tests for the new behavior
-- Security: injection, unsanitized input, committed secrets
+- Broken, missing, or implementation-coupled tests for the behaviour in scope
 
 ## 3. Standards
 
-First run the repo's own linters and formatters in check mode (`--check`, `--dry-run`, `--no-fix`), so nothing gets rewritten — whatever the repo configures (look in pyproject.toml, package.json, .pre-commit-config.yaml, or the Makefile). They own the mechanical violations; let them report those.
+First run whatever linters and formatters the repo configures (pyproject.toml, package.json, .pre-commit-config.yaml, Makefile) in check mode — `--check`, `--dry-run`, `--no-fix` — so nothing gets rewritten. They own the mechanical violations; let them report those.
 
-Then walk the smell baseline below against the diff, for the design smells tooling can't see. Each smell is a heuristic, never an automatic fail; skip anything the tooling already enforces or allows.
+Then walk the smell baseline against the scope, for the design smells tooling can't see. Each smell is a heuristic, never an automatic fail; skip anything the tooling already enforces or allows.
+
+When a smell recurs past the scope, sweep it: follow that one smell as far as it goes, stopping at the edge of its module or layer. One finding for the sweep, anchored at the worst site and naming the rest.
 
 - **Mysterious Name** — a name that doesn't reveal what it does or holds. → rename it; if no honest name comes, the design's murky.
 - **Duplicated Code** — the same logic shape in more than one hunk or file. → extract the shared shape, call it from both.
@@ -47,10 +57,10 @@ Then walk the smell baseline below against the diff, for the design smells tooli
 - **Message Chains** — long a.b().c().d() navigation the caller shouldn't depend on. → hide the walk behind one method on the first object.
 - **Middle Man / Shallow Module** — a unit that mostly delegates onward, or whose interface is nearly as complex as what it hides (Ousterhout, *A Philosophy of Software Design*). → cut it and call the real target, or deepen it behind a simpler interface.
 - **Refused Bequest** — a subclass that ignores most of what it inherits. → drop the inheritance, use composition.
-- **Dead weight** — unreachable code, unused params, leftover debug output. → remove it.
+- **Dead Code** — unreachable branches, unused params, leftover debug output. → remove it.
 
 ## 4. Report
 
-List findings most-severe first. For each: `file:line`, a one-sentence problem, and a concrete failure scenario or fix. Separate confirmed bugs from lower-confidence suggestions. If nothing substantive turns up, say so plainly — don't invent findings.
+List findings most-severe first. For each: `file:line`, a one-sentence problem, and a concrete failure scenario or fix. Separate confirmed bugs from lower-confidence suggestions. If the harness offers a structured findings channel, use it. If nothing substantive turns up, say so plainly.
 
-Report first; only fix when the user asks.
+Report first. When the user approves, apply the fixes.
