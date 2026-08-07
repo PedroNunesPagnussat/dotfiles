@@ -8,19 +8,19 @@ Each spec gets its own directory under `specs/` at the repo root, named `spec-{t
 
 - `spec-{...}.md` — the spec (template below), same name as the directory.
 - `log.md` — append-only record of what's been done.
-- `step-{n}-{slug}.md` — detail for a Step that isn't atomic, numbered by its position in the Steps list (e.g. `step-3-oauth-callback.md`); the Step links to it.
+- `step-{n}-{slug}.md` — detail for a Step that isn't **atomic**, numbered by its position in the Steps list; the Step links to it with an explicit markdown link (e.g. `[details](step-3-oauth-callback.md)`). A Step is atomic when one checkable condition settles it.
 
 ## Process
 
 1. Understand the current state of the codebase, reaching for the explore skill for anything you haven't already established. Done when you could write the spec's Background section from what you found — the files, patterns, and constraints this spec has to extend.
 
-2. Identify what the conversation has already resolved and what is still unclear. If any decision the spec needs is still open, grill it out with the grill-me skill — don't run a separate interview here. Done when nothing the spec needs is left unsettled.
+2. Identify what the conversation has already resolved and what is still open. Route every open decision through the grill-me skill. Done when you could write the spec's Decisions section from what's settled — nothing the spec needs left open.
 
-3. Lay out the intended Steps before writing them into the spec. Present the Step list in the conversation, each phrased as it will appear — a Step with its checkable done-condition — and get the user's read on shape and ordering. They're the contract /implement executes, so it's cheapest to reshape them here, before the spec is written. Done when the user is satisfied with the Steps.
+3. Present the Step list in the conversation before writing it into the spec — each Step phrased as it will appear, with its checkable done-condition — and get the user's read on shape and ordering. Done when the user is satisfied with the Steps.
 
-4. Write the spec using the template below, folding in the agreed Steps, and create an empty `log.md` beside it. Present the spec and ask if it looks right. Done when the user approves or revises it to their satisfaction.
+4. Write the spec using the template below, folding in the agreed Steps, and create an empty `log.md` beside it. Present the spec and ask if it looks right. Done when the user approves it.
 
-5. Break down the Steps that aren't atomic. Go through the approved Steps one at a time: a Step is atomic when one checkable condition settles it, and stays inline. Every other Step gets a `step-{n}-{slug}.md` holding its sub-steps, linked from the Step with an explicit markdown link (e.g. `[details](step-3-oauth-callback.md)`). Done when every approved Step has been assessed, not just once the first file is written.
+5. Break down the Steps that aren't atomic, going through the approved Steps one at a time. Atomic Steps stay inline; every other Step gets its `step-{n}-{slug}.md` holding its sub-steps. Done when every approved Step is either left inline as atomic or has its file written and linked.
 
 Then tell the user to run /implement.
 
@@ -49,8 +49,8 @@ Cover: architecture choices, data model changes, API contracts, library/pattern 
 - Prior art in the codebase to follow
 
 ## Steps
-- [ ] Step — done when [checkable condition].
-- [ ] ...
+- [ ] 1. Step — done when [checkable condition].
+- [ ] N. ...
 
 ## Out of scope
 - Explicitly excluded alternatives and features.
