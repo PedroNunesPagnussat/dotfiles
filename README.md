@@ -21,7 +21,7 @@ Each top-level directory is a stow package that mirrors the home directory struc
 ```
 dotfiles/
 ├── btop/.config/btop/
-├── .claude/.claude/                  # Claude Code config, skills, hooks
+├── .claude/.claude/                  # Claude Code config and skills
 ├── fastfetch/.config/fastfetch/
 ├── ghostty/.config/ghostty/
 ├── hypr/.config/hypr/
@@ -74,7 +74,7 @@ stow -R */
 
 ## Claude Code package
 
-The `.claude` package tracks `~/.claude/` config: `settings.json`, `CLAUDE.md`, `statusline.sh`, `file-suggestion.sh`, `skills/`, and `commands/`.
+The `.claude` package tracks `~/.claude/` config: `settings.json`, `CLAUDE.md`, `keybindings.json`, `statusline.sh`, and `skills/`.
 
 `settings.local.json` is intentionally gitignored (per-machine permissions).
 

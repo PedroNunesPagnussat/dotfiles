@@ -1,5 +1,5 @@
 {
-  "model": "opus",
+  "model": "sonnet",
   "skillOverrides": {
     "run": "off",
     "simplify": "off",
@@ -19,7 +19,6 @@
   "enabledPlugins": {
     "frontend-design@claude-plugins-official": false
   },
-  "outputStyle": "Brief",
   "alwaysThinkingEnabled": true,
   "effortLevel": "xhigh",
   "voice": {
