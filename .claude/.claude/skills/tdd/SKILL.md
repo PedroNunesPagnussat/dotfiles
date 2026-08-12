@@ -16,7 +16,7 @@ A **seam** is the public boundary you test at: the interface where you observe b
 ## The loop
 
 1. **Agree the seams.** Write down the seams under test and confirm them. Done when the user confirms, or the `to-spec` skill's Testing Decisions already named them.
-2. **Red.** One test at one agreed seam — read [mocking.md](mocking.md) before any test that needs a mock or any code that crosses a system boundary. Run it. Done when it fails for the reason you predicted, not a typo or an import error, and it trips none of the anti-patterns below.
+2. **Red.** One test at one agreed seam — read [mocking.md](mocking.md) before writing a test that needs a mock, and before writing implementation code that crosses a system boundary. Run it. Done when it fails for the reason you predicted, not a typo or an import error, and it trips none of the anti-patterns below.
 3. **Green.** Only enough code to pass it — don't anticipate future tests or add speculative features. Done when the full suite passes. The cycle ends there; the next one starts at red.
 4. Repeat from 2, one **vertical slice** at a time. Done when every agreed seam has a passing test.
 
