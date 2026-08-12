@@ -1,7 +1,6 @@
 ---
 name: implement
 description: Implement a piece of work from a spec.
-disable-model-invocation: true
 ---
 
 Find this work's spec: `specs/spec-*/spec-*.md`. If several match, ask which. If none exists, agree the Steps, their checkable done-conditions, and the seams to test with the user before building.
