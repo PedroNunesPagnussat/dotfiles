@@ -1,5 +1,5 @@
 {
-  "model": "sonnet",
+  "model": "opus",
   "skillOverrides": {
     "run": "off",
     "simplify": "off",
