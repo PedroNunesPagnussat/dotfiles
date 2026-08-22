@@ -1,6 +1,7 @@
 ---
 name: show-me
-description: Show the current topic visually as a diagram, code-shape sketch, or focused HTML artifact. Use when the user asks to see, visualize, sketch, or diagram something, or when a visual would land better than prose.
+description: Show the current topic visually as a diagram, code-shape sketch, or focused HTML file.
+disable-model-invocation: true
 ---
 
 Help the user understand the current topic of conversation visually. Skip the preamble and keep prose brief. Pick the smallest view that makes the key point clear.
@@ -43,7 +44,7 @@ src/
 └── transport/      # sends API requests
 ```
 
-- Show component interaction, control flow, or data flow with Mermaid:
+- Show component interaction, control flow, or data flow with Mermaid. Write the block to `tmp.md` in the working directory instead of the chat reply:
 
 ```mermaid
 sequenceDiagram

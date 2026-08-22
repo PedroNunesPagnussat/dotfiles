@@ -1,5 +1,7 @@
 {
-  "model": "opus",
+  "permissions": {
+    "defaultMode": "auto"
+  },
   "skillOverrides": {
     "run": "off",
     "simplify": "off",
@@ -25,5 +27,16 @@
     "enabled": false
   },
   "autoMemoryEnabled": false,
-  "agentPushNotifEnabled": false
+  "agentPushNotifEnabled": false,
+  "model": "sonnet",
+  "autoMode": {
+    "soft_deny": [
+      "$defaults",
+      "Any git command that rewrites or moves the commit graph: commit, merge, rebase, reset, revert, cherry-pick, commit --amend"
+    ],
+    "hard_deny": [
+      "$defaults",
+      "Any aws CLI command (aws ...) block unconditionally"
+    ]
+  }
 }
