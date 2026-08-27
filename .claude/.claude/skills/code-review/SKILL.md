@@ -1,6 +1,7 @@
 ---
 name: code-review
 description: Review code for correctness bugs and design smells, over the branch diff by default or any path you name. Use after implementing a change, when the user asks for a review, or when cleaning up smells in existing code.
+disable-model-invocation: true
 ---
 
 # Review
