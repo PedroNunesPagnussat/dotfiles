@@ -1,12 +1,12 @@
 ---
-name: code-review
-description: Review code for correctness bugs and design smells, over the branch diff by default or any path you name. Use after implementing a change, when the user asks for a review, or when cleaning up smells in existing code.
+name: smell-review
+description: Review code for correctness bugs and design smells, over the branch diff by default or any path you name.
 disable-model-invocation: true
 ---
 
 # Review
 
-Weigh every item on both lists below against every file in scope: an item you cleared counts, one you never looked at doesn't. Telling is narrower than looking.
+Weigh every item on both lists below against every file in scope: an item you cleared counts, one you never looked at doesn't.
 
 An input-shape finding needs evidence the bad input occurs: a caller that produces it, a test that feeds it, or a stated requirement that permits it. Without that you invented the input, and the finding is speculative. Speculative findings stay out of the report. Security is the exception, kept to what is cheap to see: injection, unsanitized input reaching a sink, committed secrets.
 

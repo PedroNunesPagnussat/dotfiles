@@ -4,7 +4,7 @@ description: Decompose a shared understanding into a concrete spec that /impleme
 disable-model-invocation: true
 ---
 
-Each spec gets its own directory under `specs/` at the repo root, named `spec-{ticket}-{slug}` — ticket or issue number optional (e.g. `spec-142-oauth-login` or `spec-oauth-login`). Inside it:
+Specs are temporary artifacts. Each one gets its own directory in the current working directory, named `spec-{ticket}-{slug}` — ticket or issue number optional (e.g. `spec-142-oauth-login` or `spec-oauth-login`). Inside it:
 
 - `spec-{...}.md` — the spec (template below), same name as the directory.
 - `log.md` — append-only record of what's been done.
@@ -14,7 +14,7 @@ Each spec gets its own directory under `specs/` at the repo root, named `spec-{t
 
 1. Understand the current state of the codebase, reaching for the explore skill for anything you haven't already established. Done when you could write the spec's Background section from what you found — the files, patterns, and constraints this spec has to extend.
 
-2. Identify what the conversation has already resolved and what is still open. Route every open decision through the grill-me skill. Done when you could write the spec's Decisions section from what's settled — nothing the spec needs left open.
+2. Identify what the conversation has already resolved and what is still open. Work through every open decision with the user. Done when you could write the spec's Decisions and Testing Decisions sections from what's settled — nothing the spec needs left open.
 
 3. Present the Step list in the conversation before writing it into the spec — each Step phrased as it will appear, with its checkable done-condition — and get the user's read on shape and ordering. Done when the user is satisfied with the Steps.
 

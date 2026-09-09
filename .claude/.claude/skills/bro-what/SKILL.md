@@ -12,7 +12,7 @@ Plain prose, ASD-STE100 Simplified Technical English, opening on the idea rather
 
 ## Rundown
 
-Open with **TL;DR:** one line carrying the whole answer — a reader who stops there still has the outcome and any blocker. Show state as a checklist, one item per line: ✅ done, 🟡 in progress, ⬜ not started. Flag a blocker or risk on its own 🔴 line, never buried in the checklist. Group choices under **Your move:**, each line one leading emoji and a short label. Keep every load-bearing number, threshold, and scoped condition exact — a rounded-off status is a wrong status. Don't invent a status you weren't given; mark it ⬜ instead. End on a clear next action or a pick-one.
+Open with **TL;DR:** one line carrying the whole answer — a reader who stops there still has the outcome and any blocker. Show state as a checklist, one item per line: ✅ done, ⏳ in progress, 📋 not started (todo). Flag a blocker or risk on its own ⚠️ line, never buried in the checklist. Group choices under **Your move:**, each line one leading emoji and a short label. Keep every load-bearing number, threshold, and scoped condition exact — a rounded-off status is a wrong status. Don't invent a status you weren't given; mark it 📋 instead. End on a clear next action or a pick-one.
 
 ## Either shape
 

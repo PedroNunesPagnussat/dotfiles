@@ -2,6 +2,7 @@
   "permissions": {
     "defaultMode": "auto"
   },
+  "model": "sonnet",
   "skillOverrides": {
     "run": "off",
     "simplify": "off",
@@ -28,7 +29,6 @@
   },
   "autoMemoryEnabled": false,
   "agentPushNotifEnabled": false,
-  "model": "sonnet",
   "autoMode": {
     "soft_deny": [
       "$defaults",

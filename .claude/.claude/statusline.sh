@@ -3,6 +3,7 @@
 # Line 1: model | effort | context
 # Line 2: session (5h) limit | week limit | cost
 # Line 3: branch | mods (files) | time since last commit
+# Line 4: cwd
 input=$(cat)
 
 GREEN='\033[32m'
@@ -22,6 +23,7 @@ PCT=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1
 TOK_IN=$(echo "$input" | jq -r '.context_window.total_input_tokens // 0')
 TOK_OUT=$(echo "$input" | jq -r '.context_window.total_output_tokens // 0')
 DIR=$(echo "$input" | jq -r '.workspace.current_dir // ""')
+DIR_DISPLAY="${DIR/#$HOME/\~}"
 RL_5H_PCT=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty' | cut -d. -f1)
 RL_5H_RESET=$(echo "$input" | jq -r '.rate_limits.five_hour.resets_at // empty')
 RL_7D_PCT=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty' | cut -d. -f1)
@@ -211,3 +213,4 @@ print_row "$S5_PART" "$S5_LEN" "$WK_PART" "$WK_LEN" "$COST_PART"
 if [ -n "$GIT_PART" ] || [ -n "$MODS_TEXT" ] || [ -n "$COMMIT_PART" ]; then
     print_row "$GIT_PART" "$BRANCH_LEN" "$LINES_PART" "$MODS_LEN" "$COMMIT_PART"
 fi
+[ -n "$DIR_DISPLAY" ] && printf "%b%s%b\n" "$DIM" "$DIR_DISPLAY" "$RESET"
