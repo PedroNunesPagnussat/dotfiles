@@ -1,12 +1,12 @@
 ---
 name: show-me
-description: Show the current topic visually as a diagram, code-shape sketch, or focused HTML file.
+description: Show the current topic visually as pseudocode, a call tree, a file tree, a sequence diagram, or a diff.
 disable-model-invocation: true
 ---
 
-Help the user understand the current topic of conversation visually. Skip the preamble and keep prose brief. Pick the smallest view that makes the key point clear.
+Show the current topic visually. Skip preamble, keep prose brief, pick the smallest view that makes the point.
 
-- Show logic or an algorithm as pseudocode:
+- Logic or an algorithm as pseudocode:
 
 ```text
 on(save)
@@ -16,7 +16,7 @@ on(save)
   return fresh result
 ```
 
-- Show runtime control flow as a call tree:
+- Runtime control flow as a call tree:
 
 ```text
 submitForm
@@ -26,16 +26,7 @@ submitForm
   navigateToSession
 ```
 
-- Show UI structure as a component tree, including state and module boundaries that matter:
-
-```tsx
-<SessionPage> (apps/example/src/routes/session.tsx)
-  useSessionEvents()
-  <SessionToolbar>
-    <RunSkillButton> (packages/ui)
-```
-
-- Show file responsibility or a broad refactor as a shallow file tree:
+- File responsibility or a broad refactor as a shallow file tree:
 
 ```text
 src/
@@ -44,7 +35,7 @@ src/
 └── transport/      # sends API requests
 ```
 
-- Show component interaction, control flow, or data flow with Mermaid. Write the block to `tmp.md` in the working directory instead of the chat reply:
+- Component interaction or data flow as a Mermaid sequence diagram, written to `show-me.md` in the working directory instead of the chat reply:
 
 ```mermaid
 sequenceDiagram
@@ -56,33 +47,7 @@ sequenceDiagram
     Daemon-->>UI: stream result
 ```
 
-- Use `diff` when the point is what changes and the surrounding shape already exists. Match the diff shape to the topic.
-
-For a component change:
-
-```diff
- <SessionPage>
-   useSessionEvents()
-   <SessionToolbar>
-+    <RunSkillButton />
-   <SessionTimeline>
-+    <SkillResultCard />
-```
-
-For a file-layout change:
-
-```diff
- src/
- ├── commands/
-+│   └── show-me.ts       # expands the slash command
- ├── sessions/
--└── transport.ts
-+└── transport/
-+    ├── client.ts
-+    └── stream.ts
-```
-
-For a call-tree or call-stack change:
+- A change to any of the above, as a diff shaped like the view it changes:
 
 ```diff
  submitForm
@@ -94,34 +59,6 @@ For a call-tree or call-stack change:
 +    subscribeToEvents
 ```
 
-For a state or control-flow change:
-
-```diff
- on(save)
--  write content
-+  if content is unchanged
-+    return cached result
-+  write new content
-+  invalidate cache
-```
-
-- Show the whole block when most of it is new, when omitted context would hide ownership or order, or when the user needs a copyable target shape:
-
-```ts
-function expandSkill(command: string): string {
-  const skillName = command.slice(1)
-  return `use the ${skillName} skill`
-}
-```
-
-- For a visual UI, layout, state comparison, or concept too dense for Mermaid, write one focused HTML file — a diagram, an infographic, or a short slide deck, whichever fits the point. Match the product's colors, type, spacing, and components; use real labels and data; support desktop and mobile. Then open it for the user:
-
-```
-Bash(open path/to/show-me-{description}.html)
-```
-
 ### guidance
 
-Place each visual next to the short text it supports. Keep only the calls, files, props, states, and boundaries needed to answer the user's current question or the options to resolve the current discussion point.
-
-You may use one of these, you may use several, it is unlikely you will use all of them. Use your judgement and don't overwhelm the user.
+Place each visual beside the text it supports; keep only the calls, files, and states the current question needs. Combine views only when one alone can't carry the point.
