@@ -62,3 +62,5 @@ sequenceDiagram
 ### guidance
 
 Place each visual beside the text it supports; keep only the calls, files, and states the current question needs. Combine views only when one alone can't carry the point.
+
+If the topic doesn't fit any view above, pick whatever visual form best simplifies the explanation (table, state diagram, box-and-arrow architecture sketch, etc.) — the goal is always to make the explanation simpler, not to force it into one of the listed shapes.
