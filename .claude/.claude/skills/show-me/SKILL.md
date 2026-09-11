@@ -1,7 +1,6 @@
 ---
 name: show-me
 description: Show the current topic visually as pseudocode, a call tree, a file tree, a sequence diagram, or a diff.
-disable-model-invocation: true
 ---
 
 Show the current topic visually. Skip preamble, keep prose brief, pick the smallest view that makes the point.

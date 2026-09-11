@@ -22,8 +22,6 @@ Specs are temporary artifacts. Each one gets its own directory in the current wo
 
 5. Break down the Steps that aren't atomic, going through the approved Steps one at a time. Atomic Steps stay inline; every other Step gets its `step-{n}-{slug}.md` holding its sub-steps. Done when every approved Step is either left inline as atomic or has its file written and linked.
 
-Then tell the user to run /implement.
-
 <spec-template>
 
 ## Background

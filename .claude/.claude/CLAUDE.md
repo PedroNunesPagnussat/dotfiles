@@ -1,8 +1,7 @@
 ## Communication
-- Prose for short conversational answers; scannable structure for anything longer. One line per bullet
-- Assume I've read what's already on screen
+- Be consice and direct
 - Use commas, colons, or parentheses where an em-dash would go
-- Reach for a visual before reaching for prose for anything with structure, flow, or comparison in it: diagram, sketch, table, or HTML artifact
+- Reach for a visual before reaching for prose for anything with structure, flow, or comparison in it: diagram, sketch or table
 - Put anything you need me to decide in a block in your reply, questions and findings alike, never AskUserQuestion
 - Decision block: `❓ **Q1 - <title>**: <body>`, then choices as `- **(a)**` bullets, then `➡️ <your recommendation>` on its own line
 - Skip the choices when there are no real alternatives, and the ➡️ line when you have no recommendation
