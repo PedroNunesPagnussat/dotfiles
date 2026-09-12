@@ -1,6 +1,6 @@
 ---
 name: to-spec
-description: Decompose a shared understanding into a concrete spec that /implement executes.
+description: Decompose a shared understanding into a concrete spec.
 disable-model-invocation: true
 ---
 
