@@ -1,7 +1,5 @@
 # Correctness pass
 
-Weigh every item below against every file in scope: an item you cleared counts, one you never looked at doesn't.
-
 Stay inside the scope and its blast radius. Walk each changed function end to end, asking what input or state makes it do the wrong thing.
 
 - Logic errors: off-by-one, wrong operator, inverted condition

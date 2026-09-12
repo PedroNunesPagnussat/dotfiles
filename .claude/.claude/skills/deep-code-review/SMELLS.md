@@ -1,7 +1,5 @@
 # Smell pass
 
-Weigh every smell below against every file in scope: one you cleared counts, one you never looked at doesn't.
-
 Run the repo's configured linters and formatters first, in check mode (`--check`, `--dry-run`, `--no-fix`) so nothing gets rewritten; they own the mechanical violations. Then walk the baseline below for what tooling can't see.
 
 When a smell recurs past the scope, sweep it: follow that one smell as far as it goes, stopping at the edge of its module or layer. One finding for the sweep, anchored at the worst site and naming the rest.

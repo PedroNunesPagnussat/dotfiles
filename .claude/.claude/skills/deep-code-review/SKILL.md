@@ -6,35 +6,39 @@ disable-model-invocation: true
 
 # Review
 
-You run this review by dispatching it, not by doing it: resolve the scope, send two cold-context subagents out on it, merge what they bring back. Fresh eyes are the point — you may have written the code, and a reviewer holding the rationale checks the code against what it meant rather than against what's on the page.
+Weigh every item on both passes against every file in scope: an item you cleared counts, one you never looked at doesn't.
+
+## Fresh eyes
+
+You can't review code whose rationale is already in your head: you check it against what you meant, not against what's on the page. So before anything else, ask whether you authored any part of the code in scope, or its reasoning is still in your context (including from a prior session since compacted or resumed).
+
+If so, you're the wrong reviewer. Dispatch one cold-context subagent (general-purpose, never a fork) to run this skill, hand it the invocation argument and nothing else, and tell it the review is read-only: it reports findings and changes no files. Then relay its report, no softening and no quiet drops, since you may have written what it flagged. Where you disagree, keep the finding and add your objection beneath it. That's your entire job this run.
+
+Otherwise run the passes yourself.
 
 ## 1. Scope
 
-The current branch by default: every change committed and uncommitted, plus its immediate blast radius.
+Take the scope from the invocation argument:
 
-    git diff $(git merge-base HEAD main)   # master if the repo has no main
+- **no argument**, everything not yet on main: commits and uncommitted work alike, plus its immediate blast radius
 
-An argument overrides it — a path scopes to that file or directory, `.` to the whole repo.
+      git diff $(git merge-base HEAD origin/main)   # master, or plain main with no remote
 
-List the files in scope before you dispatch. That list is what both agents are held to.
+  On a branch that base is the fork point, so the whole branch is in scope whether or not it's pushed. On main itself `origin/main` is an ancestor, so the base is the last pushed commit. Work lands here from several sessions and several authors, so don't reach for `git diff HEAD`: it drops every commit.
 
-## 2. Dispatch
+List the files in scope before you start. That list is what the bar above holds you to.
 
-Two general-purpose subagents (never a fork), both in one message so they run in parallel:
+## 2. Passes
 
-| Agent | Reads | Hunts |
+Both of them, against the file list:
+
+| Pass | Read | Hunts |
 |---|---|---|
 | correctness | [`CORRECTNESS.md`](CORRECTNESS.md) | bugs |
 | smells | [`SMELLS.md`](SMELLS.md) | design smells |
 
-Hand each the file list, the absolute path to its pass file, and this report format:
+## 3. Report
 
-> Findings most-severe first. For each: `file:line`, a one-sentence problem, and a concrete failure scenario or fix. Separate confirmed bugs from lower-confidence suggestions. If nothing substantive turns up, say so plainly.
-
-## 3. Merge
-
-Relay both reports as written. You may have authored the code under review, so leave every finding standing: no softening, no quiet drops. Where you disagree, keep the finding and add your objection as a note beneath it.
-
-Correctness findings lead, smells follow. Collapse findings both agents raised on the same line into one. If the harness offers a structured findings channel, use it.
+Findings most-severe first, correctness before smells. For each: `file:line`, a one-sentence problem, and a concrete failure scenario or fix. Separate confirmed bugs from lower-confidence suggestions. If the harness offers a structured findings channel, use it. If nothing substantive turns up, say so plainly.
 
 Report first. When the user approves, apply the fixes.
