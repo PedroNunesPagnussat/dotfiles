@@ -6,15 +6,7 @@ disable-model-invocation: true
 
 # Review
 
-Weigh every item on both passes against every file in scope: an item you cleared counts, one you never looked at doesn't.
-
-## Fresh eyes
-
-You can't review code whose rationale is already in your head: you check it against what you meant, not against what's on the page. So before anything else, ask whether you authored any part of the code in scope, or its reasoning is still in your context (including from a prior session since compacted or resumed).
-
-If so, you're the wrong reviewer. Dispatch one cold-context subagent (general-purpose, never a fork) to run this skill, hand it the invocation argument and nothing else, and tell it the review is read-only: it reports findings and changes no files. Then relay its report, no softening and no quiet drops, since you may have written what it flagged. Where you disagree, keep the finding and add your objection beneath it. That's your entire job this run.
-
-Otherwise run the passes yourself.
+You scope the review and merge the results. The two passes run in subagents, never in your own context: they hunt different things, and a cold reader beats one checking the code against what it meant rather than against what's on the page.
 
 ## 1. Scope
 
@@ -26,19 +18,21 @@ Take the scope from the invocation argument:
 
   On a branch that base is the fork point, so the whole branch is in scope whether or not it's pushed. On main itself `origin/main` is an ancestor, so the base is the last pushed commit. Work lands here from several sessions and several authors, so don't reach for `git diff HEAD`: it drops every commit.
 
-List the files in scope before you start. That list is what the bar above holds you to.
+List the files in scope before you dispatch. That list is what both passes are held to.
 
-## 2. Passes
+## 2. Dispatch
 
-Both of them, against the file list:
+Two general-purpose subagents (never forks), in parallel, one per pass:
 
-| Pass | Read | Hunts |
+| Pass | Reads | Hunts |
 |---|---|---|
-| correctness | [`CORRECTNESS.md`](CORRECTNESS.md) | bugs |
-| smells | [`SMELLS.md`](SMELLS.md) | design smells |
+| correctness | `CORRECTNESS.md` | bugs |
+| smells | `SMELLS.md` | design smells |
+
+Hand each one the file list from §1, the absolute path to its pass file in this skill's directory, and the rule that the review is read-only: it reports findings and changes no files. Nothing else, and never your own read of the code. This skill is user-invocable only, so a subagent can't reach it by name; the path is how it gets its instructions.
 
 ## 3. Report
 
-Findings most-severe first, correctness before smells. For each: `file:line`, a one-sentence problem, and a concrete failure scenario or fix. Separate confirmed bugs from lower-confidence suggestions. If the harness offers a structured findings channel, use it. If nothing substantive turns up, say so plainly.
+Merge both reports, most-severe first, correctness before smells. Relay what came back, no softening and no quiet drops, since you may have written what they flagged. Where you disagree, keep the finding and add your objection beneath it. If the harness offers a structured findings channel, use it. If nothing substantive turns up, say so plainly.
 
 Report first. When the user approves, apply the fixes.

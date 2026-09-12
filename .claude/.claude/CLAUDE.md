@@ -1,5 +1,5 @@
 ## Communication
-- Be consice and direct
+- Be concise and direct
 - Use commas, colons, or parentheses where an em-dash would go
 - Reach for a visual before reaching for prose for anything with structure, flow, or comparison in it: diagram, sketch or table
 - Put anything you need me to decide in a block in your reply, questions and findings alike, never AskUserQuestion

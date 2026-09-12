@@ -1,5 +1,7 @@
 # Smell pass
 
+Weigh every smell below against every file in scope: one you cleared counts, one you never looked at doesn't.
+
 Run the repo's configured linters and formatters first, in check mode (`--check`, `--dry-run`, `--no-fix`) so nothing gets rewritten; they own the mechanical violations. Then walk the baseline below for what tooling can't see.
 
 When a smell recurs past the scope, sweep it: follow that one smell as far as it goes, stopping at the edge of its module or layer. One finding for the sweep, anchored at the worst site and naming the rest.
@@ -17,3 +19,5 @@ When a smell recurs past the scope, sweep it: follow that one smell as far as it
 - **Message Chains** — long a.b().c().d() navigation the caller shouldn't depend on. → hide the walk behind one method on the first object.
 - **Middle Man / Shallow Module** — a unit that mostly delegates onward, or whose interface is nearly as complex as what it hides (Ousterhout, *A Philosophy of Software Design*). → cut it and call the real target, or deepen it behind a simpler interface.
 - **Refused Bequest** — a subclass that ignores most of what it inherits. → drop the inheritance, use composition.
+
+For each finding: `file:line`, a one-sentence problem, and a concrete fix. Separate confirmed smells from lower-confidence suggestions.
