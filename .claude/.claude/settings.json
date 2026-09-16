@@ -20,6 +20,7 @@
   },
   "alwaysThinkingEnabled": true,
   "effortLevel": "xhigh",
+  "tui": "fullscreen",
   "voice": {
     "enabled": false
   },
