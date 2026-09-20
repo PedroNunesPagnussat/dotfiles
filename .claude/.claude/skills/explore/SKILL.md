@@ -2,6 +2,7 @@
 name: explore
 description: Delegate codebase searches to an Explore subagent so the raw file output never enters your context. Use when you need to find where something lives, how it works across many files, or to confirm a claim about the code.
 argument-hint: What do you want found out?
+model: sonnet
 ---
 
 Answer the question by **brief**ing `Explore` subagents.
