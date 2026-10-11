@@ -4,3 +4,4 @@
 # Omarchy theme symlinks (swap with active theme, not worth tracking)
 btop/.config/btop/themes/current.theme
 mako/.config/mako/config
+.claude/.claude/evals/*

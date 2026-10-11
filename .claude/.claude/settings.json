@@ -1,4 +1,5 @@
 {
+  "syncClaudeAiSkills": false,
   "permissions": {
     "defaultMode": "auto"
   },
@@ -35,5 +36,6 @@
       "$defaults",
       "Any aws CLI command (aws ...) block unconditionally"
     ]
-  }
+  },
+  "advisorModel": "opus"
 }

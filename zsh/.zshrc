@@ -100,3 +100,6 @@ eval "$(starship init zsh)"
 # =============================================================================
 
 export PATH="$HOME/.local/bin:$PATH"
+
+# Lutris: run without mise so it and its helpers use system Python
+alias lutris='PATH=$(echo $PATH | tr ":" "\n" | grep -v mise | paste -sd:) /usr/bin/lutris'
