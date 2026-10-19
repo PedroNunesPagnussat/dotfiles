@@ -21,6 +21,12 @@
   },
   "alwaysThinkingEnabled": true,
   "effortLevel": "xhigh",
+  "modelSettings": {
+    "claude-sonnet-5": {
+      "effortLevel": "medium"
+    }
+  },
+  "advisorModel": "opus",
   "tui": "fullscreen",
   "voice": {
     "enabled": false
@@ -36,6 +42,5 @@
       "$defaults",
       "Any aws CLI command (aws ...) block unconditionally"
     ]
-  },
-  "advisorModel": "opus"
+  }
 }
