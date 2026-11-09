@@ -3,7 +3,7 @@
   "permissions": {
     "defaultMode": "auto"
   },
-  "model": "opus",
+  "model": "sonnet",
   "skillOverrides": {
     "claude-in-chrome": "off",
     "init": "off",
@@ -26,21 +26,13 @@
       "effortLevel": "medium"
     }
   },
+  "autoCompactWindow": 200000,
   "advisorModel": "opus",
   "tui": "fullscreen",
   "voice": {
     "enabled": false
   },
   "autoMemoryEnabled": false,
-  "agentPushNotifEnabled": false,
-  "autoMode": {
-    "soft_deny": [
-      "$defaults",
-      "Any git command that rewrites or moves the commit graph: commit, merge, rebase, reset, revert, cherry-pick, commit --amend"
-    ],
-    "hard_deny": [
-      "$defaults",
-      "Any aws CLI command (aws ...) block unconditionally"
-    ]
-  }
+  "switchModelsOnFlag": false,
+  "agentPushNotifEnabled": false
 }
