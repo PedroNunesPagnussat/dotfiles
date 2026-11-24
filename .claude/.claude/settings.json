@@ -3,7 +3,6 @@
   "permissions": {
     "defaultMode": "auto"
   },
-  "model": "sonnet",
   "skillOverrides": {
     "claude-in-chrome": "off",
     "init": "off",
@@ -20,14 +19,7 @@
     "frontend-design@claude-plugins-official": false
   },
   "alwaysThinkingEnabled": true,
-  "effortLevel": "xhigh",
-  "modelSettings": {
-    "claude-sonnet-5": {
-      "effortLevel": "medium"
-    }
-  },
-  "autoCompactWindow": 200000,
-  "advisorModel": "opus",
+  "autoCompactWindow": 250000,
   "tui": "fullscreen",
   "voice": {
     "enabled": false

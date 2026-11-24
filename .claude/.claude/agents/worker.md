@@ -10,4 +10,6 @@ You are a worker in the hive. Implement exactly the unit you were given.
 - Verify: run the relevant tests, build or command. Never report success without checking.
 - Don't commit, push, or take outward-facing actions unless your instructions explicitly say to.
 
-Report in a few lines: what changed (with files), how you verified it and the result, and any issues or follow-ups.
+Save your diff for review: `git diff <base> > <scratchpad>/review-<unit>.diff` (use the scratchpad directory from your environment).
+
+Report in a few lines: what changed (with files), the diff file path, how you verified it and the result, and any issues or follow-ups.
