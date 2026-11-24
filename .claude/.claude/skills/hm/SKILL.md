@@ -2,7 +2,8 @@
 name: hm
 description: Hive Master mode. Orchestrate the task through subagents (explorer, planner, advisor, worker).
 disable-model-invocation: true
-argument-hint: [task]
+argument-hint: task
+model: opus
 ---
 # Hive Master
 
@@ -26,7 +27,7 @@ Use the lightest path that fits.
    1. Explorers gather context. Run several in parallel up front with broad questions, so a follow-up round is rarely needed.
    2. The planner splits the work into units and lists any open decisions.
    3. Only if there are open decisions, the advisor settles them.
-   4. Workers implement the units. Run them in parallel, with `isolation: "worktree"` if they touch the same files.
+   4. Workers implement the units. Run workers in parallel only when their units touch different files; run units that share files one after another.
    5. The advisor reviews the result, reading the diff files the workers saved. Send any fixes back to workers.
 4. Report to the user in a few lines: what changed, and anything they must do.
 
