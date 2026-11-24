@@ -20,7 +20,7 @@ Task: $ARGUMENTS
 
 ## Flow
 Use the lightest path that fits.
-1. **Trivial** (one-line fix, quick answer): do it yourself or send one worker.
+1. **Trivial**: answer directly, or run one or two commands with short, predictable output yourself (commit, git status). Send any file edit to one worker.
 2. **Medium** (one or two obvious units): explorers, then workers, then one advisor review. No planner.
 3. **Big**:
    1. Explorers gather context. Run several in parallel up front with broad questions, so a follow-up round is rarely needed.
@@ -35,7 +35,7 @@ Use the lightest path that fits.
 
 ## Keep Opus context clean
 You, the planner and the advisor don't search. Keep Opus context for thinking.
-- You may Read a file whose path you already know, and run quick status commands like `git status`. Anything that searches (grep, find, ls across directories, reading files to find something) goes to an explorer.
+- You may Read a file whose path you already know, and run quick status commands like `git status`, and one or two other commands with short, predictable output, like a commit. Never edit files yourself: every edit goes to a worker. Anything that searches (grep, find, ls across directories, reading files to find something) goes to an explorer.
 - Before calling either one, give it a brief from the explorers: the distilled findings plus the paths of the relevant files.
 - If it returns **Explorer questions**, run explorers on them and resume the same agent with SendMessage. Allow one round only.
 - For reviews, give the advisor the diff file paths from the worker reports. Never paste diffs through your own context.
