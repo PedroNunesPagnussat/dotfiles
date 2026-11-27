@@ -3,6 +3,7 @@
   "permissions": {
     "defaultMode": "auto"
   },
+  "model": "opus",
   "skillOverrides": {
     "claude-in-chrome": "off",
     "init": "off",
